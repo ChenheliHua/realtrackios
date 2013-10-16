@@ -10,7 +10,7 @@
 #import "RTLogo.h"
 #import "RTButton.h"
 
-@interface RTViewController : UIViewController
+@interface RTIndexViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet RTLogo *logo;
 

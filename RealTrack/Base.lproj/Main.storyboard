@@ -7,7 +7,7 @@
         <!--IndexViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="IndexViewController" customClass="RTViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="IndexViewController" customClass="RTIndexViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bjm-Ul-8cH"/>
                         <viewControllerLayoutGuide type="bottom" id="rn6-ld-UjI"/>
@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="920" y="-540"/>
         </scene>
-        <!--View Controller - My Activities-->
+        <!--My Activities View Controller - My Activities-->
         <scene sceneID="L7a-GA-BC8">
             <objects>
-                <viewController id="VyD-0a-NLx" sceneMemberID="viewController">
+                <viewController id="VyD-0a-NLx" customClass="RTMyActivitiesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SgM-C1-4NE"/>
                         <viewControllerLayoutGuide type="bottom" id="NVa-BZ-Tqc"/>
@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="920" y="142"/>
         </scene>
-        <!--View Controller - Pending-->
+        <!--Pending View Controller - Pending Activities-->
         <scene sceneID="Jot-QO-45N">
             <objects>
-                <viewController id="MFD-H0-t3h" sceneMemberID="viewController">
+                <viewController id="MFD-H0-t3h" customClass="RTPendingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UBo-hD-J38"/>
                         <viewControllerLayoutGuide type="bottom" id="vOe-a2-9AT"/>
@@ -133,7 +133,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pending" id="trA-p1-lil"/>
+                    <navigationItem key="navigationItem" title="Pending Activities" id="trA-p1-lil"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4v-S6-dTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

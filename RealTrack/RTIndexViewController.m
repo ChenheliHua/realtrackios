@@ -6,19 +6,20 @@
 //  Copyright (c) 2013 Peace Corps. All rights reserved.
 //
 
-#import "RTViewController.h"
+#import "RTIndexViewController.h"
 
-@interface RTViewController ()
+@interface RTIndexViewController ()
 
 @end
 
-@implementation RTViewController
+@implementation RTIndexViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
- 
+
+    // Load Peace Corps logo
     [self.logo loadLogo];
     
     // Set corner radius of buttons
