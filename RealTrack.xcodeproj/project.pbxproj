@@ -22,6 +22,9 @@
 		0B3F73C5180DBB4D0032BE07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3F73C3180DBB4D0032BE07 /* InfoPlist.strings */; };
 		0B3F73C7180DBB4D0032BE07 /* RealTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3F73C6180DBB4D0032BE07 /* RealTrackTests.m */; };
 		0B4A5498181030CC0036E415 /* RTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A5496181030CC0036E415 /* RTDataModel.xcdatamodeld */; };
+		0B4A549E18103FCF0036E415 /* Activities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A549D18103FCF0036E415 /* Activities.m */; };
+		0B4A54A118103FD00036E415 /* Participations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A54A018103FD00036E415 /* Participations.m */; };
+		0B4A54A418103FD00036E415 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A54A318103FD00036E415 /* Projects.m */; };
 		0B501ABE180EE81700430C21 /* RTLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501ABD180EE81700430C21 /* RTLogo.m */; };
 		0B501AC1180EEEC800430C21 /* RTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501AC0180EEEC800430C21 /* RTButton.m */; };
 		0B501AC4180EF12B00430C21 /* RTEnterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501AC3180EF12B00430C21 /* RTEnterDataViewController.m */; };
@@ -60,6 +63,12 @@
 		0B3F73C4180DBB4D0032BE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B3F73C6180DBB4D0032BE07 /* RealTrackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTrackTests.m; sourceTree = "<group>"; };
 		0B4A5497181030CC0036E415 /* RTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RTDataModel.xcdatamodel; sourceTree = "<group>"; };
+		0B4A549C18103FCF0036E415 /* Activities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activities.h; sourceTree = "<group>"; };
+		0B4A549D18103FCF0036E415 /* Activities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activities.m; sourceTree = "<group>"; };
+		0B4A549F18103FD00036E415 /* Participations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participations.h; sourceTree = "<group>"; };
+		0B4A54A018103FD00036E415 /* Participations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participations.m; sourceTree = "<group>"; };
+		0B4A54A218103FD00036E415 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
+		0B4A54A318103FD00036E415 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		0B501ABC180EE81700430C21 /* RTLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogo.h; sourceTree = "<group>"; };
 		0B501ABD180EE81700430C21 /* RTLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogo.m; sourceTree = "<group>"; };
 		0B501ABF180EEEC800430C21 /* RTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTButton.h; sourceTree = "<group>"; };
@@ -200,6 +209,12 @@
 			isa = PBXGroup;
 			children = (
 				0B4A5496181030CC0036E415 /* RTDataModel.xcdatamodeld */,
+				0B4A54A218103FD00036E415 /* Projects.h */,
+				0B4A54A318103FD00036E415 /* Projects.m */,
+				0B4A549F18103FD00036E415 /* Participations.h */,
+				0B4A54A018103FD00036E415 /* Participations.m */,
+				0B4A549C18103FCF0036E415 /* Activities.h */,
+				0B4A549D18103FCF0036E415 /* Activities.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -302,15 +317,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B4A549E18103FCF0036E415 /* Activities.m in Sources */,
 				0B6FAE5E180EF710004BCF92 /* RTMyActivitiesViewController.m in Sources */,
 				0B3F73AC180DBB4D0032BE07 /* RTAppDelegate.m in Sources */,
 				0B501AC4180EF12B00430C21 /* RTEnterDataViewController.m in Sources */,
 				0B3F73B2180DBB4D0032BE07 /* RTIndexViewController.m in Sources */,
+				0B4A54A118103FD00036E415 /* Participations.m in Sources */,
 				0B501ABE180EE81700430C21 /* RTLogo.m in Sources */,
 				0B3F73A8180DBB4D0032BE07 /* main.m in Sources */,
 				0B6FAE61180EF723004BCF92 /* RTPendingViewController.m in Sources */,
 				0B501AC1180EEEC800430C21 /* RTButton.m in Sources */,
 				0B4A5498181030CC0036E415 /* RTDataModel.xcdatamodeld in Sources */,
+				0B4A54A418103FD00036E415 /* Projects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

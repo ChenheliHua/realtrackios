@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="bjm-Ul-8cH"/>
                         <viewControllerLayoutGuide type="bottom" id="rn6-ld-UjI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="H8R-7D-cf5" customClass="RTIndex">
+                    <view key="view" contentMode="scaleToFill" id="H8R-7D-cf5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Projects.h"
+#import "Participations.h"
+#import "Activities.h"
+
 
 @interface RTAppDelegate : UIResponder <UIApplicationDelegate>
 
