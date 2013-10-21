@@ -27,7 +27,6 @@
     [self.enterData setCornerRadius:radius];
     [self.myActivities setCornerRadius:radius];
     [self.pending setCornerRadius:radius];
-    
 }
 
 - (void)didReceiveMemoryWarning
