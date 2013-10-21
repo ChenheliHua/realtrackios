@@ -1,5 +1,5 @@
 //
-//  RTPendingViewController.h
+//  RTActivitiesViewController.h
 //  RealTrack
 //
 //  Created by Chenheli Hua on 10/21/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTPendingViewController : UITableViewController
+@interface RTActivitiesViewController : UITableViewController
 
 @end

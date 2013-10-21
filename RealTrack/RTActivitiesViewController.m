@@ -1,18 +1,18 @@
 //
-//  RTPendingViewController.m
+//  RTActivitiesViewController.m
 //  RealTrack
 //
 //  Created by Chenheli Hua on 10/21/13.
 //  Copyright (c) 2013 Peace Corps. All rights reserved.
 //
 
-#import "RTPendingViewController.h"
+#import "RTActivitiesViewController.h"
 
-@interface RTPendingViewController ()
+@interface RTActivitiesViewController ()
 
 @end
 
-@implementation RTPendingViewController
+@implementation RTActivitiesViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
