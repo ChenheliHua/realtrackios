@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+// Table view controllers
+#import "RTEnterDataViewController.h"
+#import "RTActivitiesViewController.h"
+#import "RTPendingViewController.h"
+
+// Model objects
 #import "Projects.h"
 #import "Participations.h"
 #import "Activities.h"
