@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MFG-Ok-wCK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="MFG-Ok-wCK">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="j9r-26-h3X" kind="push" id="aaQ-12-aAz"/>
+                                    <segue destination="qHj-5z-y47" kind="push" id="LPY-bk-Q8G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kJY-qr-pb3" userLabel="MyActivities" customClass="RTButton">
@@ -72,7 +72,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="RealTrack" id="XDH-eD-9qh"/>
                     <connections>
-                        <outlet property="enterData" destination="N14-B0-dfJ" id="54Q-s3-RXg"/>
                         <outlet property="logo" destination="2iQ-uW-quc" id="AQJ-lG-qZA"/>
                         <outlet property="myActivities" destination="kJY-qr-pb3" id="1wm-XY-vAe"/>
                         <outlet property="pending" destination="7Y0-ee-CAz" id="Bpm-zY-ahT"/>
@@ -82,24 +81,34 @@
             </objects>
             <point key="canvasLocation" x="411" y="-158"/>
         </scene>
-        <!--EnterDataViewController-->
-        <scene sceneID="tLp-iZ-sdv">
+        <!--Enter Data View Controller - Enter Data-->
+        <scene sceneID="qMk-VO-x2Z">
             <objects>
-                <viewController id="j9r-26-h3X" userLabel="EnterDataViewController" customClass="RTEnterDataViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gRg-Tu-5jV"/>
-                        <viewControllerLayoutGuide type="bottom" id="VkY-mV-6If"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yUS-a5-WTF">
+                <tableViewController id="qHj-5z-y47" customClass="RTEnterDataViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5mo-DV-mMR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Enter Data" id="obq-ub-3bH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xIJ-qL-FBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gcd-Dy-B0T" customClass="RTEnte">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gcd-Dy-B0T" id="13f-cU-aOS">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qHj-5z-y47" id="UIC-Rp-07Q"/>
+                            <outlet property="delegate" destination="qHj-5z-y47" id="Nal-mB-A4q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Enter Data" id="FWO-9a-mGI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GlV-YO-2jC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="920" y="-540"/>
+            <point key="canvasLocation" x="920" y="-520"/>
         </scene>
         <!--My Activities View Controller - My Activities-->
         <scene sceneID="L7a-GA-BC8">
