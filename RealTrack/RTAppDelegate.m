@@ -90,12 +90,11 @@
 }
 
 
-- (void)dealloc {
-    // No explicit relase calls on managedObjectContext,
-    // managedObjectModel, and persistentStoreCoordinator
-    // becasue of Automatic Reference Counting
-    
-    
-}
+
+
+// No explicit relase calls on managedObjectContext,
+// managedObjectModel, and persistentStoreCoordinator
+// becasue of Automatic Reference Counting
+
 
 @end
