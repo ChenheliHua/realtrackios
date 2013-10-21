@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTEnterDataViewController : UITableViewController
+@interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+{
+    // CoreData
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *managedObjectContext;
+}
+
+// CoreData
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

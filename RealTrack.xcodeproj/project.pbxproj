@@ -186,14 +186,14 @@
 		0B501AC5180EF45100430C21 /* ViewContollers */ = {
 			isa = PBXGroup;
 			children = (
-				0B5811C918158940000CC2D2 /* RTEnterDataViewController.h */,
-				0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */,
 				0B3F73B0180DBB4D0032BE07 /* RTIndexViewController.h */,
 				0B3F73B1180DBB4D0032BE07 /* RTIndexViewController.m */,
-				0B5811CF18158A2C000CC2D2 /* RTPendingViewController.h */,
-				0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */,
+				0B5811C918158940000CC2D2 /* RTEnterDataViewController.h */,
+				0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */,
 				0B5811D218158A40000CC2D2 /* RTActivitiesViewController.h */,
 				0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */,
+				0B5811CF18158A2C000CC2D2 /* RTPendingViewController.h */,
+				0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */,
 			);
 			name = ViewContollers;
 			sourceTree = "<group>";
