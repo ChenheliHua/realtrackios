@@ -22,11 +22,15 @@
 		0B3F73C5180DBB4D0032BE07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B3F73C3180DBB4D0032BE07 /* InfoPlist.strings */; };
 		0B3F73C7180DBB4D0032BE07 /* RealTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3F73C6180DBB4D0032BE07 /* RealTrackTests.m */; };
 		0B4A5498181030CC0036E415 /* RTDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A5496181030CC0036E415 /* RTDataModel.xcdatamodeld */; };
+		0B4A549E18103FCF0036E415 /* Activities.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A549D18103FCF0036E415 /* Activities.m */; };
+		0B4A54A118103FD00036E415 /* Participations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A54A018103FD00036E415 /* Participations.m */; };
+		0B4A54A418103FD00036E415 /* Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4A54A318103FD00036E415 /* Projects.m */; };
 		0B501ABE180EE81700430C21 /* RTLogo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501ABD180EE81700430C21 /* RTLogo.m */; };
 		0B501AC1180EEEC800430C21 /* RTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501AC0180EEEC800430C21 /* RTButton.m */; };
-		0B501AC4180EF12B00430C21 /* RTEnterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B501AC3180EF12B00430C21 /* RTEnterDataViewController.m */; };
-		0B6FAE5E180EF710004BCF92 /* RTMyActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FAE5D180EF710004BCF92 /* RTMyActivitiesViewController.m */; };
-		0B6FAE61180EF723004BCF92 /* RTPendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FAE60180EF723004BCF92 /* RTPendingViewController.m */; };
+		0B5811C5181581D5000CC2D2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5811C4181581D5000CC2D2 /* CoreData.framework */; };
+		0B5811CB18158940000CC2D2 /* RTEnterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */; };
+		0B5811D118158A2C000CC2D2 /* RTPendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */; };
+		0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,16 +64,23 @@
 		0B3F73C4180DBB4D0032BE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B3F73C6180DBB4D0032BE07 /* RealTrackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTrackTests.m; sourceTree = "<group>"; };
 		0B4A5497181030CC0036E415 /* RTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RTDataModel.xcdatamodel; sourceTree = "<group>"; };
+		0B4A549C18103FCF0036E415 /* Activities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activities.h; sourceTree = "<group>"; };
+		0B4A549D18103FCF0036E415 /* Activities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activities.m; sourceTree = "<group>"; };
+		0B4A549F18103FD00036E415 /* Participations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Participations.h; sourceTree = "<group>"; };
+		0B4A54A018103FD00036E415 /* Participations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Participations.m; sourceTree = "<group>"; };
+		0B4A54A218103FD00036E415 /* Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projects.h; sourceTree = "<group>"; };
+		0B4A54A318103FD00036E415 /* Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Projects.m; sourceTree = "<group>"; };
 		0B501ABC180EE81700430C21 /* RTLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLogo.h; sourceTree = "<group>"; };
 		0B501ABD180EE81700430C21 /* RTLogo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLogo.m; sourceTree = "<group>"; };
 		0B501ABF180EEEC800430C21 /* RTButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTButton.h; sourceTree = "<group>"; };
 		0B501AC0180EEEC800430C21 /* RTButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTButton.m; sourceTree = "<group>"; };
-		0B501AC2180EF12B00430C21 /* RTEnterDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEnterDataViewController.h; sourceTree = "<group>"; };
-		0B501AC3180EF12B00430C21 /* RTEnterDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEnterDataViewController.m; sourceTree = "<group>"; };
-		0B6FAE5C180EF710004BCF92 /* RTMyActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMyActivitiesViewController.h; sourceTree = "<group>"; };
-		0B6FAE5D180EF710004BCF92 /* RTMyActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMyActivitiesViewController.m; sourceTree = "<group>"; };
-		0B6FAE5F180EF723004BCF92 /* RTPendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPendingViewController.h; sourceTree = "<group>"; };
-		0B6FAE60180EF723004BCF92 /* RTPendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPendingViewController.m; sourceTree = "<group>"; };
+		0B5811C4181581D5000CC2D2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0B5811C918158940000CC2D2 /* RTEnterDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTEnterDataViewController.h; sourceTree = "<group>"; };
+		0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTEnterDataViewController.m; sourceTree = "<group>"; };
+		0B5811CF18158A2C000CC2D2 /* RTPendingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPendingViewController.h; sourceTree = "<group>"; };
+		0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPendingViewController.m; sourceTree = "<group>"; };
+		0B5811D218158A40000CC2D2 /* RTActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivitiesViewController.h; sourceTree = "<group>"; };
+		0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitiesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B5811C5181581D5000CC2D2 /* CoreData.framework in Frameworks */,
 				0B3F739E180DBB4D0032BE07 /* CoreGraphics.framework in Frameworks */,
 				0B3F73A0180DBB4D0032BE07 /* UIKit.framework in Frameworks */,
 				0B3F739C180DBB4D0032BE07 /* Foundation.framework in Frameworks */,
@@ -118,6 +130,7 @@
 		0B3F739A180DBB4D0032BE07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B5811C4181581D5000CC2D2 /* CoreData.framework */,
 				0B3F739B180DBB4D0032BE07 /* Foundation.framework */,
 				0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */,
 				0B3F739F180DBB4D0032BE07 /* UIKit.framework */,
@@ -173,14 +186,14 @@
 		0B501AC5180EF45100430C21 /* ViewContollers */ = {
 			isa = PBXGroup;
 			children = (
-				0B6FAE5F180EF723004BCF92 /* RTPendingViewController.h */,
-				0B6FAE60180EF723004BCF92 /* RTPendingViewController.m */,
-				0B6FAE5C180EF710004BCF92 /* RTMyActivitiesViewController.h */,
-				0B6FAE5D180EF710004BCF92 /* RTMyActivitiesViewController.m */,
-				0B501AC2180EF12B00430C21 /* RTEnterDataViewController.h */,
-				0B501AC3180EF12B00430C21 /* RTEnterDataViewController.m */,
 				0B3F73B0180DBB4D0032BE07 /* RTIndexViewController.h */,
 				0B3F73B1180DBB4D0032BE07 /* RTIndexViewController.m */,
+				0B5811C918158940000CC2D2 /* RTEnterDataViewController.h */,
+				0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */,
+				0B5811D218158A40000CC2D2 /* RTActivitiesViewController.h */,
+				0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */,
+				0B5811CF18158A2C000CC2D2 /* RTPendingViewController.h */,
+				0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */,
 			);
 			name = ViewContollers;
 			sourceTree = "<group>";
@@ -200,6 +213,12 @@
 			isa = PBXGroup;
 			children = (
 				0B4A5496181030CC0036E415 /* RTDataModel.xcdatamodeld */,
+				0B4A54A218103FD00036E415 /* Projects.h */,
+				0B4A54A318103FD00036E415 /* Projects.m */,
+				0B4A549F18103FD00036E415 /* Participations.h */,
+				0B4A54A018103FD00036E415 /* Participations.m */,
+				0B4A549C18103FCF0036E415 /* Activities.h */,
+				0B4A549D18103FCF0036E415 /* Activities.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -302,15 +321,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B6FAE5E180EF710004BCF92 /* RTMyActivitiesViewController.m in Sources */,
+				0B4A549E18103FCF0036E415 /* Activities.m in Sources */,
+				0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */,
 				0B3F73AC180DBB4D0032BE07 /* RTAppDelegate.m in Sources */,
-				0B501AC4180EF12B00430C21 /* RTEnterDataViewController.m in Sources */,
 				0B3F73B2180DBB4D0032BE07 /* RTIndexViewController.m in Sources */,
+				0B4A54A118103FD00036E415 /* Participations.m in Sources */,
 				0B501ABE180EE81700430C21 /* RTLogo.m in Sources */,
 				0B3F73A8180DBB4D0032BE07 /* main.m in Sources */,
-				0B6FAE61180EF723004BCF92 /* RTPendingViewController.m in Sources */,
+				0B5811CB18158940000CC2D2 /* RTEnterDataViewController.m in Sources */,
 				0B501AC1180EEEC800430C21 /* RTButton.m in Sources */,
 				0B4A5498181030CC0036E415 /* RTDataModel.xcdatamodeld in Sources */,
+				0B4A54A418103FD00036E415 /* Projects.m in Sources */,
+				0B5811D118158A2C000CC2D2 /* RTPendingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

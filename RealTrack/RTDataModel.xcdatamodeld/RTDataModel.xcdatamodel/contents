@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Activities" representedClassName="Activities" syncable="YES">
+        <attribute name="activity_name" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="participations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participations" inverseName="activity" inverseEntity="Participations" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="activities" inverseEntity="Projects" syncable="YES"/>
+    </entity>
+    <entity name="Participations" representedClassName="Participations" syncable="YES">
+        <attribute name="men_15_to_24" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="men_above_24" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="men_under_15" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="women_15_to_24" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="women_above_24" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="women_under_15" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activities" inverseName="participations" inverseEntity="Activities" syncable="YES"/>
+    </entity>
+    <entity name="Projects" representedClassName="Projects" syncable="YES">
+        <attribute name="project_name" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activities" inverseName="project" inverseEntity="Activities" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Activities" positionX="-3215" positionY="-954" width="128" height="88"/>
+        <element name="Participations" positionX="-3539" positionY="-810" width="128" height="163"/>
+        <element name="Projects" positionX="-3512" positionY="-1170" width="128" height="73"/>
+    </elements>
 </model>
