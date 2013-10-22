@@ -49,22 +49,26 @@
     self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
     
     // Test if fetch works
-    //for (Projects *proj in self.projects) {
-    //    NSLog(@"Project Name: %@", proj.project_name);
-    //}
+    for (Projects *proj in self.projects) {
+        NSLog(@"Project Name: %@", proj.project_name);
+    }
 
-    //for (Activities *act in self.activities) {
-    //    NSLog(@"Activity Name: %@", act.activity_name);
-    //}
+    for (Activities *act in self.activities) {
+        NSLog(@"Activity Name: %@", act.activity_name);
+    }
     
-    
-    
+    /*
+    Activities * newAct5 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
+    newAct5.activity_name = @"Act No 5";
+    [self.projects[1] addActivitiesObject:newAct5];
+    [managedObjectContext save:&err];
+    */
     
     // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,7 +109,9 @@
     
     // Configure the cell...
     Activities *act = [self.activities objectAtIndex:indexPath.row];
-    cell.textLabel.text = [act.activity_name stringByAppendingString:act.project.project_name];
+    
+    cell.textLabel.text = act.project.project_name;
+    cell.detailTextLabel.text = act.activity_name;
     
     return cell;
 }
