@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTAppDelegate.h"
 #import "Projects.h"
+#import "Activities.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
@@ -21,5 +22,6 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSArray *projects;
+@property (nonatomic, strong) NSArray *activities;
 
 @end

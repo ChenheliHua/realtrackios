@@ -16,7 +16,7 @@
 
 // CoreData
 @synthesize fetchedResultsController, managedObjectContext;
-@synthesize projects;
+@synthesize projects, activities;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,21 +31,34 @@
 {
     [super viewDidLoad];
 
-    // Fetch all projects information
+    // Fetch all projects and activities information
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
     NSError *err;
-    self.projects = [managedObjectContext executeFetchRequest:fetchRequest error:&err];
-    self.title = @"Projects";
+    
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
     
     // Test if fetch works
     for (Projects *proj in self.projects) {
         NSLog(@"Project Name: %@", proj.project_name);
     }
+
+    for (Activities *act in self.activities) {
+        NSLog(@"Activity Name: %@", act.activity_name);
+    }
+    
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
