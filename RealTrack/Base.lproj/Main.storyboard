@@ -7,7 +7,7 @@
         <!--IndexViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="IndexViewController" customClass="RTIndexViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="indexView" id="vXZ-lx-hvc" userLabel="IndexViewController" customClass="RTIndexViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bjm-Ul-8cH"/>
                         <viewControllerLayoutGuide type="bottom" id="rn6-ld-UjI"/>

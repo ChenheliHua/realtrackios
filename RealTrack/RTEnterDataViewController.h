@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Projects.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {

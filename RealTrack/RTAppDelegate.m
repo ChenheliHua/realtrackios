@@ -24,6 +24,63 @@
     activities.managedObjectContext = self.managedObjectContext;
     pending.managedObjectContext = self.managedObjectContext;
     
+    // Added dummy data for testing data display in RTEnterDataViewController
+    Projects * newProj1 = [NSEntityDescription insertNewObjectForEntityForName:@"Projects" inManagedObjectContext:self.managedObjectContext];
+    Projects * newProj2 = [NSEntityDescription insertNewObjectForEntityForName:@"Projects" inManagedObjectContext:self.managedObjectContext];
+    Activities * newAct1 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
+    Activities * newAct2 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
+    Activities * newAct3 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
+    Activities * newAct4 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart1 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart2 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart3 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart4 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
+
+    
+    newProj1.project_name = @"Proj No 1";
+    newProj2.project_name = @"Proj No 2";
+    
+    newAct1.activity_name = @"Act No 1";
+    newAct2.activity_name = @"Act No 2";
+    newAct3.activity_name = @"Act No 3";
+    newAct4.activity_name = @"Act No 4";
+    
+    newPart1.women_under_15 = [NSNumber numberWithInt:5];
+    newPart1.men_under_15 = [NSNumber numberWithInt:5];;
+    newPart1.women_15_to_24 = [NSNumber numberWithInt:5];
+    newPart1.men_15_to_24 = [NSNumber numberWithInt:5];
+    newPart1.women_above_24 = [NSNumber numberWithInt:5];
+    newPart1.men_above_24 = [NSNumber numberWithInt:5];
+    newPart2.women_under_15 = [NSNumber numberWithInt:10];
+    newPart2.men_under_15 = [NSNumber numberWithInt:10];
+    newPart2.women_15_to_24 = [NSNumber numberWithInt:10];
+    newPart2.men_15_to_24 = [NSNumber numberWithInt:10];
+    newPart2.women_above_24 = [NSNumber numberWithInt:10];
+    newPart2.men_above_24 = [NSNumber numberWithInt:10];
+    newPart3.women_under_15 = [NSNumber numberWithInt:15];
+    newPart3.men_under_15 = [NSNumber numberWithInt:15];;
+    newPart3.women_15_to_24 = [NSNumber numberWithInt:15];
+    newPart3.men_15_to_24 = [NSNumber numberWithInt:15];
+    newPart3.women_above_24 = [NSNumber numberWithInt:15];
+    newPart3.men_above_24 = [NSNumber numberWithInt:15];
+    newPart4.women_under_15 = [NSNumber numberWithInt:20];
+    newPart4.men_under_15 = [NSNumber numberWithInt:20];
+    newPart4.women_15_to_24 = [NSNumber numberWithInt:20];
+    newPart4.men_15_to_24 = [NSNumber numberWithInt:20];
+    newPart4.women_above_24 = [NSNumber numberWithInt:20];
+    newPart4.men_above_24 = [NSNumber numberWithInt:20];
+    
+    [newProj1 addActivitiesObject:newAct1];
+    [newProj1 addActivitiesObject:newAct2];
+    [newProj2 addActivitiesObject:newAct3];
+    [newProj2 addActivitiesObject:newAct4];
+    
+    [newAct1 addParticipationsObject:newPart1];
+    [newAct2 addParticipationsObject:newPart2];
+    [newAct3 addParticipationsObject:newPart3];
+    [newAct4 addParticipationsObject:newPart4];
+    
+    
     // Override point for customization after application launch.
     return YES;
 }
