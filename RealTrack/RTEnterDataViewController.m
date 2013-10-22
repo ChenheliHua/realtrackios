@@ -49,22 +49,22 @@
     self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
     
     // Test if fetch works
-    for (Projects *proj in self.projects) {
-        NSLog(@"Project Name: %@", proj.project_name);
-    }
+    //for (Projects *proj in self.projects) {
+    //    NSLog(@"Project Name: %@", proj.project_name);
+    //}
 
-    for (Activities *act in self.activities) {
-        NSLog(@"Activity Name: %@", act.activity_name);
-    }
+    //for (Activities *act in self.activities) {
+    //    NSLog(@"Activity Name: %@", act.activity_name);
+    //}
     
     
     
     
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+     self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,24 +77,35 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    // Each project serves as a section
+    return [self.projects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    int num = 0;
+    
+    Projects *proj = self.projects[section];
+    
+    for (Activities *act in self.activities) {
+        if (act.project == proj)
+            num++;
+    }
+    return num;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"activitiesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    NSLog(@"# of projects: %d",[self.projects count]);
+    NSLog(@"# of activities: %d",[self.activities count]);
+    
     // Configure the cell...
+    Activities *act = [self.activities objectAtIndex:indexPath.row];
+    cell.textLabel.text = [act.activity_name stringByAppendingString:act.project.project_name];
     
     return cell;
 }

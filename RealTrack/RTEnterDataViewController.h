@@ -21,7 +21,12 @@
 // CoreData
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+// Projects & activities info
 @property (nonatomic, strong) NSArray *projects;
 @property (nonatomic, strong) NSArray *activities;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *cell;
+
 
 @end

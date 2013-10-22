@@ -24,6 +24,7 @@
     activities.managedObjectContext = self.managedObjectContext;
     pending.managedObjectContext = self.managedObjectContext;
     
+    /*
     // Added dummy data for testing data display in RTEnterDataViewController
     Projects * newProj1 = [NSEntityDescription insertNewObjectForEntityForName:@"Projects" inManagedObjectContext:self.managedObjectContext];
     Projects * newProj2 = [NSEntityDescription insertNewObjectForEntityForName:@"Projects" inManagedObjectContext:self.managedObjectContext];
@@ -83,6 +84,7 @@
     // Save dummy data
     NSError *err;
     [managedObjectContext save:&err];
+    */
     
     // Override point for customization after application launch.
     return YES;
