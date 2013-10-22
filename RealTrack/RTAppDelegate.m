@@ -31,10 +31,10 @@
     Activities * newAct2 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
     Activities * newAct3 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
     Activities * newAct4 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
-    Participations * newPart1 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
-    Participations * newPart2 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
-    Participations * newPart3 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
-    Participations * newPart4 = [NSEntityDescription insertNewObjectForEntityForName:@"Particiations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart1 = [NSEntityDescription insertNewObjectForEntityForName:@"Participations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart2 = [NSEntityDescription insertNewObjectForEntityForName:@"Participations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart3 = [NSEntityDescription insertNewObjectForEntityForName:@"Participations" inManagedObjectContext:self.managedObjectContext];
+    Participations * newPart4 = [NSEntityDescription insertNewObjectForEntityForName:@"Participations" inManagedObjectContext:self.managedObjectContext];
 
     
     newProj1.project_name = @"Proj No 1";

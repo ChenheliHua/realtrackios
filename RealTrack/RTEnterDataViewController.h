@@ -19,5 +19,6 @@
 // CoreData
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSSet *projects;
 
 @end

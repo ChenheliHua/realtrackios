@@ -16,6 +16,7 @@
 
 // CoreData
 @synthesize fetchedResultsController, managedObjectContext;
+@synthesize projects;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
