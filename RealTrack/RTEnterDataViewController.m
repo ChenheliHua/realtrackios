@@ -42,6 +42,10 @@
     self.projects = [managedObjectContext executeFetchRequest:fetchRequest error:&err];
     self.title = @"Projects";
     
+    // Test if fetch works
+    for (Projects *proj in self.projects) {
+        NSLog(@"Project Name: %@", proj.project_name);
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
