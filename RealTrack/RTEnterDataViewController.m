@@ -31,6 +31,7 @@
 {
     [super viewDidLoad];
 
+    // Fetch all projects information
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
     
