@@ -31,6 +31,17 @@
 {
     [super viewDidLoad];
 
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequest error:&err];
+    self.title = @"Projects";
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

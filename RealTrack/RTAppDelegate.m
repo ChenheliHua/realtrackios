@@ -80,6 +80,9 @@
     [newAct3 addParticipationsObject:newPart3];
     [newAct4 addParticipationsObject:newPart4];
     
+    NSError *err;
+    [managedObjectContext save:&err];
+    
     
     // Override point for customization after application launch.
     return YES;

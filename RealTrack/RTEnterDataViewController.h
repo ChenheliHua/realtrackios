@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTAppDelegate.h"
 #import "Projects.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
@@ -19,6 +20,6 @@
 // CoreData
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSSet *projects;
+@property (nonatomic, strong) NSArray *projects;
 
 @end
