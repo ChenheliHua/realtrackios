@@ -14,6 +14,8 @@
 
 @implementation RTAddEditActivityViewController
 
+@synthesize managedObjectContext;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,9 +29,12 @@
 {
     [super viewDidLoad];
     
-    [self.addEditActivity setCornerRadius:5];
+    int radius = 5;
+    [self.button setCornerRadius:radius];
     
-	// Do any additional setup after loading the view.
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,4 +43,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)addEditActivity:(id)sender {
+    // TO BE IMPLEMENTED
+    // EDIT ACTIVITY
+    // NEW ACTIVITY
+    // POP VIEW CONTROLLER
+}
 @end

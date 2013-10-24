@@ -54,6 +54,8 @@
 
 - (IBAction)addEditProject:(RTButton *)sender {
     
+    // EDIT FUNCTIONALITY TO BE IMPLEMENTED
+    
     NSLog(@"Add/Edit button clicked!");
     
     // Save new project if not empty

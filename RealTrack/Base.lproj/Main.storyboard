@@ -241,6 +241,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addEditActivity:" destination="WxT-VJ-n84" eventType="touchUpInside" id="yGP-kl-AHc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -248,7 +251,7 @@
                     <navigationItem key="navigationItem" title="Add/Edit Activity" id="1Bh-cF-XDr"/>
                     <connections>
                         <outlet property="activityName" destination="Uws-IG-cMF" id="3Xy-FD-3tT"/>
-                        <outlet property="addEditActivity" destination="aFw-xw-tpj" id="Pqo-JZ-veL"/>
+                        <outlet property="button" destination="aFw-xw-tpj" id="Ko6-gV-ThW"/>
                         <outlet property="projectName" destination="YZ6-7D-JHQ" id="b49-K0-frn"/>
                     </connections>
                 </viewController>
