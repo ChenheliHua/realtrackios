@@ -90,6 +90,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VtS-G5-K2w">
+                            <rect key="frame" x="0.0" y="173" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="New Project">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <segue destination="ZZs-RC-Mg7" kind="push" id="py7-Tg-PXm"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="activitiesCell" textLabel="O80-Nq-Ik7" style="IBUITableViewCellStyleDefault" id="gcd-Dy-B0T">
                                 <rect key="frame" x="0.0" y="119" width="320" height="44"/>
@@ -106,11 +116,24 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqU-cf-aef">
-                                            <rect key="frame" x="265" y="4" width="35" height="35"/>
+                                            <rect key="frame" x="279" y="4" width="35" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="+">
+                                            <state key="normal" title="Add">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <segue destination="LB6-h2-XTM" kind="push" id="PG6-he-xOY"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek2-e4-YsP">
+                                            <rect key="frame" x="228" y="4" width="35" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Edit">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="WxT-VJ-n84" kind="push" id="HTw-gc-EKf"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -126,6 +149,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GlV-YO-2jC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="920" y="-516"/>
+        </scene>
+        <!--View Controller - Add/Edit Project-->
+        <scene sceneID="7NX-1e-hxm">
+            <objects>
+                <viewController storyboardIdentifier="addEditProject" title="Add/Edit Project" id="ZZs-RC-Mg7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t1i-7s-h57"/>
+                        <viewControllerLayoutGuide type="bottom" id="89Q-VU-Hm7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ktx-c8-jdP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add/Edit Project" id="uN7-4E-I3r"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rm2-64-lPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920" y="-1196"/>
+        </scene>
+        <!--View Controller - Add/Edit Activity-->
+        <scene sceneID="PAe-bx-Q3P">
+            <objects>
+                <viewController storyboardIdentifier="addEditActivityView" title="Add/Edit Activity" id="WxT-VJ-n84" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OnW-WQ-tGM"/>
+                        <viewControllerLayoutGuide type="bottom" id="dql-g6-6hz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XVV-zh-1w6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add/Edit Activity" id="1Bh-cF-XDr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xco-kh-Mop" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1315" y="-1196"/>
+        </scene>
+        <!--View Controller - Add Participation-->
+        <scene sceneID="yCB-kg-n3j">
+            <objects>
+                <viewController storyboardIdentifier="addParticipationView" title="Add Participation" id="LB6-h2-XTM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jfc-AC-xCG"/>
+                        <viewControllerLayoutGuide type="bottom" id="1eS-Oy-FbW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vfD-wq-L2K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Participation" id="6DF-Fa-SYQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27q-Fg-xMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1315" y="-518"/>
         </scene>
         <!--Activities View Controller - Activities-->
         <scene sceneID="stz-gd-aiT">

@@ -13,7 +13,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
     
     RTEnterDataViewController *enterData = (RTEnterDataViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"enterDataView"];
     RTActivitiesViewController *activities = (RTActivitiesViewController*) [mainStoryboard instantiateViewControllerWithIdentifier:@"activitiesView"];
@@ -23,7 +25,8 @@
     enterData.managedObjectContext = self.managedObjectContext;
     activities.managedObjectContext = self.managedObjectContext;
     pending.managedObjectContext = self.managedObjectContext;
-    
+    */
+     
     /*
     // Added dummy data for testing data display in RTEnterDataViewController
     Projects * newProj1 = [NSEntityDescription insertNewObjectForEntityForName:@"Projects" inManagedObjectContext:self.managedObjectContext];
