@@ -43,8 +43,11 @@
     
     [fetchRequestProj setEntity:projs];
     [fetchRequestAct setEntity:acts];
-    NSError *err;
     
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+                                          
+    NSError *err;
     self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
     self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
     
@@ -90,7 +93,7 @@
     // Return the number of rows in the section.
     int num = 0;
     
-    Projects *proj = self.projects[section];
+    Projects *proj = [self.projects objectAtIndex:section];
     
     for (Activities *act in self.activities) {
         if (act.project == proj)
@@ -101,15 +104,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     static NSString *CellIdentifier = @"activitiesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSLog(@"# of projects: %d",[self.projects count]);
     NSLog(@"# of activities: %d",[self.activities count]);
     
-    // Configure the cell...
-    Activities *act = [self.activities objectAtIndex:indexPath.row];
+    // Select all activities that belong to a project
+    Projects * proj = [self.projects objectAtIndex:indexPath.section];
+    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"project.project_name == %@",proj.project_name];
     
+    NSArray * subActivities = [self.activities filteredArrayUsingPredicate:proj_name];
+    
+    // Sort subActivities
+    NSSortDescriptor * sortActs = [NSSortDescriptor sortDescriptorWithKey:@"activity_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSArray * sortActsDescriptors = @[sortActs];
+    subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
+    
+    // Configure the cell...
+    Activities *act = [subActivities objectAtIndex:indexPath.row];
+                       
     cell.textLabel.text = act.activity_name;
     
     return cell;
