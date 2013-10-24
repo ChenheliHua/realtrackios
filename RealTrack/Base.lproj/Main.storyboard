@@ -203,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="920" y="-1196"/>
         </scene>
-        <!--View Controller - Add/Edit Activity-->
+        <!--Add Edit Activity View Controller - Add/Edit Activity-->
         <scene sceneID="PAe-bx-Q3P">
             <objects>
-                <viewController storyboardIdentifier="addEditActivityView" title="Add/Edit Activity" id="WxT-VJ-n84" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addEditActivityView" title="Add/Edit Activity" id="WxT-VJ-n84" customClass="RTAddEditActivityViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OnW-WQ-tGM"/>
                         <viewControllerLayoutGuide type="bottom" id="dql-g6-6hz"/>
@@ -214,9 +214,43 @@
                     <view key="view" contentMode="scaleToFill" id="XVV-zh-1w6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project: (project_name)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ6-7D-JHQ">
+                                <rect key="frame" x="20" y="86" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Yf-ha-iY0">
+                                <rect key="frame" x="20" y="124" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uws-IG-cMF">
+                                <rect key="frame" x="20" y="162" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-xw-tpj" customClass="RTButton">
+                                <rect key="frame" x="110" y="200" width="100" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add/Edit Activity" id="1Bh-cF-XDr"/>
+                    <connections>
+                        <outlet property="activityName" destination="Uws-IG-cMF" id="3Xy-FD-3tT"/>
+                        <outlet property="addEditActivity" destination="aFw-xw-tpj" id="Pqo-JZ-veL"/>
+                        <outlet property="projectName" destination="YZ6-7D-JHQ" id="b49-K0-frn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xco-kh-Mop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

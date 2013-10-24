@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B0E60971819B26E00DE44B8 /* RTAddEditProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E60961819B26E00DE44B8 /* RTAddEditProjectViewController.m */; };
+		0B0E609A1819CC4B00DE44B8 /* RTAddEditActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E60991819CC4B00DE44B8 /* RTAddEditActivityViewController.m */; };
 		0B3F739C180DBB4D0032BE07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739B180DBB4D0032BE07 /* Foundation.framework */; };
 		0B3F739E180DBB4D0032BE07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */; };
 		0B3F73A0180DBB4D0032BE07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739F180DBB4D0032BE07 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 /* Begin PBXFileReference section */
 		0B0E60951819B26E00DE44B8 /* RTAddEditProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddEditProjectViewController.h; sourceTree = "<group>"; };
 		0B0E60961819B26E00DE44B8 /* RTAddEditProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddEditProjectViewController.m; sourceTree = "<group>"; };
+		0B0E60981819CC4B00DE44B8 /* RTAddEditActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddEditActivityViewController.h; sourceTree = "<group>"; };
+		0B0E60991819CC4B00DE44B8 /* RTAddEditActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddEditActivityViewController.m; sourceTree = "<group>"; };
 		0B3F7398180DBB4D0032BE07 /* RealTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3F739B180DBB4D0032BE07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -199,6 +202,8 @@
 				0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */,
 				0B0E60951819B26E00DE44B8 /* RTAddEditProjectViewController.h */,
 				0B0E60961819B26E00DE44B8 /* RTAddEditProjectViewController.m */,
+				0B0E60981819CC4B00DE44B8 /* RTAddEditActivityViewController.h */,
+				0B0E60991819CC4B00DE44B8 /* RTAddEditActivityViewController.m */,
 			);
 			name = ViewContollers;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				0B3F73AC180DBB4D0032BE07 /* RTAppDelegate.m in Sources */,
 				0B3F73B2180DBB4D0032BE07 /* RTIndexViewController.m in Sources */,
 				0B4A54A118103FD00036E415 /* Participations.m in Sources */,
+				0B0E609A1819CC4B00DE44B8 /* RTAddEditActivityViewController.m in Sources */,
 				0B501ABE180EE81700430C21 /* RTLogo.m in Sources */,
 				0B3F73A8180DBB4D0032BE07 /* main.m in Sources */,
 				0B0E60971819B26E00DE44B8 /* RTAddEditProjectViewController.m in Sources */,
