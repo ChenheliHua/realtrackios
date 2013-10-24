@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // Fetch all projects and activities information
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];

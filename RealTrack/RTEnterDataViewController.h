@@ -28,5 +28,4 @@
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cell;
 
-
 @end
