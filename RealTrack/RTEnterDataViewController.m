@@ -157,6 +157,33 @@
     [tableView endUpdates];
 }
 
+// Refresh view every time
+-(void)viewWillAppear:(BOOL)animated
+{
+    // Re-fetch from CoreData
+    // Fetch all projects and activities information
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
+    
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+    
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    
+    [self.table reloadData];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -14,6 +14,8 @@
 
 @implementation RTAddEditProjectViewController
 
+@synthesize managedObjectContext;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,6 +34,10 @@
     
     int radius = 5;
     [self.button setCornerRadius:radius];
+    
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +53,22 @@
 }
 
 - (IBAction)addEditProject:(RTButton *)sender {
+    
+    NSLog(@"Add/Edit button clicked!");
+    
+    
     // TO BE IMPLEMENTED
+    if(![self.projectName.text isEqualToString:@""])
+    {
+        // Save new project
+        Projects * proj = [NSEntityDescription insertNewObjectForEntityForName:@"Projects"inManagedObjectContext:self.managedObjectContext];
+        
+        proj.project_name = self.projectName.text;
+        
+        NSError * err;
+        [managedObjectContext save:&err];
+    }
+    
+    [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
 @end

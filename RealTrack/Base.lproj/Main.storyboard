@@ -147,6 +147,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Enter Data" id="FWO-9a-mGI"/>
+                    <connections>
+                        <outlet property="table" destination="5mo-DV-mMR" id="9tV-c7-1tb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GlV-YO-2jC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

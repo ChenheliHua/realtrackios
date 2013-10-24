@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "RTButton.h"
 #import "Projects.h"
+#import "RTAppDelegate.h"
 
 @interface RTAddEditProjectViewController : UIViewController
+{
+    // CoreData
+    NSManagedObjectContext *managedObjectContext;
+}
+
+// CoreData
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) IBOutlet RTButton *button;
 @property (strong, nonatomic) IBOutlet UITextField *projectName;

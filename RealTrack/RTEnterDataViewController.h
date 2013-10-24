@@ -27,5 +27,6 @@
 @property (nonatomic, strong) NSArray *activities;
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cell;
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 @end
