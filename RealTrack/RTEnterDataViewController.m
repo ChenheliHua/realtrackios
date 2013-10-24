@@ -110,10 +110,16 @@
     // Configure the cell...
     Activities *act = [self.activities objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = act.project.project_name;
-    cell.detailTextLabel.text = act.activity_name;
+    cell.textLabel.text = act.activity_name;
     
     return cell;
+}
+
+// Setup section headers
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    Projects * proj = [self.projects objectAtIndex:section];
+    return proj.project_name;
 }
 
 /*
