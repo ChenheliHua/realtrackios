@@ -71,7 +71,7 @@
     self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,6 +135,26 @@
 {
     Projects * proj = [self.projects objectAtIndex:section];
     return proj.project_name;
+}
+
+// Enable editing
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView beginUpdates];
+    
+    // For delete action
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        // IMPLEMENT DELETE HERE
+        NSLog(@"Delete works!");
+    }
+    
+    [tableView endUpdates];
 }
 
 /*
