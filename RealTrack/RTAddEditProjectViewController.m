@@ -56,9 +56,12 @@
     
     NSLog(@"Add/Edit button clicked!");
     
+    // Save new project if not empty
+    // Escape whitespaces
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
+    NSString *trimmedStr = [self.projectName.text stringByTrimmingCharactersInSet:charSet];
     
-    // TO BE IMPLEMENTED
-    if(![self.projectName.text isEqualToString:@""])
+    if(![trimmedStr isEqualToString:@""])
     {
         // Save new project
         Projects * proj = [NSEntityDescription insertNewObjectForEntityForName:@"Projects"inManagedObjectContext:self.managedObjectContext];
