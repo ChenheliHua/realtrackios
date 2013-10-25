@@ -10,6 +10,7 @@
 #import "RTAppDelegate.h"
 #import "Projects.h"
 #import "Activities.h"
+#import "RTActivityCell.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {

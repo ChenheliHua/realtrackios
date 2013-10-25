@@ -33,6 +33,7 @@
 		0B5811CB18158940000CC2D2 /* RTEnterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */; };
 		0B5811D118158A2C000CC2D2 /* RTPendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */; };
 		0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */; };
+		0BCD08D4181B292F00C49192 /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD08D3181B292F00C49192 /* RTActivityCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPendingViewController.m; sourceTree = "<group>"; };
 		0B5811D218158A40000CC2D2 /* RTActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivitiesViewController.h; sourceTree = "<group>"; };
 		0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivitiesViewController.m; sourceTree = "<group>"; };
+		0BCD08D2181B292F00C49192 /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
+		0BCD08D3181B292F00C49192 /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +218,8 @@
 				0B501AC0180EEEC800430C21 /* RTButton.m */,
 				0B501ABC180EE81700430C21 /* RTLogo.h */,
 				0B501ABD180EE81700430C21 /* RTLogo.m */,
+				0BCD08D2181B292F00C49192 /* RTActivityCell.h */,
+				0BCD08D3181B292F00C49192 /* RTActivityCell.m */,
 			);
 			name = Widgets;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				0B501AC1180EEEC800430C21 /* RTButton.m in Sources */,
 				0B4A5498181030CC0036E415 /* RTDataModel.xcdatamodeld in Sources */,
 				0B4A54A418103FD00036E415 /* Projects.m in Sources */,
+				0BCD08D4181B292F00C49192 /* RTActivityCell.m in Sources */,
 				0B5811D118158A2C000CC2D2 /* RTPendingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

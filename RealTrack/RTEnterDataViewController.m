@@ -106,7 +106,7 @@
 {
     
     static NSString *CellIdentifier = @"activitiesCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    RTActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSLog(@"# of projects: %d",[self.projects count]);
     NSLog(@"# of activities: %d",[self.activities count]);
@@ -124,8 +124,8 @@
     
     // Configure the cell...
     Activities *act = [subActivities objectAtIndex:indexPath.row];
-                       
-    cell.textLabel.text = act.activity_name;
+    
+    cell.activityName.text = act.activity_name;
     
     return cell;
 }
