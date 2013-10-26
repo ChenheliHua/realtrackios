@@ -1,14 +1,14 @@
 //
-//  RTActivityCell.m
+//  RTNewActivityCell.m
 //  RealTrack
 //
-//  Created by Chenheli Hua on 10/25/13.
+//  Created by Chenheli Hua on 10/26/13.
 //  Copyright (c) 2013 Peace Corps. All rights reserved.
 //
 
-#import "RTActivityCell.h"
+#import "RTNewActivityCell.h"
 
-@implementation RTActivityCell
+@implementation RTNewActivityCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,24 +26,20 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)addParticipation:(id)sender {
-}
-
-- (IBAction)editActivity:(id)sender {
+- (IBAction)newAct:(id)sender {
     
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RTAddEditActivityViewController *addEditAct = [sb instantiateViewControllerWithIdentifier:@"addEditActivityView"];
     
-    // Pass the project & activity object
+    // Pass the project object, set currentAct to nil for new activity
     addEditAct.currentProj = self.currentProj;
-    addEditAct.currentAct = self.currentAct;
+    addEditAct.currentAct = nil;
     
     // Set title
-    addEditAct.title = @"Edit Activity";
+    addEditAct.title = @"New Activity";
     
     // Push view controller
     [self.navController pushViewController:addEditAct animated:YES];
-
 }
 @end

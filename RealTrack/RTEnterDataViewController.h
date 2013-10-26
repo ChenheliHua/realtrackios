@@ -11,6 +11,7 @@
 #import "Projects.h"
 #import "Activities.h"
 #import "RTActivityCell.h"
+#import "RTNewActivityCell.h"
 #import "RTAddEditProjectViewController.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>

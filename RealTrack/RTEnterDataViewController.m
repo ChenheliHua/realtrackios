@@ -99,17 +99,15 @@
         if (act.project == proj)
             num++;
     }
-    return num;
+    
+    // Return num + 1 to include the last "New Activity" cell
+    return (num + 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    static NSString *CellIdentifier = @"activitiesCell";
-    RTActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSLog(@"# of projects: %d",[self.projects count]);
-    NSLog(@"# of activities: %d",[self.activities count]);
+    //NSLog(@"# of projects: %d",[self.projects count]);
+    //NSLog(@"# of activities: %d",[self.activities count]);
     
     // Select all activities that belong to a project
     Projects * proj = [self.projects objectAtIndex:indexPath.section];
@@ -117,23 +115,47 @@
     
     NSArray * subActivities = [self.activities filteredArrayUsingPredicate:proj_name];
     
-    // Sort subActivities
-    NSSortDescriptor * sortActs = [NSSortDescriptor sortDescriptorWithKey:@"activity_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    NSArray * sortActsDescriptors = @[sortActs];
-    subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
-    
-    // Display activities
-    Activities *act = [subActivities objectAtIndex:indexPath.row];
-    cell.activityName.text = act.activity_name;
-    
-    // Pass navigation controller for segues
-    cell.navController = self.navigationController;
-    
-    // Pass a cell's objects
-    cell.currentProj = proj;
-    cell.currentAct = act;
+    // Choose activitiesCell for activities, and newActivityCell for new activity
+    // The last cell should be new activity
+    if(indexPath.row == [subActivities count])
+    {
+        static NSString *CellIdentifier = @"newActivityCell";
+        RTNewActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        // No activity name for new activity cell
+        cell.label.text = @"";
+        
+        // Pass navigation controller for segues
+        cell.navController = self.navigationController;
+        
+        // Pass project object
+        cell.currentProj = proj;
+        
+        return cell;
+    }
+    else
+    {
+        static NSString *CellIdentifier = @"activitiesCell";
+        RTActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    return cell;
+        // Sort subActivities
+        NSSortDescriptor * sortActs = [NSSortDescriptor sortDescriptorWithKey:@"activity_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        NSArray * sortActsDescriptors = @[sortActs];
+        subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
+        
+        // Display activities
+        Activities *act = [subActivities objectAtIndex:indexPath.row];
+        cell.activityName.text = act.activity_name;
+        
+        // Pass navigation controller for segues
+        cell.navController = self.navigationController;
+        
+        // Pass a cell's objects
+        cell.currentProj = proj;
+        cell.currentAct = act;
+        
+        return cell;
+    }
 }
 
 // Setup section headers
