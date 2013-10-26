@@ -30,6 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // For hiding keyboard after finishing typing
     self.projectName.delegate = self;
     
     int radius = 5;
@@ -87,6 +88,7 @@
         // MAY POP AN ALERT FOR EMPTY PROJECT NAME
     }
     
+    // Pop parent view
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
 @end

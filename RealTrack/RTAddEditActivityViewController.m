@@ -29,6 +29,9 @@
 {
     [super viewDidLoad];
     
+    // For hiding keyboard after finishing typing
+    self.activityName.delegate = self;
+    
     int radius = 5;
     [self.button setCornerRadius:radius];
     
@@ -39,6 +42,7 @@
     // Display project name
     self.projectName.text = self.currentProj.project_name;
     [self.activityName setText:self.currentAct.activity_name];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,9 +52,40 @@
 }
 
 - (IBAction)addEditActivity:(id)sender {
-    // TO BE IMPLEMENTED
-    // EDIT ACTIVITY
-    // NEW ACTIVITY
-    // POP VIEW CONTROLLER
+    
+    // Save new activity if not empty
+    // Escape whitespaces
+    NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
+    NSString *trimmedStr = [self.activityName.text stringByTrimmingCharactersInSet:charSet];
+    
+    if(![trimmedStr isEqualToString:@""])
+    {
+        // Create new activity
+        if(self.currentAct == nil)
+        {
+            // Save new activity
+            Activities * act = [NSEntityDescription insertNewObjectForEntityForName:@"Activities"inManagedObjectContext:self.managedObjectContext];
+            
+            // Set activity name
+            act.activity_name = self.activityName.text;
+            
+            // Build relations
+            [self.currentProj addActivitiesObject:act];
+            [act setProject:self.currentProj];
+                        
+            NSError * err;
+            [managedObjectContext save:&err];
+        }
+        // Edit existing project
+        else{
+            // EDIT ACT TO BE IMPLEMENTED HERE
+        }
+    }
+    else{
+        // MAY POP AN ALERT FOR EMPTY ACT NAME
+    }
+    
+    // Pop parent view
+    [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
 @end

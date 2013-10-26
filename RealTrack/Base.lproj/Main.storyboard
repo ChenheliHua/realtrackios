@@ -123,7 +123,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="addParticipation:" destination="gcd-Dy-B0T" eventType="touchUpInside" id="PAM-2b-NMh"/>
-                                                <segue destination="LB6-h2-XTM" kind="push" id="PG6-he-xOY"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek2-e4-YsP">
@@ -284,7 +283,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addEditActivity:" destination="WxT-VJ-n84" eventType="touchUpInside" id="yGP-kl-AHc"/>
+                                    <action selector="addEditActivity:" destination="WxT-VJ-n84" eventType="touchUpInside" id="oQs-Yj-tFf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ1-ND-BeF">
@@ -300,7 +299,7 @@
                     <navigationItem key="navigationItem" title="Add/Edit Activity" id="1Bh-cF-XDr"/>
                     <connections>
                         <outlet property="activityName" destination="Uws-IG-cMF" id="pYb-dv-1oA"/>
-                        <outlet property="button" destination="aFw-xw-tpj" id="Ko6-gV-ThW"/>
+                        <outlet property="button" destination="aFw-xw-tpj" id="ieH-aT-XIB"/>
                         <outlet property="projectName" destination="YZ6-7D-JHQ" id="b49-K0-frn"/>
                     </connections>
                 </viewController>
