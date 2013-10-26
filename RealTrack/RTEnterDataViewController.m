@@ -153,20 +153,6 @@
     return NO;
 }
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView beginUpdates];
-    
-    // For delete action
-    if(editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        // IMPLEMENT DELETE HERE
-        NSLog(@"Delete works!");
-    }
-    
-    [tableView endUpdates];
-}
-
 // Refresh view every time
 -(void)viewWillAppear:(BOOL)animated
 {

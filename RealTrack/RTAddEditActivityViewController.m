@@ -78,7 +78,10 @@
         }
         // Edit existing project
         else{
-            // EDIT ACT TO BE IMPLEMENTED HERE
+            self.currentAct.activity_name = self.activityName.text;
+            
+            NSError * err;
+            [managedObjectContext save:&err];
         }
     }
     else{

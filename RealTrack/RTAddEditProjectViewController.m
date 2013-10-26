@@ -81,7 +81,10 @@
         }
         // Edit existing project
         else{
-            // EDIT PROJECT TO BE IMPLEMENTED HERE
+            self.currentProj.project_name = self.projectName.text;
+            
+            NSError * err;
+            [managedObjectContext save:&err];
         }
     }
     else{
