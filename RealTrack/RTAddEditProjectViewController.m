@@ -53,11 +53,7 @@
 }
 
 - (IBAction)addEditProject:(RTButton *)sender {
-    
-    // EDIT FUNCTIONALITY TO BE IMPLEMENTED
-    
-    NSLog(@"Add/Edit button clicked!");
-    
+
     // Save new project if not empty
     // Escape whitespaces
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
@@ -65,13 +61,24 @@
     
     if(![trimmedStr isEqualToString:@""])
     {
-        // Save new project
-        Projects * proj = [NSEntityDescription insertNewObjectForEntityForName:@"Projects"inManagedObjectContext:self.managedObjectContext];
+        // Create new project
+        if(self.currentProj == nil)
+        {
+            // Save new project
+            Projects * proj = [NSEntityDescription insertNewObjectForEntityForName:@"Projects"inManagedObjectContext:self.managedObjectContext];
         
-        proj.project_name = self.projectName.text;
+            proj.project_name = self.projectName.text;
         
-        NSError * err;
-        [managedObjectContext save:&err];
+            NSError * err;
+            [managedObjectContext save:&err];
+        }
+        // Edit existing project
+        else{
+            // EDIT PROJECT TO BE IMPLEMENTED HERE
+        }
+    }
+    else{
+        // MAY POP AN ALERT FOR EMPTY PROJECT NAME
     }
     
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];

@@ -11,6 +11,7 @@
 #import "Projects.h"
 #import "Activities.h"
 #import "RTActivityCell.h"
+#import "RTAddEditProjectViewController.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
@@ -29,5 +30,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cell;
 @property (strong, nonatomic) IBOutlet UITableView *table;
+
+// New Project
+- (IBAction)newProject:(id)sender;
 
 @end

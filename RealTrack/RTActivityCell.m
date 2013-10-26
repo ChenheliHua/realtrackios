@@ -41,7 +41,7 @@
     
     // Set title
     addEditAct.title = @"Edit Activity";
-        
+    
     // Push view controller
     [self.navController pushViewController:addEditAct animated:YES];
 

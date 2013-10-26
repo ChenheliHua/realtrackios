@@ -23,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet RTButton *button;
 @property (strong, nonatomic) IBOutlet UITextField *projectName;
 
+// Store current project for editing, nil for new project
+@property (strong, nonatomic) Projects *currentProj;
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField;
 

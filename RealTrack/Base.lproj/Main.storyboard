@@ -99,7 +99,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <segue destination="ZZs-RC-Mg7" kind="push" id="py7-Tg-PXm"/>
+                                <action selector="newProject:" destination="qHj-5z-y47" eventType="touchUpInside" id="xJ7-tR-Yqh"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -162,7 +162,7 @@
         <!--Add Edit Project View Controller - Add/Edit Project-->
         <scene sceneID="7NX-1e-hxm">
             <objects>
-                <viewController storyboardIdentifier="addEditProject" title="Add/Edit Project" id="ZZs-RC-Mg7" customClass="RTAddEditProjectViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addEditProjectView" title="Add/Edit Project" id="ZZs-RC-Mg7" customClass="RTAddEditProjectViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t1i-7s-h57"/>
                         <viewControllerLayoutGuide type="bottom" id="89Q-VU-Hm7"/>

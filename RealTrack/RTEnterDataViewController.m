@@ -241,4 +241,17 @@
 
  */
 
+- (IBAction)newProject:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTAddEditProjectViewController *addEditProj = [sb instantiateViewControllerWithIdentifier:@"addEditProjectView"];
+    
+    // Set title to "new" and currentProj to nil
+    addEditProj.title = @"New Project";
+    addEditProj.currentProj = nil;
+    
+    [self.navigationController pushViewController:addEditProj animated:YES];
+    
+}
+
 @end
