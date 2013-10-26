@@ -136,7 +136,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="editActivity:" destination="gcd-Dy-B0T" eventType="touchUpInside" id="HcU-tc-AYD"/>
-                                                <segue destination="WxT-VJ-n84" kind="push" id="HTw-gc-EKf"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -220,8 +219,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project: (project_name)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ6-7D-JHQ">
-                                <rect key="frame" x="20" y="86" width="280" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(project_name)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ6-7D-JHQ">
+                                <rect key="frame" x="93" y="86" width="207" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -250,12 +249,19 @@
                                     <action selector="addEditActivity:" destination="WxT-VJ-n84" eventType="touchUpInside" id="yGP-kl-AHc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ1-ND-BeF">
+                                <rect key="frame" x="20" y="86" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add/Edit Activity" id="1Bh-cF-XDr"/>
                     <connections>
-                        <outlet property="activityName" destination="Uws-IG-cMF" id="3Xy-FD-3tT"/>
+                        <outlet property="activityName" destination="Uws-IG-cMF" id="pYb-dv-1oA"/>
                         <outlet property="button" destination="aFw-xw-tpj" id="Ko6-gV-ThW"/>
                         <outlet property="projectName" destination="YZ6-7D-JHQ" id="b49-K0-frn"/>
                     </connections>

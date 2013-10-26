@@ -122,11 +122,17 @@
     NSArray * sortActsDescriptors = @[sortActs];
     subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
     
-    // Configure the cell...
+    // Display activities
     Activities *act = [subActivities objectAtIndex:indexPath.row];
-    
     cell.activityName.text = act.activity_name;
     
+    // Pass navigation controller for segues
+    cell.navController = self.navigationController;
+    
+    // Pass a cell's objects
+    cell.currentProj = proj;
+    cell.currentAct = act;
+
     return cell;
 }
 

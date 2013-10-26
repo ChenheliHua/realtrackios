@@ -30,5 +30,20 @@
 }
 
 - (IBAction)editActivity:(id)sender {
+    
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTAddEditActivityViewController *addEditAct = [sb instantiateViewControllerWithIdentifier:@"addEditActivityView"];
+    
+    // Pass the project object
+    addEditAct.currentProj = self.currentProj;
+    addEditAct.currentAct = self.currentAct;
+    
+    // Set title
+    addEditAct.title = @"Edit Activity";
+        
+    // Push view controller
+    [self.navController pushViewController:addEditAct animated:YES];
+
 }
 @end

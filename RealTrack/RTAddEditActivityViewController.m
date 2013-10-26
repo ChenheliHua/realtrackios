@@ -35,6 +35,10 @@
     // Load managedObjectContext
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
+    
+    // Display project name
+    self.projectName.text = self.currentProj.project_name;
+    [self.activityName setText:self.currentAct.activity_name];
 }
 
 - (void)didReceiveMemoryWarning

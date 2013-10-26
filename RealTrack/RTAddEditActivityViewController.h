@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RTButton.h"
 #import "RTAppDelegate.h"
+#import "Projects.h"
+#import "Activities.h"
 
 @interface RTAddEditActivityViewController : UIViewController
 {
@@ -22,6 +24,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *projectName;
 @property (strong, nonatomic) IBOutlet UITextField *activityName;
 @property (strong, nonatomic) IBOutlet RTButton *button;
+
+// Store the project a activity belongs to and the activity
+@property (strong, nonatomic) Projects *currentProj;
+@property (strong, nonatomic) Activities *currentAct;
 
 - (IBAction)addEditActivity:(id)sender;
 

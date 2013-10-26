@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTAddEditActivityViewController.h"
+#import "Projects.h"
+#import "Activities.h"
 
 @interface RTActivityCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *activityName;
 - (IBAction)addParticipation:(id)sender;
 - (IBAction)editActivity:(id)sender;
+
+@property (strong, nonatomic) UINavigationController *navController;
+@property (strong, nonatomic) Projects *currentProj;
+@property (strong, nonatomic) Activities *currentAct;
 
 @end
