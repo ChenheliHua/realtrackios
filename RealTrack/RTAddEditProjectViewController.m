@@ -38,6 +38,12 @@
     // Load managedObjectContext
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
+    
+    // Setup existing project name
+    if(self.currentProj!=nil)
+    {
+        [self.projectName setText:self.currentProj.project_name];
+    }    
 }
 
 - (void)didReceiveMemoryWarning

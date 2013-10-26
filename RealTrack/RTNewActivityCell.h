@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTAddEditProjectViewController.h"
 #import "RTAddEditActivityViewController.h"
 #import "Projects.h"
 
@@ -14,6 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *label;
 - (IBAction)newAct:(id)sender;
+- (IBAction)editProj:(id)sender;
 
 
 @property (strong, nonatomic) UINavigationController *navController;

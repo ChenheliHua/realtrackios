@@ -50,16 +50,7 @@
     NSError *err;
     self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
     self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
-    
-    // Test if fetch works
-    for (Projects *proj in self.projects) {
-        NSLog(@"Project Name: %@", proj.project_name);
-    }
-
-    for (Activities *act in self.activities) {
-        NSLog(@"Activity Name: %@", act.activity_name);
-    }
-    
+        
     /*
     Activities * newAct5 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
     newAct5.activity_name = @"Act No 5";

@@ -42,4 +42,20 @@
     // Push view controller
     [self.navController pushViewController:addEditAct animated:YES];
 }
+
+- (IBAction)editProj:(id)sender {
+    
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTAddEditProjectViewController *editProj = [sb instantiateViewControllerWithIdentifier:@"addEditProjectView"];
+    
+    // Pass the project object
+    editProj.currentProj = self.currentProj;
+    
+    // Set title
+    editProj.title = @"Edit Project";
+    
+    // Push view controller
+    [self.navController pushViewController:editProj animated:YES];
+}
 @end
