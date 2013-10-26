@@ -50,13 +50,6 @@
     NSError *err;
     self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
     self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
-        
-    /*
-    Activities * newAct5 = [NSEntityDescription insertNewObjectForEntityForName:@"Activities" inManagedObjectContext:self.managedObjectContext];
-    newAct5.activity_name = @"Act No 5";
-    [self.projects[1] addActivitiesObject:newAct5];
-    [managedObjectContext save:&err];
-    */
     
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
@@ -97,8 +90,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"# of projects: %d",[self.projects count]);
-    //NSLog(@"# of activities: %d",[self.activities count]);
     
     // Select all activities that belong to a project
     Projects * proj = [self.projects objectAtIndex:indexPath.section];
