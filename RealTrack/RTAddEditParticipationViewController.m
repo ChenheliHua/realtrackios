@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+
 }
 
 - (void)didReceiveMemoryWarning
