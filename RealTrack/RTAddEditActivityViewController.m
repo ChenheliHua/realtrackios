@@ -91,4 +91,9 @@
     // Pop parent view
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 @end
