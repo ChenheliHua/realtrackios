@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTAppDelegate.h"
+#import "Projects.h"
+#import "Activities.h"
+#import "RTActivityCell.h"
+#import "RTNewActivityCell.h"
+#import "RTAddEditProjectViewController.h"
 
 @interface RTEnterDataViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
@@ -18,5 +24,15 @@
 // CoreData
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+// Projects & activities info
+@property (nonatomic, strong) NSArray *projects;
+@property (nonatomic, strong) NSArray *activities;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *cell;
+@property (strong, nonatomic) IBOutlet UITableView *table;
+
+// New Project
+- (IBAction)newProject:(id)sender;
 
 @end

@@ -13,17 +13,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    
-    RTEnterDataViewController *enterData = (RTEnterDataViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"enterDataView"];
-    RTActivitiesViewController *activities = (RTActivitiesViewController*) [mainStoryboard instantiateViewControllerWithIdentifier:@"activitiesView"];
-    RTPendingViewController *pending = (RTPendingViewController*) [mainStoryboard instantiateViewControllerWithIdentifier:@"pendingView"];
-    
-    // Link controllers to CoreData
-    enterData.managedObjectContext = self.managedObjectContext;
-    activities.managedObjectContext = self.managedObjectContext;
-    pending.managedObjectContext = self.managedObjectContext;
-    
     // Override point for customization after application launch.
     return YES;
 }

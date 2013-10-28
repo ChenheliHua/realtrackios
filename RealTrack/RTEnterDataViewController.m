@@ -16,6 +16,7 @@
 
 // CoreData
 @synthesize fetchedResultsController, managedObjectContext;
+@synthesize projects, activities;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,12 +30,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Fetch all projects and activities information
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
 
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
+    
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+                                          
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,26 +68,122 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    // Each project serves as a section
+    return [self.projects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    int num = 0;
+    
+    Projects *proj = [self.projects objectAtIndex:section];
+    
+    for (Activities *act in self.activities) {
+        if (act.project == proj)
+            num++;
+    }
+    
+    // Return num + 1 to include the last "New Activity" cell
+    return (num + 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Select all activities that belong to a project
+    Projects * proj = [self.projects objectAtIndex:indexPath.section];
+    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"project.project_name == %@",proj.project_name];
     
-    return cell;
+    NSArray * subActivities = [self.activities filteredArrayUsingPredicate:proj_name];
+    
+    // Choose activitiesCell for activities, and newActivityCell for new activity
+    // The first cell should be new activity
+    if(indexPath.row == 0)
+    {
+        static NSString *CellIdentifier = @"newActivityCell";
+        RTNewActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        // No activity name for new activity cell
+        cell.label.text = @"";
+        
+        // Pass navigation controller for segues
+        cell.navController = self.navigationController;
+        
+        // Pass project object
+        cell.currentProj = proj;
+        
+        // Pass managedObjectContext
+        cell.managedObjectContext = self.managedObjectContext;
+        
+        return cell;
+    }
+    else
+    {
+        static NSString *CellIdentifier = @"activitiesCell";
+        RTActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+
+        // Sort subActivities
+        NSSortDescriptor * sortActs = [NSSortDescriptor sortDescriptorWithKey:@"activity_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        NSArray * sortActsDescriptors = @[sortActs];
+        subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
+        
+        // Display activities
+        Activities *act = [subActivities objectAtIndex:(indexPath.row-1)];
+        cell.activityName.text = act.activity_name;
+        
+        // Pass navigation controller for segues
+        cell.navController = self.navigationController;
+        
+        // Pass a cell's objects
+        cell.currentProj = proj;
+        cell.currentAct = act;
+        
+        // Pass managedObjectContext
+        cell.managedObjectContext = self.managedObjectContext;
+        
+        return cell;
+    }
+}
+
+// Setup section headers
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    Projects * proj = [self.projects objectAtIndex:section];
+    return proj.project_name;
+}
+
+// Enable editing
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+// Refresh view every time
+-(void)viewWillAppear:(BOOL)animated
+{
+    // Re-fetch from CoreData
+    // Fetch all projects and activities information
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
+    
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+    
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    
+    [self.table reloadData];
 }
 
 /*
@@ -119,5 +236,20 @@
 }
 
  */
+
+- (IBAction)newProject:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTAddEditProjectViewController *addEditProj = [sb instantiateViewControllerWithIdentifier:@"addEditProjectView"];
+    
+    // Set title to "new" and currentProj to nil
+    addEditProj.title = @"New Project";
+    addEditProj.currentProj = nil;
+    
+    [self.navigationController pushViewController:addEditProj animated:YES];
+    
+}
+
+
 
 @end
