@@ -97,6 +97,26 @@
         
         NSError *err;
         [self.managedObjectContext save:&err];
+        
+        // Reload all data
+        RTEnterDataViewController *vc = self.navController.visibleViewController;
+        
+        NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+        NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+        NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+        
+        [fetchRequestProj setEntity:projs];
+        [fetchRequestAct setEntity:acts];
+        
+        NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+        
+        vc.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+        vc.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+        
+        [vc.table reloadData];
     }
 }
 
