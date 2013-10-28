@@ -108,8 +108,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2N-KR-7ix">
-                                            <rect key="frame" x="15" y="7" width="156" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2N-KR-7ix">
+                                            <rect key="frame" x="15" y="7" width="140" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,12 +167,10 @@
                                         <constraint firstItem="Ek2-e4-YsP" firstAttribute="leading" secondItem="uwQ-I0-V3y" secondAttribute="trailing" constant="8" symbolic="YES" id="75W-dx-ILA"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="leading" secondItem="Ek2-e4-YsP" secondAttribute="trailing" constant="16" id="9a3-dU-Bhq"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="centerY" secondItem="O80-Nq-Ik7" secondAttribute="centerY" id="G3X-aY-gHe"/>
-                                        <constraint firstItem="uwQ-I0-V3y" firstAttribute="leading" secondItem="X2N-KR-7ix" secondAttribute="trailing" constant="8" symbolic="YES" id="GlN-Ph-9DD"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="top" secondItem="Ek2-e4-YsP" secondAttribute="top" id="XES-bx-EQ7"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="bottom" secondItem="Ek2-e4-YsP" secondAttribute="bottom" id="ZBT-vC-v6f"/>
                                         <constraint firstItem="uwQ-I0-V3y" firstAttribute="baseline" secondItem="Ek2-e4-YsP" secondAttribute="baseline" id="e8Y-Zx-UI4"/>
                                         <constraint firstAttribute="trailing" secondItem="UqU-cf-aef" secondAttribute="trailing" constant="6" id="eJx-dX-a2f"/>
-                                        <constraint firstItem="uwQ-I0-V3y" firstAttribute="top" secondItem="X2N-KR-7ix" secondAttribute="top" id="j4z-Z4-hfV"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="top" secondItem="13f-cU-aOS" secondAttribute="top" constant="4" id="p7x-pA-nAO"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -227,7 +225,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="viewPro:" destination="BRp-7y-gWt" eventType="touchUpInside" id="0b3-LK-GSm"/>
+                                                <action selector="viewProj:" destination="BRp-7y-gWt" eventType="touchUpInside" id="Rlj-6G-eNu"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI6-Rl-cLu">

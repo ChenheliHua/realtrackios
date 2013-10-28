@@ -59,7 +59,7 @@
     [self.navController pushViewController:editProj animated:YES];
 }
 
-- (IBAction)viewPro:(id)sender {
+- (IBAction)viewProj:(id)sender {
     // For date format
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd/yyyy"];

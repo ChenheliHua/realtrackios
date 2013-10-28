@@ -91,10 +91,16 @@
             [proj setValue:self.projectName.text forKey:@"project_name"];
             
             NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            [proj setValue:dt forKey:@"start_date"];
+            if(dt!=nil)
+                [proj setValue:dt forKey:@"start_date"];
+            else
+                [proj setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"start_date"];
             
             dt = [dateFormat dateFromString:self.endDate.text];
-            [proj setValue:dt forKey:@"end_date"];
+            if(dt!=nil)
+                [proj setValue:dt forKey:@"end_date"];
+            else
+                [proj setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"end_date"];
             
             [proj setValue:self.notes.text forKey:@"notes"];
         

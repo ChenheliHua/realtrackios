@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *label;
 - (IBAction)newAct:(id)sender;
 - (IBAction)editProj:(id)sender;
-- (IBAction)viewPro:(id)sender;
+- (IBAction)viewProj:(id)sender;
 - (IBAction)deleteProj:(id)sender;
 
 

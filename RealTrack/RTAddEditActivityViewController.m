@@ -88,10 +88,16 @@
             [act setValue:self.activityName.text forKey:@"activity_name"];
             
             NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            [act setValue:dt forKey:@"start_date"];
+            if(dt!=nil)
+                [act setValue:dt forKey:@"start_date"];
+            else
+                [act setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"start_date"];
             
             dt = [dateFormat dateFromString:self.endDate.text];
-            [act setValue:dt forKey:@"end_date"];
+            if(dt!=nil)
+                [act setValue:dt forKey:@"end_date"];
+            else
+                [act setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"end_date"];
             
             [act setValue:self.notes.text forKey:@"notes"];
             
