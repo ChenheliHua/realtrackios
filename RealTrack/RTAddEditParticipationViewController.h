@@ -25,4 +25,18 @@
 @property (strong, nonatomic) Projects *currentProj;
 @property (strong, nonatomic) Activities *currentAct;
 
+@property (strong, nonatomic) IBOutlet UILabel *projectName;
+@property (strong, nonatomic) IBOutlet UILabel *activityName;
+@property (strong, nonatomic) IBOutlet UITextField *date;
+@property (strong, nonatomic) IBOutlet UITextField *menUnder15;
+@property (strong, nonatomic) IBOutlet UITextField *men15To24;
+@property (strong, nonatomic) IBOutlet UITextField *menAbove24;
+@property (strong, nonatomic) IBOutlet UITextField *womenUnder15;
+@property (strong, nonatomic) IBOutlet UITextField *women15To24;
+@property (strong, nonatomic) IBOutlet UITextField *womenAbove24;
+@property (strong, nonatomic) IBOutlet UITextField *notes;
+@property (strong, nonatomic) IBOutlet RTButton *button;
+
+- (IBAction)addParticipation:(id)sender;
+
 @end

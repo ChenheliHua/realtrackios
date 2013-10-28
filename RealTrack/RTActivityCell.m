@@ -29,6 +29,20 @@
 }
 
 - (IBAction)addParticipation:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTAddEditParticipationViewController *addPart = [sb instantiateViewControllerWithIdentifier:@"addEditParticipationView"];
+    
+    // Pass the project and activity object
+    addPart.currentProj = self.currentProj;
+    addPart.currentAct = self.currentAct;
+    
+    // Set title
+    addPart.title = @"Add Participation";
+    
+    // Push view controller
+    [self.navController pushViewController:addPart animated:YES];
+    
 }
 
 - (IBAction)editActivity:(id)sender {

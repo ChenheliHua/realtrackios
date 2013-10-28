@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RTAddEditActivityViewController.h"
+#import "RTAddEditParticipationViewController.h"
 #import "Projects.h"
 #import "Activities.h"
 
