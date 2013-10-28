@@ -24,6 +24,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *projectName;
 @property (strong, nonatomic) IBOutlet UITextField *activityName;
 @property (strong, nonatomic) IBOutlet RTButton *button;
+@property (strong, nonatomic) IBOutlet UITextField *startDate;
+@property (strong, nonatomic) IBOutlet UITextField *endDate;
+@property (strong, nonatomic) IBOutlet UITextField *notes;
 
 // Store the project a activity belongs to and the activity
 @property (strong, nonatomic) Projects *currentProj;

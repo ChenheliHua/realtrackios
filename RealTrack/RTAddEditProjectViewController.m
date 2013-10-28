@@ -103,8 +103,15 @@
         }
         // Edit existing project
         else{
-            self.currentProj.project_name = self.projectName.text;
+            [self.currentProj setValue:self.projectName.text forKey:@"project_name"];
             
+            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
+            [self.currentProj setValue:dt forKey:@"start_date"];
+            
+            dt = [dateFormat dateFromString:self.endDate.text];
+            [self.currentProj setValue:dt forKey:@"end_date"];
+            
+            [self.currentProj setValue:self.notes.text forKey:@"notes"];
             
             NSError * err;
             [managedObjectContext save:&err];
