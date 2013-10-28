@@ -22,6 +22,10 @@
 
 @property (strong, nonatomic) IBOutlet RTButton *button;
 @property (strong, nonatomic) IBOutlet UITextField *projectName;
+@property (strong, nonatomic) IBOutlet UITextField *startDate;
+@property (strong, nonatomic) IBOutlet UITextField *endDate;
+@property (strong, nonatomic) IBOutlet UITextField *notes;
+
 
 // Store current project for editing, nil for new project
 @property (strong, nonatomic) Projects *currentProj;

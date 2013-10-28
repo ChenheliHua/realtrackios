@@ -2,7 +2,7 @@
 //  Projects.h
 //  RealTrack
 //
-//  Created by Chenheli Hua on 10/17/13.
+//  Created by Chenheli Hua on 10/28/13.
 //  Copyright (c) 2013 Peace Corps. All rights reserved.
 //
 
@@ -13,7 +13,10 @@
 
 @interface Projects : NSManagedObject
 
+@property (nonatomic, retain) NSDate * end_date;
+@property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSString * project_name;
+@property (nonatomic, retain) NSDate * start_date;
 @property (nonatomic, retain) NSSet *activities;
 @end
 
