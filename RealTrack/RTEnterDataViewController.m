@@ -98,8 +98,8 @@
     NSArray * subActivities = [self.activities filteredArrayUsingPredicate:proj_name];
     
     // Choose activitiesCell for activities, and newActivityCell for new activity
-    // The last cell should be new activity
-    if(indexPath.row == [subActivities count])
+    // The first cell should be new activity
+    if(indexPath.row == 0)
     {
         static NSString *CellIdentifier = @"newActivityCell";
         RTNewActivityCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -126,7 +126,7 @@
         subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
         
         // Display activities
-        Activities *act = [subActivities objectAtIndex:indexPath.row];
+        Activities *act = [subActivities objectAtIndex:(indexPath.row-1)];
         cell.activityName.text = act.activity_name;
         
         // Pass navigation controller for segues
