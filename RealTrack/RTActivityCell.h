@@ -12,6 +12,13 @@
 #import "Activities.h"
 
 @interface RTActivityCell : UITableViewCell
+{
+    // CoreData
+    NSManagedObjectContext *managedObjectContext;
+}
+
+// CoreData
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) IBOutlet UILabel *activityName;
 - (IBAction)addParticipation:(id)sender;

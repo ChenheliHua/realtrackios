@@ -12,6 +12,13 @@
 #import "Projects.h"
 
 @interface RTNewActivityCell : UITableViewCell
+{
+    // CoreData
+    NSManagedObjectContext *managedObjectContext;
+}
+
+// CoreData
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) IBOutlet UILabel *label;
 - (IBAction)newAct:(id)sender;

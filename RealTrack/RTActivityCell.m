@@ -10,6 +10,8 @@
 
 @implementation RTActivityCell
 
+@synthesize managedObjectContext;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -63,5 +65,27 @@
 }
 
 - (IBAction)deleteActivity:(id)sender {
+    // Show alert asking for confirmatio
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Activity" message:self.currentAct.activity_name delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete!", nil];
+    
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // If cancel, do nothing
+    if (buttonIndex == 0)
+    {
+        return;
+    }
+    // Confirmed deletion
+    else
+    {
+        [self.managedObjectContext deleteObject:self.currentAct];
+        
+        NSError *err;
+        [self.managedObjectContext save:&err];
+    }
 }
 @end

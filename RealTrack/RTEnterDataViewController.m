@@ -113,6 +113,9 @@
         // Pass project object
         cell.currentProj = proj;
         
+        // Pass managedObjectContext
+        cell.managedObjectContext = self.managedObjectContext;
+        
         return cell;
     }
     else
@@ -135,6 +138,9 @@
         // Pass a cell's objects
         cell.currentProj = proj;
         cell.currentAct = act;
+        
+        // Pass managedObjectContext
+        cell.managedObjectContext = self.managedObjectContext;
         
         return cell;
     }
