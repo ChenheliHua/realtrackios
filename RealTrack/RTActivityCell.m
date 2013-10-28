@@ -48,8 +48,14 @@
 }
 
 - (IBAction)viewActivity:(id)sender {
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.currentAct.activity_name
-                                                    message:@"Activity Details"
+                                                    message:[[[[[@"Start Date: " stringByAppendingString:[dateFormat stringFromDate:self.currentAct.start_date]]
+                                                                stringByAppendingString:@"\nEnd Date: "] stringByAppendingString:[dateFormat stringFromDate:self.currentAct.end_date]]
+                                                                stringByAppendingString:@"\nNotes: "] stringByAppendingString:self.currentAct.notes]
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

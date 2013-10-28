@@ -105,11 +105,14 @@
         else{
             [self.currentProj setValue:self.projectName.text forKey:@"project_name"];
             
+            // Skip editing date if invalid format is given
             NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            [self.currentProj setValue:dt forKey:@"start_date"];
+            if(dt!=nil)
+                [self.currentProj setValue:dt forKey:@"start_date"];
             
             dt = [dateFormat dateFromString:self.endDate.text];
-            [self.currentProj setValue:dt forKey:@"end_date"];
+            if(dt!=nil)
+                [self.currentProj setValue:dt forKey:@"end_date"];
             
             [self.currentProj setValue:self.notes.text forKey:@"notes"];
             

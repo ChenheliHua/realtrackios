@@ -31,6 +31,9 @@
     
     // For hiding keyboard after finishing typing
     self.activityName.delegate = self;
+    self.startDate.delegate = self;
+    self.endDate.delegate = self;
+    self.notes.delegate = self;
     
     int radius = 5;
     [self.button setCornerRadius:radius];
@@ -41,7 +44,18 @@
     
     // Display project name
     self.projectName.text = self.currentProj.project_name;
-    [self.activityName setText:self.currentAct.activity_name];
+    
+    if(self.currentAct!=nil)
+    {
+        // For date format
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"MM/dd/yyyy"];
+        
+        [self.activityName setText:self.currentAct.activity_name];
+        [self.startDate setText:[dateFormat stringFromDate:self.currentAct.start_date]];
+        [self.endDate setText:[dateFormat stringFromDate:self.currentAct.end_date]];
+        [self.notes setText:self.currentAct.notes];
+    }
     
 }
 
@@ -58,6 +72,10 @@
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
     NSString *trimmedStr = [self.activityName.text stringByTrimmingCharactersInSet:charSet];
     
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
     if(![trimmedStr isEqualToString:@""])
     {
         // Create new activity
@@ -67,7 +85,15 @@
             Activities * act = [NSEntityDescription insertNewObjectForEntityForName:@"Activities"inManagedObjectContext:self.managedObjectContext];
             
             // Set activity name
-            act.activity_name = self.activityName.text;
+            [act setValue:self.activityName.text forKey:@"activity_name"];
+            
+            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
+            [act setValue:dt forKey:@"start_date"];
+            
+            dt = [dateFormat dateFromString:self.endDate.text];
+            [act setValue:dt forKey:@"end_date"];
+            
+            [act setValue:self.notes.text forKey:@"notes"];
             
             // Build relations
             [self.currentProj addActivitiesObject:act];
@@ -78,7 +104,19 @@
         }
         // Edit existing project
         else{
-            self.currentAct.activity_name = self.activityName.text;
+            // Update activity information
+            [self.currentAct setValue:self.activityName.text forKey:@"activity_name"];
+            
+            // Skip editing date if invalid format is given
+            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
+            if(dt!=nil)
+                [self.currentAct setValue:dt forKey:@"start_date"];
+            
+            dt = [dateFormat dateFromString:self.endDate.text];
+            if(dt!=nil)
+                [self.currentAct setValue:dt forKey:@"end_date"];
+            
+            [self.currentAct setValue:self.notes.text forKey:@"notes"];
             
             NSError * err;
             [managedObjectContext save:&err];
