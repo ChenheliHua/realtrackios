@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSNumber * women_15_to_24;
 @property (nonatomic, retain) NSNumber * women_above_24;
 @property (nonatomic, retain) NSNumber * women_under_15;
+@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) Activities *activity;
 
 @end

@@ -19,6 +19,7 @@
 @dynamic women_15_to_24;
 @dynamic women_above_24;
 @dynamic women_under_15;
+@dynamic date;
 @dynamic activity;
 
 @end
