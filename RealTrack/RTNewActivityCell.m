@@ -60,6 +60,18 @@
 }
 
 - (IBAction)viewPro:(id)sender {
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.currentProj.project_name
+                                                    message:[[[[[@"Start Date: " stringByAppendingString:[dateFormat stringFromDate:self.currentProj.start_date]]
+                                                                stringByAppendingString:@"\nEnd Date: "] stringByAppendingString:[dateFormat stringFromDate:self.currentProj.end_date]]
+                                                              stringByAppendingString:@"\nNotes: "] stringByAppendingString:self.currentProj.notes]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (IBAction)deleteProj:(id)sender {
