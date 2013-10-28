@@ -58,4 +58,10 @@
     // Push view controller
     [self.navController pushViewController:editProj animated:YES];
 }
+
+- (IBAction)viewPro:(id)sender {
+}
+
+- (IBAction)deleteProj:(id)sender {
+}
 @end

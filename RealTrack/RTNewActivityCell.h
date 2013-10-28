@@ -16,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *label;
 - (IBAction)newAct:(id)sender;
 - (IBAction)editProj:(id)sender;
+- (IBAction)viewPro:(id)sender;
+- (IBAction)deleteProj:(id)sender;
 
 
 @property (strong, nonatomic) UINavigationController *navController;

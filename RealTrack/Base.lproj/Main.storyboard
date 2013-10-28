@@ -108,8 +108,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2N-KR-7ix">
-                                            <rect key="frame" x="15" y="7" width="210" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2N-KR-7ix">
+                                            <rect key="frame" x="15" y="7" width="156" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -125,8 +125,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqU-cf-aef">
-                                            <rect key="frame" x="279" y="4" width="35" height="36"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UqU-cf-aef">
+                                            <rect key="frame" x="275" y="7" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="UaT-T1-6pe"/>
@@ -139,8 +139,8 @@
                                                 <segue destination="LB6-h2-XTM" kind="push" id="EkT-sy-bjY"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek2-e4-YsP">
-                                            <rect key="frame" x="233" y="4" width="30" height="36"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek2-e4-YsP">
+                                            <rect key="frame" x="237" y="7" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Edit">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -149,13 +149,30 @@
                                                 <action selector="editActivity:" destination="gcd-Dy-B0T" eventType="touchUpInside" id="HcU-tc-AYD"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwQ-I0-V3y">
+                                            <rect key="frame" x="179" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="kqA-A7-lip"/>
+                                            </constraints>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="deleteActivity:" destination="gcd-Dy-B0T" eventType="touchUpInside" id="NB2-6c-Zb0"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Ek2-e4-YsP" firstAttribute="leading" secondItem="uwQ-I0-V3y" secondAttribute="trailing" constant="8" symbolic="YES" id="75W-dx-ILA"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="leading" secondItem="Ek2-e4-YsP" secondAttribute="trailing" constant="16" id="9a3-dU-Bhq"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="centerY" secondItem="O80-Nq-Ik7" secondAttribute="centerY" id="G3X-aY-gHe"/>
+                                        <constraint firstItem="uwQ-I0-V3y" firstAttribute="leading" secondItem="X2N-KR-7ix" secondAttribute="trailing" constant="8" symbolic="YES" id="GlN-Ph-9DD"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="top" secondItem="Ek2-e4-YsP" secondAttribute="top" id="XES-bx-EQ7"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="bottom" secondItem="Ek2-e4-YsP" secondAttribute="bottom" id="ZBT-vC-v6f"/>
+                                        <constraint firstItem="uwQ-I0-V3y" firstAttribute="baseline" secondItem="Ek2-e4-YsP" secondAttribute="baseline" id="e8Y-Zx-UI4"/>
                                         <constraint firstAttribute="trailing" secondItem="UqU-cf-aef" secondAttribute="trailing" constant="6" id="eJx-dX-a2f"/>
+                                        <constraint firstItem="uwQ-I0-V3y" firstAttribute="top" secondItem="X2N-KR-7ix" secondAttribute="top" id="j4z-Z4-hfV"/>
                                         <constraint firstItem="UqU-cf-aef" firstAttribute="top" secondItem="13f-cU-aOS" secondAttribute="top" constant="4" id="p7x-pA-nAO"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -177,8 +194,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rw-GD-JEd">
-                                            <rect key="frame" x="222" y="7" width="90" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Rw-GD-JEd">
+                                            <rect key="frame" x="215" y="7" width="90" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="SXb-GG-H2z"/>
@@ -190,21 +207,53 @@
                                                 <action selector="newAct:" destination="BRp-7y-gWt" eventType="touchUpInside" id="KkR-BE-dlk"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3q-VY-88E">
-                                            <rect key="frame" x="15" y="7" width="80" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3q-VY-88E">
+                                            <rect key="frame" x="67" y="7" width="50" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Edit Project">
+                                            <state key="normal" title="Edit">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
                                                 <action selector="editProj:" destination="BRp-7y-gWt" eventType="touchUpInside" id="PDq-EA-fke"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOD-fH-76c">
+                                            <rect key="frame" x="9" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="Wpn-Ay-Qxn"/>
+                                            </constraints>
+                                            <state key="normal" title="View">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="viewPro:" destination="BRp-7y-gWt" eventType="touchUpInside" id="0b3-LK-GSm"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nI6-Rl-cLu">
+                                            <rect key="frame" x="125" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="dJA-hg-dys"/>
+                                            </constraints>
+                                            <state key="normal" title="Delete">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="deleteProj:" destination="BRp-7y-gWt" eventType="touchUpInside" id="SBx-zz-qhY"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="8Rw-GD-JEd" firstAttribute="leading" secondItem="nI6-Rl-cLu" secondAttribute="trailing" constant="40" id="0iA-Sh-0C5"/>
+                                        <constraint firstItem="D3q-VY-88E" firstAttribute="leading" secondItem="vOD-fH-76c" secondAttribute="trailing" constant="8" symbolic="YES" id="1Kv-Hx-VA7"/>
+                                        <constraint firstItem="vOD-fH-76c" firstAttribute="leading" secondItem="Efj-H5-j83" secondAttribute="leading" constant="9" id="BkC-Im-v3O"/>
+                                        <constraint firstItem="vOD-fH-76c" firstAttribute="baseline" secondItem="D3q-VY-88E" secondAttribute="baseline" id="FqN-O0-Kya"/>
                                         <constraint firstItem="8Rw-GD-JEd" firstAttribute="baseline" secondItem="D3q-VY-88E" secondAttribute="baseline" id="Iq6-Jt-htS"/>
                                         <constraint firstItem="8Rw-GD-JEd" firstAttribute="top" secondItem="Efj-H5-j83" secondAttribute="top" constant="7" id="TvB-ec-WwA"/>
+                                        <constraint firstItem="vOD-fH-76c" firstAttribute="baseline" secondItem="nI6-Rl-cLu" secondAttribute="baseline" id="ZuQ-Uw-YIR"/>
                                         <constraint firstAttribute="trailing" secondItem="8Rw-GD-JEd" secondAttribute="trailing" constant="8" id="gbJ-hv-Z8D"/>
+                                        <constraint firstItem="nI6-Rl-cLu" firstAttribute="leading" secondItem="D3q-VY-88E" secondAttribute="trailing" constant="8" symbolic="YES" id="nuU-4Y-4kH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

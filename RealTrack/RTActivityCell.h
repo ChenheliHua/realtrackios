@@ -17,6 +17,7 @@
 - (IBAction)addParticipation:(id)sender;
 - (IBAction)editActivity:(id)sender;
 - (IBAction)viewActivity:(id)sender;
+- (IBAction)deleteActivity:(id)sender;
 
 
 @property (strong, nonatomic) UINavigationController *navController;

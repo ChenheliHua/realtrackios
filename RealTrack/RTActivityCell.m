@@ -61,4 +61,7 @@
                                           otherButtonTitles:nil];
     [alert show];
 }
+
+- (IBAction)deleteActivity:(id)sender {
+}
 @end
