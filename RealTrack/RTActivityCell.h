@@ -16,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *activityName;
 - (IBAction)addParticipation:(id)sender;
 - (IBAction)editActivity:(id)sender;
+- (IBAction)viewActivity:(id)sender;
+
 
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) Projects *currentProj;

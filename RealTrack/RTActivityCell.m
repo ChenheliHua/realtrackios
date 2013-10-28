@@ -46,4 +46,13 @@
     [self.navController pushViewController:addEditAct animated:YES];
 
 }
+
+- (IBAction)viewActivity:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.currentAct.activity_name
+                                                    message:@"Activity Details"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 @end
