@@ -271,8 +271,26 @@
 // Return a string representation of csv data
 -(NSString *)getCSVString
 {
-    // TO BE IMPLEMENTED
-    return @"abc";
+    
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    NSMutableString * csv = [NSMutableString stringWithString:@"Project, Activity, Date, Men Under 15, Men 15 To 24, Men Above 24, Women Under 15, Women 15 To 24, Women Above 24, Notes\n"];
+    
+    for(Participations *part in self.participations)
+    {
+        // Appened each participation
+        [csv appendString:[NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@, %@, %@\n",
+                           part.activity.project.project_name, part.activity.activity_name, [dateFormat stringFromDate:part.date],
+                           part.men_under_15, part.men_15_to_24, part.men_above_24,
+                           part.women_under_15, part.women_15_to_24, part.women_above_24,
+                           part.notes]];
+    }
+    
+    //NSLog(csv);
+    
+    return csv;
 }
 
 @end
