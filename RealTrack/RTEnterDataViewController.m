@@ -153,7 +153,7 @@
     return proj.project_name;
 }
 
-// Enable editing
+// Disable editing
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;

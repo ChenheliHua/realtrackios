@@ -47,6 +47,9 @@
     self.women15To24.delegate = self;
     self.womenAbove24.delegate = self;
     self.notes.delegate = self;
+    
+    int radius = 5;
+    [self.button setCornerRadius:radius];
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,6 +104,9 @@
         part.women_above_24 = 0;
     
     part.notes = self.notes.text;
+    
+    // Added participation into the activity
+    [self.currentAct addParticipationsObject:part];
     
     // Save
     NSError * err;

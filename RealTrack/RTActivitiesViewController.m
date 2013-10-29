@@ -29,6 +29,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Fetch all projects and activities information
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestPart = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *parts = [NSEntityDescription entityForName:@"Participations" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
+    [fetchRequestPart setEntity:parts];
+    
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+    
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    self.participations = [managedObjectContext executeFetchRequest:fetchRequestPart error:&err];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,26 +72,66 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [self.projects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    int num = 0;
+    
+    Projects *proj = [self.projects objectAtIndex:section];
+    
+    for (Participations *part in self.participations) {
+        if (part.activity.project == proj)
+            num++;
+    }
+        
+    // Return num
+    return num;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // Dequque dedicated cell
+    static NSString *CellIdentifier = @"viewPartCell";
+    RTViewParticipationsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    
+    // Select all activities that belong to a project
+    Projects * proj = [self.projects objectAtIndex:indexPath.section];
+    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"activity.project.project_name == %@",proj.project_name];
+    
+    // Filter all participations belonging to this project
+    NSArray * subParticipations = [self.participations filteredArrayUsingPredicate:proj_name];
     
     // Configure the cell...
+    // Get one participation
+    Participations *part = [subParticipations objectAtIndex:indexPath.row];
+    
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    // Set labels
+    cell.activityName.text = part.activity.activity_name;
+    cell.date.text = [dateFormat stringFromDate:part.date];
+    cell.menUnder15.text = [NSString stringWithFormat:@"%@",part.men_under_15];
+    cell.men15To24.text = [NSString stringWithFormat:@"%@",part.men_15_to_24];
+    cell.menAbove24.text = [NSString stringWithFormat:@"%@",part.men_above_24];
+    cell.womenUnder15.text = [NSString stringWithFormat:@"%@",part.women_under_15];
+    cell.women15To24.text = [NSString stringWithFormat:@"%@",part.women_15_to_24];
+    cell.womenAbove24.text = [NSString stringWithFormat:@"%@",part.women_above_24];
+    cell.notes.text = part.notes;
     
     return cell;
+}
+
+// Disable editing
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 /*
@@ -119,5 +184,14 @@
 }
 
  */
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 215;
+}
+
+- (IBAction)exportCSV:(id)sender {
+
+}
 
 @end

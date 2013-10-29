@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Activities.h"
+#import "Participations.h"
 
 @interface RTViewParticipationsCell : UITableViewCell
 
@@ -22,5 +24,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *womenAbove24;
 
 @property (strong, nonatomic) IBOutlet UILabel *notes;
+
+// Properties on CoreData
+@property (strong, nonatomic) Activities *currentAct;
+@property (strong, nonatomic) Participations *currentPart;
 
 @end
