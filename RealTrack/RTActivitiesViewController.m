@@ -288,7 +288,7 @@
                            part.notes]];
     }
     
-    //NSLog(csv);
+    NSLog(csv);
     
     return csv;
 }

@@ -68,9 +68,11 @@
     // Parse date
     NSDate *dt = [dateFormat dateFromString:self.date.text];
     if(dt!=nil)
-        [part.date setValue:dt forKey:@"date"];
+        [part setValue:dt forKey:@"date"];
     else
-        [part.date setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"date"];
+        [part setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"date"];
+    
+    NSLog([dateFormat stringFromDate:part.date]);
     
     // For number of attendants and notes
     if(self.menUnder15.text!=nil)
