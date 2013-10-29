@@ -12,8 +12,9 @@
 #import "Activities.h"
 #import "RTActivityCell.h"
 #import "RTViewParticipationsCell.h"
+#import <MessageUI/MessageUI.h>
 
-@interface RTActivitiesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface RTActivitiesViewController : UITableViewController <NSFetchedResultsControllerDelegate,MFMailComposeViewControllerDelegate>
 {
     // CoreData
     NSFetchedResultsController *fetchedResultsController;

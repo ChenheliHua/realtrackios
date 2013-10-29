@@ -190,6 +190,7 @@
     return 215;
 }
 
+// Ask for confimation
 - (IBAction)exportCSV:(id)sender {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Export CSV" message:@"Export CSV to innovation@peacecorps.gov" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export!",nil];
     
@@ -197,12 +198,81 @@
 
 }
 
+// If Export! is clicked, do export
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==1){
-        // Export to email here!
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:?"]];
+        // Check if the phone is configured for mail
+        if (![MFMailComposeViewController canSendMail]) {
+            NSString *errorTitle = @"Error";
+            NSString *errorString = @"This device is not configured to send email.";
+            UIAlertView *errorView =
+            [[UIAlertView alloc] initWithTitle:errorTitle
+                                       message:errorString delegate:self cancelButtonTitle:nil
+                             otherButtonTitles:@"OK", nil];
+            [errorView show];
+        } else {
+            // Create mail view
+            MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+            mailView.mailComposeDelegate = self;
+            [mailView setSubject:@"Real Track CSV"];
+            [mailView setMessageBody:@"This is a message" isHTML:NO];
+            
+            // Get csv data in string format
+            NSString* csv = [self getCSVString];
+            NSData * data = [csv dataUsingEncoding:NSUTF8StringEncoding];
+            
+            // Removed trailing \0
+            data = [data subdataWithRange:NSMakeRange(0,[data length]-1)];
+            [mailView addAttachmentData:data mimeType:@"text/csv" fileName:@"realtrackios.csv"]; // Added CSV file here
+            [mailView setToRecipients:[NSArray arrayWithObjects:@"huachenh@grinnell.edu",nil]];
+            [self presentViewController:mailView animated:YES completion:nil];
+        }
         
     }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    // If any error
+    if (error) {
+        NSString *errorTitle = @"Mail Error";
+        NSString *errorDescription = [error localizedDescription];
+        UIAlertView *errorView = [[UIAlertView alloc]
+                                  initWithTitle:errorTitle
+                                  message:errorDescription
+                                  delegate:self
+                                  cancelButtonTitle:nil
+                                  otherButtonTitles:@"OK", nil];
+        [errorView show];
+        
+    } else {
+        // Setup MFMailComposeResult to export csv
+        switch (result)
+        {
+            case MFMailComposeResultSent:
+                // Send email
+                break;
+            case MFMailComposeResultSaved:
+                // Save email
+                break;
+            case MFMailComposeResultCancelled:
+                // Do nothing
+                break;
+            case MFMailComposeResultFailed:
+                // Do nothing
+                break;
+        }
+        
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+// Return a string representation of csv data
+-(NSString *)getCSVString
+{
+    // TO BE IMPLEMENTED
+    return @"abc";
 }
 
 @end
