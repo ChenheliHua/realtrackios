@@ -191,7 +191,18 @@
 }
 
 - (IBAction)exportCSV:(id)sender {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Export CSV" message:@"Export CSV to innovation@peacecorps.gov" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export!",nil];
+    
+    [alert show];
 
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        // Export to email here!
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:?"]];
+        
+    }
 }
 
 @end
