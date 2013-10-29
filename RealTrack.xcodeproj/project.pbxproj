@@ -35,6 +35,8 @@
 		0BBC4A74181EE52200DB3ACA /* Participations.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC4A73181EE52200DB3ACA /* Participations.m */; };
 		0BC090AB181C3FA2004EE24F /* RTNewActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC090AA181C3FA2004EE24F /* RTNewActivityCell.m */; };
 		0BC090AE181C5A71004EE24F /* RTAddEditParticipationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC090AD181C5A71004EE24F /* RTAddEditParticipationViewController.m */; };
+		0BC3454D181FED2D006FAC7E /* viewParticipationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3454C181FED2D006FAC7E /* viewParticipationsCell.xib */; };
+		0BC34550181FF09A006FAC7E /* RTViewParticipationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */; };
 		0BCD08D4181B292F00C49192 /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD08D3181B292F00C49192 /* RTActivityCell.m */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,9 @@
 		0BC090AA181C3FA2004EE24F /* RTNewActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTNewActivityCell.m; sourceTree = "<group>"; };
 		0BC090AC181C5A71004EE24F /* RTAddEditParticipationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddEditParticipationViewController.h; sourceTree = "<group>"; };
 		0BC090AD181C5A71004EE24F /* RTAddEditParticipationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddEditParticipationViewController.m; sourceTree = "<group>"; };
+		0BC3454C181FED2D006FAC7E /* viewParticipationsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viewParticipationsCell.xib; sourceTree = "<group>"; };
+		0BC3454E181FF09A006FAC7E /* RTViewParticipationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTViewParticipationsCell.h; sourceTree = "<group>"; };
+		0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTViewParticipationsCell.m; sourceTree = "<group>"; };
 		0BCD08D2181B292F00C49192 /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
 		0BCD08D3181B292F00C49192 /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +168,7 @@
 				0B3F73AA180DBB4D0032BE07 /* RTAppDelegate.h */,
 				0B3F73AB180DBB4D0032BE07 /* RTAppDelegate.m */,
 				0B3F73AD180DBB4D0032BE07 /* Main.storyboard */,
+				0BC3454C181FED2D006FAC7E /* viewParticipationsCell.xib */,
 				0B3F73B3180DBB4D0032BE07 /* Images.xcassets */,
 				0B3F73A2180DBB4D0032BE07 /* Supporting Files */,
 			);
@@ -230,6 +236,8 @@
 				0BCD08D3181B292F00C49192 /* RTActivityCell.m */,
 				0BC090A9181C3FA2004EE24F /* RTNewActivityCell.h */,
 				0BC090AA181C3FA2004EE24F /* RTNewActivityCell.m */,
+				0BC3454E181FF09A006FAC7E /* RTViewParticipationsCell.h */,
+				0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */,
 			);
 			name = Widgets;
 			sourceTree = "<group>";
@@ -325,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC3454D181FED2D006FAC7E /* viewParticipationsCell.xib in Resources */,
 				0B3F73B4180DBB4D0032BE07 /* Images.xcassets in Resources */,
 				0B3F73A6180DBB4D0032BE07 /* InfoPlist.strings in Resources */,
 				0B3F73AF180DBB4D0032BE07 /* Main.storyboard in Resources */,
@@ -346,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC34550181FF09A006FAC7E /* RTViewParticipationsCell.m in Sources */,
 				0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */,
 				0BC090AE181C5A71004EE24F /* RTAddEditParticipationViewController.m in Sources */,
 				0B3F73AC180DBB4D0032BE07 /* RTAppDelegate.m in Sources */,
