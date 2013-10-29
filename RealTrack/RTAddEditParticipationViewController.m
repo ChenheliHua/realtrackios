@@ -47,6 +47,9 @@
     self.women15To24.delegate = self;
     self.womenAbove24.delegate = self;
     self.notes.delegate = self;
+    
+    int radius = 5;
+    [self.button setCornerRadius:radius];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,9 +68,11 @@
     // Parse date
     NSDate *dt = [dateFormat dateFromString:self.date.text];
     if(dt!=nil)
-        [part.date setValue:dt forKey:@"date"];
+        [part setValue:dt forKey:@"date"];
     else
-        [part.date setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"date"];
+        [part setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"date"];
+    
+    NSLog([dateFormat stringFromDate:part.date]);
     
     // For number of attendants and notes
     if(self.menUnder15.text!=nil)
@@ -101,6 +106,9 @@
         part.women_above_24 = 0;
     
     part.notes = self.notes.text;
+    
+    // Added participation into the activity
+    [self.currentAct addParticipationsObject:part];
     
     // Save
     NSError * err;

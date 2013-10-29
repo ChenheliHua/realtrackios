@@ -29,6 +29,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Fetch all projects and activities information
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
+    NSFetchRequest *fetchRequestPart = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *parts = [NSEntityDescription entityForName:@"Participations" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequestProj setEntity:projs];
+    [fetchRequestAct setEntity:acts];
+    [fetchRequestPart setEntity:parts];
+    
+    NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
+    
+    NSError *err;
+    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
+    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    self.participations = [managedObjectContext executeFetchRequest:fetchRequestPart error:&err];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -47,26 +72,66 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [self.projects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    int num = 0;
+    
+    Projects *proj = [self.projects objectAtIndex:section];
+    
+    for (Participations *part in self.participations) {
+        if (part.activity.project == proj)
+            num++;
+    }
+        
+    // Return num
+    return num;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // Dequque dedicated cell
+    static NSString *CellIdentifier = @"viewPartCell";
+    RTViewParticipationsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    
+    // Select all activities that belong to a project
+    Projects * proj = [self.projects objectAtIndex:indexPath.section];
+    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"activity.project.project_name == %@",proj.project_name];
+    
+    // Filter all participations belonging to this project
+    NSArray * subParticipations = [self.participations filteredArrayUsingPredicate:proj_name];
     
     // Configure the cell...
+    // Get one participation
+    Participations *part = [subParticipations objectAtIndex:indexPath.row];
+    
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    // Set labels
+    cell.activityName.text = part.activity.activity_name;
+    cell.date.text = [dateFormat stringFromDate:part.date];
+    cell.menUnder15.text = [NSString stringWithFormat:@"%@",part.men_under_15];
+    cell.men15To24.text = [NSString stringWithFormat:@"%@",part.men_15_to_24];
+    cell.menAbove24.text = [NSString stringWithFormat:@"%@",part.men_above_24];
+    cell.womenUnder15.text = [NSString stringWithFormat:@"%@",part.women_under_15];
+    cell.women15To24.text = [NSString stringWithFormat:@"%@",part.women_15_to_24];
+    cell.womenAbove24.text = [NSString stringWithFormat:@"%@",part.women_above_24];
+    cell.notes.text = part.notes;
     
     return cell;
+}
+
+// Disable editing
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 /*
@@ -119,5 +184,113 @@
 }
 
  */
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 215;
+}
+
+// Ask for confimation
+- (IBAction)exportCSV:(id)sender {
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Export CSV" message:@"Export CSV to innovation@peacecorps.gov" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Export!",nil];
+    
+    [alert show];
+
+}
+
+// If Export! is clicked, do export
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        // Check if the phone is configured for mail
+        if (![MFMailComposeViewController canSendMail]) {
+            NSString *errorTitle = @"Error";
+            NSString *errorString = @"This device is not configured to send email.";
+            UIAlertView *errorView =
+            [[UIAlertView alloc] initWithTitle:errorTitle
+                                       message:errorString delegate:self cancelButtonTitle:nil
+                             otherButtonTitles:@"OK", nil];
+            [errorView show];
+        } else {
+            // Create mail view
+            MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
+            mailView.mailComposeDelegate = self;
+            [mailView setSubject:@"Real Track CSV"];
+            [mailView setMessageBody:@"This is a message" isHTML:NO];
+            
+            // Get csv data in string format
+            NSString* csv = [self getCSVString];
+            NSData * data = [csv dataUsingEncoding:NSUTF8StringEncoding];
+            
+            // Removed trailing \0
+            data = [data subdataWithRange:NSMakeRange(0,[data length]-1)];
+            [mailView addAttachmentData:data mimeType:@"text/csv" fileName:@"realtrackios.csv"]; // Added CSV file here
+            [mailView setToRecipients:[NSArray arrayWithObjects:@"huachenh@grinnell.edu",nil]];
+            [self presentViewController:mailView animated:YES completion:nil];
+        }
+        
+    }
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    // If any error
+    if (error) {
+        NSString *errorTitle = @"Mail Error";
+        NSString *errorDescription = [error localizedDescription];
+        UIAlertView *errorView = [[UIAlertView alloc]
+                                  initWithTitle:errorTitle
+                                  message:errorDescription
+                                  delegate:self
+                                  cancelButtonTitle:nil
+                                  otherButtonTitles:@"OK", nil];
+        [errorView show];
+        
+    } else {
+        // Setup MFMailComposeResult to export csv
+        switch (result)
+        {
+            case MFMailComposeResultSent:
+                // Send email
+                break;
+            case MFMailComposeResultSaved:
+                // Save email
+                break;
+            case MFMailComposeResultCancelled:
+                // Do nothing
+                break;
+            case MFMailComposeResultFailed:
+                // Do nothing
+                break;
+        }
+        
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+// Return a string representation of csv data
+-(NSString *)getCSVString
+{
+    
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    NSMutableString * csv = [NSMutableString stringWithString:@"Project, Activity, Date, Men Under 15, Men 15 To 24, Men Above 24, Women Under 15, Women 15 To 24, Women Above 24, Notes\n"];
+    
+    for(Participations *part in self.participations)
+    {
+        // Appened each participation
+        [csv appendString:[NSString stringWithFormat:@"%@, %@, %@, %@, %@, %@, %@, %@, %@, %@\n",
+                           part.activity.project.project_name, part.activity.activity_name, [dateFormat stringFromDate:part.date],
+                           part.men_under_15, part.men_15_to_24, part.men_above_24,
+                           part.women_under_15, part.women_15_to_24, part.women_above_24,
+                           part.notes]];
+    }
+    
+    NSLog(csv);
+    
+    return csv;
+}
 
 @end
