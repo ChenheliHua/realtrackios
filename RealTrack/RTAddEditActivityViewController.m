@@ -52,7 +52,7 @@
     }
     
     self.scrollView.scrollEnabled = YES;
-    [self.scrollView setContentSize:CGSizeMake(320,720)];
+    [self.scrollView setContentSize:CGSizeMake(320,2250)];
     
 }
 
