@@ -20,10 +20,11 @@
 // CoreData
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet RTButton *button;
 @property (strong, nonatomic) IBOutlet UITextField *projectName;
-@property (strong, nonatomic) IBOutlet UITextField *startDate;
-@property (strong, nonatomic) IBOutlet UITextField *endDate;
+@property (strong, nonatomic) IBOutlet UIDatePicker *startDate;
+@property (strong, nonatomic) IBOutlet UIDatePicker *endDate;
 @property (strong, nonatomic) IBOutlet UITextField *notes;
 
 

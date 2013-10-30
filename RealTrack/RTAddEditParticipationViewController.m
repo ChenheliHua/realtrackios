@@ -39,7 +39,6 @@
     self.activityName.text = self.currentAct.activity_name;
     
     // Set text field delegates to hide keyboard
-    self.date.delegate = self;
     self.menUnder15.delegate = self;
     self.men15To24.delegate = self;
     self.menAbove24.delegate = self;
@@ -50,6 +49,9 @@
     
     int radius = 5;
     [self.button setCornerRadius:radius];
+    
+    self.scrollView.scrollEnabled = YES;
+    [self.scrollView setContentSize:CGSizeMake(320,640)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,18 +63,8 @@
 - (IBAction)addParticipation:(id)sender {
     Participations *part = [NSEntityDescription insertNewObjectForEntityForName:@"Participations"inManagedObjectContext:self.managedObjectContext];
     
-    // For date format
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    
-    // Parse date
-    NSDate *dt = [dateFormat dateFromString:self.date.text];
-    if(dt!=nil)
-        [part setValue:dt forKey:@"date"];
-    else
-        [part setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"date"];
-    
-    NSLog([dateFormat stringFromDate:part.date]);
+
+    [part setValue:self.date.date forKey:@"date"];
     
     // For number of attendants and notes
     if(self.menUnder15.text!=nil)
