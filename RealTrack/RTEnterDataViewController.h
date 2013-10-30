@@ -29,7 +29,6 @@
 @property (nonatomic, strong) NSArray *projects;
 @property (nonatomic, strong) NSArray *activities;
 
-@property (strong, nonatomic) IBOutlet UITableViewCell *cell;
 @property (strong, nonatomic) IBOutlet UITableView *table;
 
 // New Project
