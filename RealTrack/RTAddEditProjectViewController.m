@@ -32,8 +32,6 @@
     
     // For hiding keyboard after finishing typing
     self.projectName.delegate = self;
-    self.startDate.delegate = self;
-    self.endDate.delegate = self;
     self.notes.delegate = self;
     
     int radius = 5;
@@ -46,15 +44,14 @@
     // Setup existing project name
     if(self.currentProj!=nil)
     {
-        // For date format
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"MM/dd/yyyy"];
-        
         [self.projectName setText:self.currentProj.project_name];
-        [self.startDate setText:[dateFormat stringFromDate:self.currentProj.start_date]];
-        [self.endDate setText:[dateFormat stringFromDate:self.currentProj.end_date]];
+        [self.startDate setDate:self.currentProj.start_date];
+        [self.endDate setDate:self.currentProj.end_date];
         [self.notes setText:self.currentProj.notes];
     }
+    
+    self.scrollView.scrollEnabled = YES;
+    [self.scrollView setContentSize:CGSizeMake(320,640)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,10 +73,6 @@
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
     NSString *trimmedStr = [self.projectName.text stringByTrimmingCharactersInSet:charSet];
     
-    // For date format
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    
     if(![trimmedStr isEqualToString:@""])
     {
         // Create new project
@@ -90,17 +83,8 @@
         
             [proj setValue:self.projectName.text forKey:@"project_name"];
             
-            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            if(dt!=nil)
-                [proj setValue:dt forKey:@"start_date"];
-            else
-                [proj setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"start_date"];
-            
-            dt = [dateFormat dateFromString:self.endDate.text];
-            if(dt!=nil)
-                [proj setValue:dt forKey:@"end_date"];
-            else
-                [proj setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"end_date"];
+            [proj setValue:self.startDate.date forKey:@"start_date"];
+            [proj setValue:self.endDate.date forKey:@"end_date"];
             
             [proj setValue:self.notes.text forKey:@"notes"];
         
@@ -111,14 +95,9 @@
         else{
             [self.currentProj setValue:self.projectName.text forKey:@"project_name"];
             
-            // Skip editing date if invalid format is given
-            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            if(dt!=nil)
-                [self.currentProj setValue:dt forKey:@"start_date"];
+            [self.currentProj setValue:self.startDate.date forKey:@"start_date"];
             
-            dt = [dateFormat dateFromString:self.endDate.text];
-            if(dt!=nil)
-                [self.currentProj setValue:dt forKey:@"end_date"];
+            [self.currentProj setValue:self.endDate.date forKey:@"end_date"];
             
             [self.currentProj setValue:self.notes.text forKey:@"notes"];
             

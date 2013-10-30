@@ -31,8 +31,6 @@
     
     // For hiding keyboard after finishing typing
     self.activityName.delegate = self;
-    self.startDate.delegate = self;
-    self.endDate.delegate = self;
     self.notes.delegate = self;
     
     int radius = 5;
@@ -47,15 +45,14 @@
     
     if(self.currentAct!=nil)
     {
-        // For date format
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"MM/dd/yyyy"];
-        
         [self.activityName setText:self.currentAct.activity_name];
-        [self.startDate setText:[dateFormat stringFromDate:self.currentAct.start_date]];
-        [self.endDate setText:[dateFormat stringFromDate:self.currentAct.end_date]];
+        [self.startDate setDate:self.currentAct.start_date];
+        [self.endDate setDate:self.currentAct.end_date];
         [self.notes setText:self.currentAct.notes];
     }
+    
+    self.scrollView.scrollEnabled = YES;
+    [self.scrollView setContentSize:CGSizeMake(320,720)];
     
 }
 
@@ -72,10 +69,6 @@
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
     NSString *trimmedStr = [self.activityName.text stringByTrimmingCharactersInSet:charSet];
     
-    // For date format
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    
     if(![trimmedStr isEqualToString:@""])
     {
         // Create new activity
@@ -87,17 +80,9 @@
             // Set activity name
             [act setValue:self.activityName.text forKey:@"activity_name"];
             
-            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            if(dt!=nil)
-                [act setValue:dt forKey:@"start_date"];
-            else
-                [act setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"start_date"];
+            [act setValue:self.startDate.date forKey:@"start_date"];
             
-            dt = [dateFormat dateFromString:self.endDate.text];
-            if(dt!=nil)
-                [act setValue:dt forKey:@"end_date"];
-            else
-                [act setValue:[dateFormat dateFromString:@"01/01/2000"] forKey:@"end_date"];
+            [act setValue:self.endDate.date forKey:@"end_date"];
             
             [act setValue:self.notes.text forKey:@"notes"];
             
@@ -113,14 +98,10 @@
             // Update activity information
             [self.currentAct setValue:self.activityName.text forKey:@"activity_name"];
             
-            // Skip editing date if invalid format is given
-            NSDate *dt = [dateFormat dateFromString:self.startDate.text];
-            if(dt!=nil)
-                [self.currentAct setValue:dt forKey:@"start_date"];
-            
-            dt = [dateFormat dateFromString:self.endDate.text];
-            if(dt!=nil)
-                [self.currentAct setValue:dt forKey:@"end_date"];
+
+            [self.currentAct setValue:self.startDate.date forKey:@"start_date"];
+
+            [self.currentAct setValue:self.endDate.date forKey:@"end_date"];
             
             [self.currentAct setValue:self.notes.text forKey:@"notes"];
             
