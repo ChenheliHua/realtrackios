@@ -69,9 +69,12 @@
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:self.currentAct.activity_name
-                                                    message:[[[[[@"Start Date: " stringByAppendingString:[dateFormat stringFromDate:self.currentAct.start_date]]
+                                                    message:[[[[[[[[[@"Start Date: " stringByAppendingString:[dateFormat stringFromDate:self.currentAct.start_date]]
                                                                 stringByAppendingString:@"\nEnd Date: "] stringByAppendingString:[dateFormat stringFromDate:self.currentAct.end_date]]
                                                                 stringByAppendingString:@"\nNotes: "] stringByAppendingString:self.currentAct.notes]
+                                                                stringByAppendingString:@"\nOrganizations: "] stringByAppendingString:self.currentAct.organizations]
+                                                                stringByAppendingString:@"\nCommunities: "] stringByAppendingString:self.currentAct.communities]
+                                                                // NEED TO ADD REMINDERS AND INITIATIVES
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
