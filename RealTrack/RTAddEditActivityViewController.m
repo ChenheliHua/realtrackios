@@ -51,28 +51,25 @@
         [self.startDate setDate:self.currentAct.start_date];
         [self.endDate setDate:self.currentAct.end_date];
         
-        /*
+        
         for(UISwitch * sw in self.weekdaysS)
         {
-            //NSLog([NSString stringWithFormat:@"%ld",(long)sw.tag]);
-            [self.currentAct toggleWeekday:sw.tag withBool:[sw isOn]];
+            [sw setOn:[self.currentAct getWeekdayBool:sw.tag]];
         }
         
         for(UIDatePicker * dp in self.weekdaysP)
         {
-            [self.currentAct setWeekday:dp.tag withTime:dp.date];
+            [dp setDate:[self.currentAct getTimeOnWeekday:dp.tag]];
         }
         
-        [self.currentAct setValue:self.organizations.text forKey:@"organizations"];
-        [self.currentAct setValue:self.communities.text forKey:@"communities"];
+        self.organizations.text = self.currentAct.organizations;
+        self.communities.text = self.currentAct.communities;
         
-        [self.currentAct setValue:[NSNumber numberWithBool:[self.widS isOn]] forKey:@"wid"];
-        [self.currentAct setValue:[NSNumber numberWithBool:[self.youthS isOn]] forKey:@"youth"];
-        [self.currentAct setValue:[NSNumber numberWithBool:[self.malariaS isOn]] forKey:@"malaria"];
-        [self.currentAct setValue:[NSNumber numberWithBool:[self.foodS isOn]] forKey:@"food_security"];
-        [self.currentAct setValue:[NSNumber numberWithBool:[self.ecpaS isOn]] forKey:@"ecpa"];
-        */
-         
+        [self.widS setOn:[self.currentAct.wid boolValue]];
+        [self.youthS setOn:[self.currentAct.youth boolValue]];
+        [self.malariaS setOn:[self.currentAct.malaria boolValue]];
+        [self.foodS setOn:[self.currentAct.food_security boolValue]];
+        [self.ecpaS setOn:[self.currentAct.ecpa boolValue]];
          
         [self.currentAct setValue:self.notes.text forKey:@"notes"];
         
@@ -113,7 +110,6 @@
             
             for(UISwitch * sw in self.weekdaysS)
             {
-                //NSLog([NSString stringWithFormat:@"%ld",(long)sw.tag]);
                 [act toggleWeekday:sw.tag withBool:[sw isOn]];
             }
             
@@ -151,7 +147,6 @@
             
             for(UISwitch * sw in self.weekdaysS)
             {
-                //NSLog([NSString stringWithFormat:@"%ld",(long)sw.tag]);
                 [self.currentAct toggleWeekday:sw.tag withBool:[sw isOn]];
             }
             

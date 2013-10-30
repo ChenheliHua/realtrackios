@@ -99,6 +99,69 @@
     }
 }
 
+-(BOOL)getWeekdayBool:(NSInteger)day
+{
+    
+    int dayInt = day;
+    switch(dayInt)
+    {
+        case 1:
+            return [self.mon boolValue];
+            break;
+        case 2:
+            return [self.tue boolValue];
+            break;
+        case 3:
+            return [self.wed boolValue];
+            break;
+        case 4:
+            return [self.thu boolValue];
+            break;
+        case 5:
+            return [self.fri boolValue];
+            break;
+        case 6:
+            return [self.sat boolValue];
+            break;
+        case 7:
+            return [self.sun boolValue];
+            break;
+    }
+    
+    // If get here, just return NO
+    return NO;
+}
 
+-(NSDate*)getTimeOnWeekday:(NSInteger)day
+{
+    int dayInt = day;
+    switch(dayInt)
+    {
+        case 1:
+            return self.mon_time;
+            break;
+        case 2:
+            return self.tue_time;
+            break;
+        case 3:
+            return self.wed_time;
+            break;
+        case 4:
+            return self.thu_time;
+            break;
+        case 5:
+            return self.fri_time;
+            break;
+        case 6:
+            return self.sat_time;
+            break;
+        case 7:
+            return self.sun_time;
+            break;
+    }
+    
+    // If get here, just return nil
+    return nil;
+}
 
 @end
