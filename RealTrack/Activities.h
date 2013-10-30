@@ -49,4 +49,7 @@
 - (void)addParticipations:(NSSet *)values;
 - (void)removeParticipations:(NSSet *)values;
 
+-(void)toggleWeekday:(NSInteger)day withBool:(BOOL)val;
+-(void)setWeekday:(NSInteger)day withTime:(NSDate*)time;
+
 @end
