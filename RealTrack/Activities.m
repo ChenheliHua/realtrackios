@@ -164,4 +164,133 @@
     return nil;
 }
 
+// For Event Kit
+-(void)addActivityEvent
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+    {
+        // the selector is available, so we must be on iOS 6 or newer
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Cannot access Event Store!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    
+                    [alert show];
+                }
+                else if (!granted)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Permission Error!" message:@"Permission denied!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    
+                    [alert show];
+                }
+                else
+                {
+                    // Access or create RealTrack calendar
+                    EKCalendar *cal = [eventStore calendarWithIdentifier:@"RealTrack"];
+                    if(!cal)
+                    {
+                        // Create RealTrack calendar
+                        cal = [EKCalendar calendarForEntityType:EKEntityTypeEvent eventStore:eventStore];
+                        
+                        [cal setTitle:@"RealTrack"];
+                        
+                        // Setup source as local
+                        for(EKSource *s in eventStore.sources)
+                        {
+                            if(s.sourceType == EKSourceTypeLocal)
+                            {
+                                cal.source = s;
+                                break;
+                            }
+                        }
+                        
+                        // Save calendar
+                        NSError *err;
+                        [eventStore saveCalendar:cal commit:YES error:&err];
+                        
+                    }
+                    
+                    // Set up days
+                    // Compute next monday
+                    NSDate * startDate = self.start_date;
+                    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit fromDate:startDate];
+                    NSUInteger weekdayToday = [components weekday]; // Sun is 1, Sat is 7
+                    
+                    // Monday
+                    NSInteger daysToMonday = (9 - weekdayToday) % 7;
+                    NSDate *nextMonday = [startDate dateByAddingTimeInterval:60*60*24*daysToMonday];
+                    
+                    // Date formats
+                    NSDateFormatter * date = [[NSDateFormatter alloc] init];
+                    [date setDateFormat:@"MM/dd/yyyy"];
+                    
+                    NSDateFormatter * time = [[NSDateFormatter alloc] init];
+                    [time setDateFormat:@"HH:mm:ss"];
+                    
+                    NSDateFormatter * combine = [[NSDateFormatter alloc] init];
+                    [combine setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+                    
+                    if([self.mon boolValue])
+                    {
+                        // combine next mon date + mon_time time and regiester event
+                        NSDate * nextMonday = [startDate dateByAddingTimeInterval:60*60*24*(9 - weekdayToday) % 7];
+                        NSString * timeString = [NSString stringWithFormat:@"%@ %@", [date stringFromDate:nextMonday], [time stringFromDate:self.mon_time]];
+                        NSDate * eventDate = [combine dateFromString:timeString];
+                        
+                        EKEvent * event = [EKEvent eventWithEventStore:eventStore];
+                        
+                        // Set up event
+                        event.calendar = cal;
+                        event.location = self.communities;
+                        event.title = [NSString stringWithFormat:@"%@: %@", self.project.project_name, self.activity_name];
+                        event.startDate = eventDate;
+                        event.endDate = [eventDate dateByAddingTimeInterval:60*60];
+                        
+                        // Set up recurrence rule (TO BE ADDED)
+                        EKRecurrenceRule * rule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 end:[EKRecurrenceEnd recurrenceEndWithEndDate:self.end_date]];
+                        [event addRecurrenceRule:rule];
+                        
+                        // Save
+                        NSError *err;
+                        [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+                    }
+                    
+                    // Tuesday
+                    
+                    // Wednesday
+                    
+                    // Thursday
+                    
+                    // Friday
+                    
+                    // Saturday
+                    
+                    // Sunday
+                    
+                    
+                }
+            });
+        }];
+    }
+    else
+    {
+        // this code runs in iOS 4 or iOS 5
+        // ***** do the important stuff here *****
+    }
+
+}
+
+-(void)updateActivityEvent
+{
+    
+}
+
+-(void)deleteActivityEvent
+{
+    
+}
+
 @end

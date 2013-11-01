@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <EventKit/EventKit.h>
 
 @class Participations, Projects;
 
@@ -49,9 +50,16 @@
 - (void)addParticipations:(NSSet *)values;
 - (void)removeParticipations:(NSSet *)values;
 
+// For add/edit activity
 -(void)toggleWeekday:(NSInteger)day withBool:(BOOL)val;
 -(void)setWeekday:(NSInteger)day withTime:(NSDate*)time;
 
 -(BOOL)getWeekdayBool:(NSInteger)day;
 -(NSDate*)getTimeOnWeekday:(NSInteger)day;
+
+// For Event Kit
+-(void)addActivityEvent;
+-(void)updateActivityEvent;
+-(void)deleteActivityEvent;
+
 @end
