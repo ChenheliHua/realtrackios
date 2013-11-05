@@ -32,6 +32,8 @@
     // For hiding keyboard after finishing typing
     self.activityName.delegate = self;
     self.notes.delegate = self;
+    self.organizations.delegate = self;
+    self.communities.delegate = self;
     
     int radius = 5;
     [self.button setCornerRadius:radius];
@@ -48,11 +50,34 @@
         [self.activityName setText:self.currentAct.activity_name];
         [self.startDate setDate:self.currentAct.start_date];
         [self.endDate setDate:self.currentAct.end_date];
+        
+        
+        for(UISwitch * sw in self.weekdaysS)
+        {
+            [sw setOn:[self.currentAct getWeekdayBool:sw.tag]];
+        }
+        
+        for(UIDatePicker * dp in self.weekdaysP)
+        {
+            [dp setDate:[self.currentAct getTimeOnWeekday:dp.tag]];
+        }
+        
+        self.organizations.text = self.currentAct.organizations;
+        self.communities.text = self.currentAct.communities;
+        
+        [self.widS setOn:[self.currentAct.wid boolValue]];
+        [self.youthS setOn:[self.currentAct.youth boolValue]];
+        [self.malariaS setOn:[self.currentAct.malaria boolValue]];
+        [self.foodS setOn:[self.currentAct.food_security boolValue]];
+        [self.ecpaS setOn:[self.currentAct.ecpa boolValue]];
+         
+        [self.currentAct setValue:self.notes.text forKey:@"notes"];
+        
         [self.notes setText:self.currentAct.notes];
     }
     
     self.scrollView.scrollEnabled = YES;
-    [self.scrollView setContentSize:CGSizeMake(320,720)];
+    [self.scrollView setContentSize:CGSizeMake(320,2250)];
     
 }
 
@@ -81,8 +106,26 @@
             [act setValue:self.activityName.text forKey:@"activity_name"];
             
             [act setValue:self.startDate.date forKey:@"start_date"];
-            
             [act setValue:self.endDate.date forKey:@"end_date"];
+            
+            for(UISwitch * sw in self.weekdaysS)
+            {
+                [act toggleWeekday:sw.tag withBool:[sw isOn]];
+            }
+            
+            for(UIDatePicker * dp in self.weekdaysP)
+            {
+                [act setWeekday:dp.tag withTime:dp.date];
+            }
+            
+            [act setValue:self.organizations.text forKey:@"organizations"];
+            [act setValue:self.communities.text forKey:@"communities"];
+            
+            [act setValue:[NSNumber numberWithBool:[self.widS isOn]] forKey:@"wid"];
+            [act setValue:[NSNumber numberWithBool:[self.youthS isOn]] forKey:@"youth"];
+            [act setValue:[NSNumber numberWithBool:[self.malariaS isOn]] forKey:@"malaria"];
+            [act setValue:[NSNumber numberWithBool:[self.foodS isOn]] forKey:@"food_security"];
+            [act setValue:[NSNumber numberWithBool:[self.ecpaS isOn]] forKey:@"ecpa"];
             
             [act setValue:self.notes.text forKey:@"notes"];
             
@@ -92,6 +135,8 @@
                         
             NSError * err;
             [managedObjectContext save:&err];
+            
+            [act addActivityEvent];
         }
         // Edit existing project
         else{
@@ -100,13 +145,33 @@
             
 
             [self.currentAct setValue:self.startDate.date forKey:@"start_date"];
-
             [self.currentAct setValue:self.endDate.date forKey:@"end_date"];
+            
+            for(UISwitch * sw in self.weekdaysS)
+            {
+                [self.currentAct toggleWeekday:sw.tag withBool:[sw isOn]];
+            }
+            
+            for(UIDatePicker * dp in self.weekdaysP)
+            {
+                [self.currentAct setWeekday:dp.tag withTime:dp.date];
+            }
+            
+            [self.currentAct setValue:self.organizations.text forKey:@"organizations"];
+            [self.currentAct setValue:self.communities.text forKey:@"communities"];
+            
+            [self.currentAct setValue:[NSNumber numberWithBool:[self.widS isOn]] forKey:@"wid"];
+            [self.currentAct setValue:[NSNumber numberWithBool:[self.youthS isOn]] forKey:@"youth"];
+            [self.currentAct setValue:[NSNumber numberWithBool:[self.malariaS isOn]] forKey:@"malaria"];
+            [self.currentAct setValue:[NSNumber numberWithBool:[self.foodS isOn]] forKey:@"food_security"];
+            [self.currentAct setValue:[NSNumber numberWithBool:[self.ecpaS isOn]] forKey:@"ecpa"];
             
             [self.currentAct setValue:self.notes.text forKey:@"notes"];
             
             NSError * err;
             [managedObjectContext save:&err];
+            
+            [self.currentAct updateActivityEvent];
         }
     }
     else{
