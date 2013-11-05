@@ -40,6 +40,7 @@
 @dynamic sun_time;
 @dynamic participations;
 @dynamic project;
+@dynamic event_ids;
 
 -(void)toggleWeekday:(NSInteger)day withBool:(BOOL)val
 {
@@ -327,6 +328,16 @@
     // Save
     NSError *err;
     [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+    
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
+    
+    EventIds * id = [NSEntityDescription insertNewObjectForEntityForName:@"EventIds"inManagedObjectContext:managedObjectContext];
+    
+    [id setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
+    
+    [self.event_ids addObject:id];
 }
 
 -(void)updateActivityEvent
@@ -339,9 +350,18 @@
 
 -(void)deleteActivityEvent
 {
-    // Delete all exisiting events
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
     
-    // Delete all event ids stored in the Activities obj
+    NSError * err;
+    
+    for (EventIds * id in self.event_ids)
+    {
+        // Delete all exisiting events
+        [eventStore removeEvent:[eventStore eventWithIdentifier:id.event_id] span:EKSpanFutureEvents commit:YES error:&err];
+    
+        // Rewrite ids with an empty set
+        self.event_ids = [[NSMutableSet alloc] init];
+    }
 }
 
 @end
