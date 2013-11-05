@@ -135,6 +135,8 @@
                         
             NSError * err;
             [managedObjectContext save:&err];
+            
+            [act addActivityEvent];
         }
         // Edit existing project
         else{
