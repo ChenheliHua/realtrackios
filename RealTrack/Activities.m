@@ -331,12 +331,17 @@
 
 -(void)updateActivityEvent
 {
+    // Delete all exisiting events and re-add new ones
+    [self deleteActivityEvent];
+    [self addActivityEvent];
     
 }
 
 -(void)deleteActivityEvent
 {
+    // Delete all exisiting events
     
+    // Delete all event ids stored in the Activities obj
 }
 
 @end

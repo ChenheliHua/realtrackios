@@ -99,6 +99,10 @@
     // Confirmed deletion
     else
     {
+        // Delete events first
+        [self.currentAct deleteActivityEvent];
+        
+        // Delete act object
         [self.managedObjectContext deleteObject:self.currentAct];
         
         NSError *err;

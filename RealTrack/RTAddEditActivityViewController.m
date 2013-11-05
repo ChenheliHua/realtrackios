@@ -170,6 +170,8 @@
             
             NSError * err;
             [managedObjectContext save:&err];
+            
+            [self.currentAct updateActivityEvent];
         }
     }
     else{
