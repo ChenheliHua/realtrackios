@@ -319,7 +319,7 @@
     // Set up event
     event.calendar = cal;
     event.location = self.communities;
-    event.title = [NSString stringWithFormat:@"Remember to enter data for Activity: %@ in Project: %@. ", self.project.project_name, self.activity_name];
+    event.title = [NSString stringWithFormat:@"Remember to enter data for Activity: %@ in Project: %@. ", self.activity_name, self.project.project_name];
     event.startDate = eventDate;
     event.endDate = [eventDate dateByAddingTimeInterval:60*60];
     
