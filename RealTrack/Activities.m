@@ -218,7 +218,8 @@
                     
                     // Set up days
                     // Compute next monday
-                    NSDate * startDate = self.start_date;
+                    // If the activity's start date is before today, only compute the next weekday after today rather than include past weekdays.
+                    NSDate * startDate = [self.start_date laterDate:[NSDate date]];
                     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit fromDate:startDate];
                     NSUInteger weekdayToday = [components weekday]; // Sun is 1, Sat is 7
                     
