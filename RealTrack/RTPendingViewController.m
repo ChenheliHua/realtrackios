@@ -69,6 +69,12 @@
     return cell;
 }
 
+// Disable editing
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,4 +126,9 @@
 
  */
 
+- (IBAction)viewActivity:(id)sender {
+}
+
+- (IBAction)addParticipation:(id)sender {
+}
 @end

@@ -39,6 +39,7 @@
 		0BC3454D181FED2D006FAC7E /* viewParticipationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3454C181FED2D006FAC7E /* viewParticipationsCell.xib */; };
 		0BC34550181FF09A006FAC7E /* RTViewParticipationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */; };
 		0BCD08D4181B292F00C49192 /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD08D3181B292F00C49192 /* RTActivityCell.m */; };
+		0BF9BC03182A8EFD00CC4A49 /* RTPendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BC02182A8EFD00CC4A49 /* RTPendingCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTViewParticipationsCell.m; sourceTree = "<group>"; };
 		0BCD08D2181B292F00C49192 /* RTActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTActivityCell.h; sourceTree = "<group>"; };
 		0BCD08D3181B292F00C49192 /* RTActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTActivityCell.m; sourceTree = "<group>"; };
+		0BF9BC01182A8EFD00CC4A49 /* RTPendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPendingCell.h; sourceTree = "<group>"; };
+		0BF9BC02182A8EFD00CC4A49 /* RTPendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPendingCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +244,8 @@
 				0BC090AA181C3FA2004EE24F /* RTNewActivityCell.m */,
 				0BC3454E181FF09A006FAC7E /* RTViewParticipationsCell.h */,
 				0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */,
+				0BF9BC01182A8EFD00CC4A49 /* RTPendingCell.h */,
+				0BF9BC02182A8EFD00CC4A49 /* RTPendingCell.m */,
 			);
 			name = Widgets;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				0B0E609A1819CC4B00DE44B8 /* RTAddEditActivityViewController.m in Sources */,
 				0B501ABE180EE81700430C21 /* RTLogo.m in Sources */,
 				0B443FB7182196BF00FB8F9B /* Participations.m in Sources */,
+				0BF9BC03182A8EFD00CC4A49 /* RTPendingCell.m in Sources */,
 				0B3F73A8180DBB4D0032BE07 /* main.m in Sources */,
 				0B0E60971819B26E00DE44B8 /* RTAddEditProjectViewController.m in Sources */,
 				0B443FB4182196BE00FB8F9B /* Projects.m in Sources */,
