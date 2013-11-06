@@ -141,14 +141,13 @@
                     {
                         
                         // Search RealTrack events that happen between one hour before the participation time and one hour after
-                        NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:[self.date.date dateByAddingTimeInterval:3600] endDate:[self.date.date dateByAddingTimeInterval:-3600] calendars:@[cal]];
+                        NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:[self.date.date dateByAddingTimeInterval:-3600] endDate:[self.date.date dateByAddingTimeInterval:3600] calendars:@[cal]];
                         NSArray * events = [eventStore eventsMatchingPredicate:predicate];
                         
                         // Treat all retrived events as participated and remove them
                         NSError * err;
                         for(EKEvent *event in events)
                         {
-                            NSLog(event.title);
                             [eventStore removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
                         }
                     }
