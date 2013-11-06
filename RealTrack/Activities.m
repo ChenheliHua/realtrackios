@@ -190,7 +190,8 @@
                 else
                 {
                     // Access or create RealTrack calendar
-                    EKCalendar *cal = [eventStore calendarWithIdentifier:@"RealTrack"];
+                    NSString * calID = [[NSUserDefaults standardUserDefaults] objectForKey:@"calendarIdentifier"]; // Get calendar id
+                    EKCalendar *cal = [eventStore calendarWithIdentifier:calID];
                     if(!cal)
                     {
                         // Create RealTrack calendar
@@ -212,6 +213,7 @@
                         NSError *err;
                         [eventStore saveCalendar:cal commit:YES error:&err];
                         
+                        [[NSUserDefaults standardUserDefaults] setObject:cal.calendarIdentifier forKey:@"calendarIdentifier"];
                     }
                     
                     // Set up days
