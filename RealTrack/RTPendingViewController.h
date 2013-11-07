@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Projects.h"
+#import "Activities.h"
+#import "RTPendingCell.h"
+#import "EventIds.h"
 
 @interface RTPendingViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
@@ -18,5 +22,8 @@
 // CoreData
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+
+// Events array
+@property (strong, nonatomic) NSArray * events;
 
 @end

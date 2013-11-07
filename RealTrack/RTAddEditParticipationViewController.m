@@ -106,6 +106,54 @@
     NSError * err;
     [managedObjectContext save:&err];
     
+    // Remove calendar event
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
+    {
+        
+        
+        // the selector is available, so we must be on iOS 6 or newer
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"Cannot access Event Store!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    
+                    [alert show];
+                }
+                else if (!granted)
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Permission Error!" message:@"Permission denied!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    
+                    [alert show];
+                }
+                else
+                {
+                    // Access RealTrack calendar
+                    NSString * calID = [[NSUserDefaults standardUserDefaults] objectForKey:@"calendarIdentifier"];
+                    EKCalendar *cal = [eventStore calendarWithIdentifier:calID];
+                    
+                    // If calendar exists
+                    if(cal)
+                    {
+                        
+                        // Search RealTrack events that happen between one hour before the participation time and one hour after
+                        NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:[self.date.date dateByAddingTimeInterval:-3600] endDate:[self.date.date dateByAddingTimeInterval:3600] calendars:@[cal]];
+                        NSArray * events = [eventStore eventsMatchingPredicate:predicate];
+                        
+                        // Treat all retrived events as participated and remove them
+                        NSError * err;
+                        for(EKEvent *event in events)
+                        {
+                            [eventStore removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
+                        }
+                    }
+                }
+            });
+        }];
+    }
+    
     // Pop parent view
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
     

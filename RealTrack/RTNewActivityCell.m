@@ -93,6 +93,12 @@
     // Confirmed deletion
     else
     {
+        // Delete all calendar events associated with activities under current project
+        for(Activities * act in self.currentProj.activities)
+        {
+            [act deleteActivityEvent];
+        }
+        
         [self.managedObjectContext deleteObject:self.currentProj];
         
         NSError *err;

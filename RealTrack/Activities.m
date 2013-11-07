@@ -190,7 +190,8 @@
                 else
                 {
                     // Access or create RealTrack calendar
-                    EKCalendar *cal = [eventStore calendarWithIdentifier:@"RealTrack"];
+                    NSString * calID = [[NSUserDefaults standardUserDefaults] objectForKey:@"calendarIdentifier"]; // Get calendar id
+                    EKCalendar *cal = [eventStore calendarWithIdentifier:calID];
                     if(!cal)
                     {
                         // Create RealTrack calendar
@@ -212,11 +213,13 @@
                         NSError *err;
                         [eventStore saveCalendar:cal commit:YES error:&err];
                         
+                        [[NSUserDefaults standardUserDefaults] setObject:cal.calendarIdentifier forKey:@"calendarIdentifier"];
                     }
                     
                     // Set up days
                     // Compute next monday
-                    NSDate * startDate = self.start_date;
+                    // If the activity's start date is before today, only compute the next weekday after today rather than include past weekdays.
+                    NSDate * startDate = [self.start_date laterDate:[NSDate date]];
                     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit fromDate:startDate];
                     NSUInteger weekdayToday = [components weekday]; // Sun is 1, Sat is 7
                     
@@ -317,7 +320,7 @@
     // Set up event
     event.calendar = cal;
     event.location = self.communities;
-    event.title = [NSString stringWithFormat:@"Remember to enter data for Activity: %@ in Project: %@. ", self.project.project_name, self.activity_name];
+    event.title = [NSString stringWithFormat:@"%@", self.activity_name];
     event.startDate = eventDate;
     event.endDate = [eventDate dateByAddingTimeInterval:60*60];
     

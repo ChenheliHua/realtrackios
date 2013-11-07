@@ -26,6 +26,7 @@
     // Configure the view for the selected state
 }
 
+/*
 - (IBAction)viewActivity:(id)sender {
     // For date format
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -58,4 +59,7 @@
     // Push view controller
     [self.navController pushViewController:addPart animated:YES];
 }
+
+ */
+
 @end
