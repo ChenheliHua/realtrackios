@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTLogo.h"
 #import "RTButton.h"
+#import <EventKit/EventKit.h>
 
 @interface RTIndexViewController : UIViewController
 
@@ -19,5 +20,7 @@
 @property (strong, nonatomic) IBOutlet RTButton *myActivities;
 
 @property (strong, nonatomic) IBOutlet RTButton *pending;
+
+@property (strong, nonatomic) NSArray * events;
 
 @end

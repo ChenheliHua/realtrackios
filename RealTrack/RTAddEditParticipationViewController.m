@@ -109,8 +109,6 @@
     // Remove calendar event
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     
-    
-    
     if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
     {
         

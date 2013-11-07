@@ -21,8 +21,7 @@
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
-// Projects and activities
-@property (strong, nonatomic) NSArray * projects;
-@property (strong, nonatomic) NSArray * activities;
+// Events array
+@property (strong, nonatomic) NSArray * events;
 
 @end
