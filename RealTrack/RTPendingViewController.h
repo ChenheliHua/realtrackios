@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Projects.h"
 #import "Activities.h"
+#import "RTPendingCell.h"
+#import "EventIds.h"
 
 @interface RTPendingViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {

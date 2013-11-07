@@ -30,7 +30,10 @@
 {
     [super viewDidLoad];
     
-
+    // Sort events by time
+    NSSortDescriptor * timeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
+    self.events = [self.events sortedArrayUsingDescriptors:@[timeDescriptor]];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -48,24 +51,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.events count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"pendingCell";
+    RTPendingCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.currentEvent = [self.events objectAtIndex:indexPath.row];
+    
+    // Date format
+    NSDateFormatter * eventDate = [[NSDateFormatter alloc] init];
+    [eventDate setDateFormat:@"MM/dd/yyyy"];
+    
+    cell.title.text = [NSString stringWithFormat:@"%@ on %@", cell.currentEvent.title, [eventDate stringFromDate:cell.currentEvent.startDate]];
     
     return cell;
 }
@@ -126,10 +134,4 @@
 }
 
  */
-
-- (IBAction)viewActivity:(id)sender {
-}
-
-- (IBAction)addParticipation:(id)sender {
-}
 @end

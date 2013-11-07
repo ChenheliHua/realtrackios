@@ -66,6 +66,8 @@
                         
                         [self.pending setButtonTitle:[NSString stringWithFormat:@"Pending (%d)", [self.events count]]];
                     }
+                    else
+                        NSLog(@"Unable to connect calendar!");
                 }
             });
         }];
