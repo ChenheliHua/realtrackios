@@ -79,4 +79,13 @@
 }
 
 
+- (IBAction)pendingView:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTPendingViewController *pending = [sb instantiateViewControllerWithIdentifier:@"pendingView"];
+    
+    pending.events = self.events;
+    
+    [self.navigationController pushViewController:pending animated:YES];
+}
 @end

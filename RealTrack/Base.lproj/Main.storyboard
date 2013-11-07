@@ -53,7 +53,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yY8-e9-BUg" kind="push" id="q1A-0j-nrz"/>
+                                    <action selector="pendingView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gK8-Qc-tz6"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RealTrack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pZx-vr-G4x" userLabel="RealTrack">
@@ -71,7 +71,7 @@
                         <outlet property="enterData" destination="N14-B0-dfJ" id="rkw-mh-7SN"/>
                         <outlet property="logo" destination="2iQ-uW-quc" id="AQJ-lG-qZA"/>
                         <outlet property="myActivities" destination="kJY-qr-pb3" id="Xvm-qI-cM7"/>
-                        <outlet property="pending" destination="7Y0-ee-CAz" id="jFd-oe-WBg"/>
+                        <outlet property="pending" destination="7Y0-ee-CAz" id="q1i-vM-wN1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

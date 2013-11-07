@@ -10,6 +10,7 @@
 #import "RTLogo.h"
 #import "RTButton.h"
 #import <EventKit/EventKit.h>
+#import "RTPendingViewController.h"
 
 @interface RTIndexViewController : UIViewController
 
@@ -22,5 +23,7 @@
 @property (strong, nonatomic) IBOutlet RTButton *pending;
 
 @property (strong, nonatomic) NSArray * events;
+
+- (IBAction)pendingView:(id)sender;
 
 @end
