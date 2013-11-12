@@ -16,4 +16,7 @@
 @property (nonatomic, retain) NSString * event_id;
 @property (nonatomic, retain) Activities *activity;
 
+// Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
++(NSArray*)retrieveEventIdsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
+
 @end

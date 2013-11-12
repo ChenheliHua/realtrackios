@@ -23,4 +23,7 @@
 @property (nonatomic, retain) NSNumber * women_under_15;
 @property (nonatomic, retain) Activities *activity;
 
+// Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
++(NSArray*)retrieveParticipationWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
+
 @end

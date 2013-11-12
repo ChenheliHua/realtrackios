@@ -71,4 +71,7 @@
 -(void)updateActivityEvent;
 -(void)deleteActivityEvent;
 
+// Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
++(NSArray*)retrieveActivitiesWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
+
 @end
