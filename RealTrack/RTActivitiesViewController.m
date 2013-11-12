@@ -212,6 +212,7 @@
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    NSLog(@"mailComposeController didFinishWithResult error");
     // If any error
     if (error) {
         NSString *errorTitle = @"Mail Error";
@@ -250,7 +251,8 @@
             case MFMailComposeResultFailed:
             {
                 // Do nothing
-                UIAlertView * saved = [[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Failed to send your .csv file.!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView * failed = [[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Failed to send your .csv file.!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [failed show];
                 break;
             }
         }
