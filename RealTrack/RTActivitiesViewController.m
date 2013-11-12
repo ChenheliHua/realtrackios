@@ -30,30 +30,11 @@
 {
     [super viewDidLoad];
     
-    // Fetch all projects and activities information
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestPart = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *parts = [NSEntityDescription entityForName:@"Participations" inManagedObjectContext:managedObjectContext];
-    
-    [fetchRequestProj setEntity:projs];
-    [fetchRequestAct setEntity:acts];
-    [fetchRequestPart setEntity:parts];
-    
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
     
-    NSError *err;
-    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
-    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
-    self.participations = [managedObjectContext executeFetchRequest:fetchRequestPart error:&err];
-
+    self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
+    self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
+    self.participations = [Participations retrieveParticipationWithPredicate:nil andSortDescriptor:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -83,11 +64,10 @@
     
     Projects *proj = [self.projects objectAtIndex:section];
     
-    for (Participations *part in self.participations) {
-        if (part.activity.project == proj)
-            num++;
-    }
-        
+    // Extract activities that belongs to that project
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"project == %@",proj];
+    num = [[self.activities filteredArrayUsingPredicate:pred] count];
+    
     // Return num
     return num;
 }
@@ -224,7 +204,7 @@
             // Removed trailing \0
             data = [data subdataWithRange:NSMakeRange(0,[data length]-1)];
             [mailView addAttachmentData:data mimeType:@"text/csv" fileName:@"realtrackios.csv"]; // Added CSV file here
-            [mailView setToRecipients:[NSArray arrayWithObjects:@"huachenh@grinnell.edu",nil]];
+            [mailView setToRecipients:[NSArray arrayWithObjects:@"innovation@peacecorps.gov",nil]];
             [self presentViewController:mailView animated:YES completion:nil];
         }
         
@@ -249,19 +229,31 @@
         switch (result)
         {
             case MFMailComposeResultSent:
+            {
                 // Send email
+                UIAlertView * sent = [[UIAlertView alloc] initWithTitle:@"CSV Sent!" message:@"Your .csv file has been sent!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [sent show];
                 break;
+            }
             case MFMailComposeResultSaved:
+            {
                 // Save email
+                UIAlertView * saved = [[UIAlertView alloc] initWithTitle:@"CSV Saved!" message:@"Your .csv file has been saved!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [saved show];
                 break;
+            }
             case MFMailComposeResultCancelled:
+            {
                 // Do nothing
                 break;
+            }
             case MFMailComposeResultFailed:
+            {
                 // Do nothing
+                UIAlertView * saved = [[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Failed to send your .csv file.!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
+            }
         }
-        
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];
@@ -287,8 +279,6 @@
                            part.women_under_15, part.women_15_to_24, part.women_above_24,
                            part.notes]];
     }
-    
-    NSLog(csv);
     
     return csv;
 }
