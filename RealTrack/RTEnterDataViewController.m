@@ -31,25 +31,11 @@
 {
     [super viewDidLoad];
     
-    // Fetch all projects and activities information
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
-
-    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
-    
-    [fetchRequestProj setEntity:projs];
-    [fetchRequestAct setEntity:acts];
-    
+    // Sort projects by name
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
-                                          
-    NSError *err;
-    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
-    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    
+    self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
+    self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
     
     // Uncomment the following line to preserve selection between presentations.
     //self.clearsSelectionOnViewWillAppear = NO;
@@ -77,12 +63,12 @@
     // Return the number of rows in the section.
     int num = 0;
     
+    // Get project
     Projects *proj = [self.projects objectAtIndex:section];
     
-    for (Activities *act in self.activities) {
-        if (act.project == proj)
-            num++;
-    }
+    // Extract activities that belongs to that project
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"project == %@",proj];
+    num = [[self.activities filteredArrayUsingPredicate:pred] count];
     
     // Return num + 1 to include the last "New Activity" cell
     return (num + 1);
@@ -93,7 +79,7 @@
     
     // Select all activities that belong to a project
     Projects * proj = [self.projects objectAtIndex:indexPath.section];
-    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"project.project_name == %@",proj.project_name];
+    NSPredicate * proj_name = [NSPredicate predicateWithFormat:@"project == %@",proj];
     
     NSArray * subActivities = [self.activities filteredArrayUsingPredicate:proj_name];
     
@@ -125,8 +111,7 @@
 
         // Sort subActivities
         NSSortDescriptor * sortActs = [NSSortDescriptor sortDescriptorWithKey:@"activity_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-        NSArray * sortActsDescriptors = @[sortActs];
-        subActivities = [subActivities sortedArrayUsingDescriptors:sortActsDescriptors];
+        subActivities = [subActivities sortedArrayUsingDescriptors:@[sortActs]];
         
         // Display activities
         Activities *act = [subActivities objectAtIndex:(indexPath.row-1)];
@@ -163,25 +148,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     // Re-fetch from CoreData
-    // Fetch all projects and activities information
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
-    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
-    
-    [fetchRequestProj setEntity:projs];
-    [fetchRequestAct setEntity:acts];
-    
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
     
-    NSError *err;
-    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
-    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
+    self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
+    self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
     
     [self.table reloadData];
 }
