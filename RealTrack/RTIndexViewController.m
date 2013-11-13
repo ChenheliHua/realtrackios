@@ -81,6 +81,12 @@
 }
 
 
+- (IBAction)enterDataView:(id)sender {
+}
+
+- (IBAction)myActivitiesView:(id)sender {
+}
+
 - (IBAction)pendingView:(id)sender {
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

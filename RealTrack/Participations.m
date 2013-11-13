@@ -45,4 +45,9 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
+-(void)setDate:(NSDate *)date menUnder15:(int)menUnder15 men15To24:(int)men15To24 menAvove24:(int)menAbove24 womenUnder15:(int)womenUnder15 women15To24:(int)women15To24 womenAbove24:(int)womenAbove24 notes:(NSString *)notes activity:(Activities*) act
+{
+    return;
+}
+
 @end

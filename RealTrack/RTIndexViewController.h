@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) NSArray * events;
 
+- (IBAction)enterDataView:(id)sender;
+- (IBAction)myActivitiesView:(id)sender;
 - (IBAction)pendingView:(id)sender;
 
 @end

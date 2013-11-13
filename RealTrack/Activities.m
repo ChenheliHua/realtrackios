@@ -390,4 +390,9 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
+-(void)setName:(NSString *)name startDate:(NSDate *)startDate endDate:(NSDate *)endDate organizatons:(NSString *)orgs communities:(NSString *)comms ecpa:(NSNumber *)ecpa foodSecurity:(NSNumber *)foodSecurity malaria:(NSNumber *)malaria youth:(NSNumber *)youth wid:(NSNumber *)wid monTime:(NSDate *)mon tueTime:(NSDate *)tue wed:(NSDate *)wed thu:(NSDate *)thu fri:(NSDate *)fri sat:(NSDate*)sat sun:(NSDate *)sun project:(Projects *)proj
+{
+    return;
+}
+
 @end

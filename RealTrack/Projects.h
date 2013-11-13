@@ -31,4 +31,6 @@
 // Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
 +(NSArray*)retrieveProjectsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
 
+-(void)setName:(NSString*)name startDate:(NSDate *) startDate endDate:(NSDate *)endDate notes:(NSString *)notes;
+
 @end

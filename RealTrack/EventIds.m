@@ -38,4 +38,9 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
+-(void)setID:(NSString *)id activity:(Activities *)act
+{
+    return;
+}
+
 @end

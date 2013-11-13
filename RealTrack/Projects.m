@@ -41,4 +41,9 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
+-(void)setName:(NSString*)name startDate:(NSDate *) startDate endDate:(NSDate *)endDate notes:(NSString *)notes
+{
+    return;
+}
+
 @end
