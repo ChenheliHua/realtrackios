@@ -38,9 +38,10 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
--(void)setID:(NSString *)id activity:(Activities *)act
+-(void)setID:(NSString *)eventId activity:(Activities *)act
 {
-    return;
+    self.event_id = eventId;
+    self.activity = act;
 }
 
 @end

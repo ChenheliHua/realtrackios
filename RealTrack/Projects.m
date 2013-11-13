@@ -43,7 +43,10 @@
 
 -(void)setName:(NSString*)name startDate:(NSDate *) startDate endDate:(NSDate *)endDate notes:(NSString *)notes
 {
-    return;
+    self.project_name = name;
+    self.start_date = startDate;
+    self.end_date = endDate;
+    self.notes = notes;
 }
 
 @end
