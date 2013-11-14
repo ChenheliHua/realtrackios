@@ -69,8 +69,8 @@
     Projects *proj = [self.projects objectAtIndex:section];
     
     // Extract activities that belongs to that project
-    NSPredicate * pred = [NSPredicate predicateWithFormat:@"project == %@",proj];
-    num = [[self.activities filteredArrayUsingPredicate:pred] count];
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"activity.project == %@",proj];
+    num = [[self.participations filteredArrayUsingPredicate:pred] count];
     
     // Return num
     return num;
