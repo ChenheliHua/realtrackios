@@ -90,20 +90,7 @@
     // Get one participation
     Participations *part = [subParticipations objectAtIndex:indexPath.row];
     
-    // For date format
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    
-    // Set labels
-    cell.activityName.text = part.activity.activity_name;
-    cell.date.text = [dateFormat stringFromDate:part.date];
-    cell.menUnder15.text = [NSString stringWithFormat:@"%@",part.men_under_15];
-    cell.men15To24.text = [NSString stringWithFormat:@"%@",part.men_15_to_24];
-    cell.menAbove24.text = [NSString stringWithFormat:@"%@",part.men_above_24];
-    cell.womenUnder15.text = [NSString stringWithFormat:@"%@",part.women_under_15];
-    cell.women15To24.text = [NSString stringWithFormat:@"%@",part.women_15_to_24];
-    cell.womenAbove24.text = [NSString stringWithFormat:@"%@",part.women_above_24];
-    cell.notes.text = part.notes;
+    [cell setActivityName:part.activity.activity_name date:part.date memUnder15:part.men_under_15 men15To24:part.men_15_to_24 menAbove24:part.men_above_24 womenUnder15:part.women_under_15 women15To24:part.women_15_to_24 womenAbove24:part.women_above_24 notes:part.notes];
     
     return cell;
 }
@@ -112,6 +99,13 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+// Setup section headers
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    Projects * proj = [self.projects objectAtIndex:section];
+    return proj.project_name;
 }
 
 /*
