@@ -257,7 +257,7 @@
     event.startDate = eventDate;
     event.endDate = [eventDate dateByAddingTimeInterval:60*60];
     
-    // Set up recurrence rule (TO BE ADDED)
+    // Set up recurrence rule
     EKRecurrenceRule * rule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 end:[EKRecurrenceEnd recurrenceEndWithEndDate:self.end_date]];
     [event addRecurrenceRule:rule];
     
@@ -269,11 +269,11 @@
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
     
-    EventIds * id = [NSEntityDescription insertNewObjectForEntityForName:@"EventIds"inManagedObjectContext:managedObjectContext];
+    EventIds * eventId = [NSEntityDescription insertNewObjectForEntityForName:@"EventIds"inManagedObjectContext:managedObjectContext];
     
-    [id setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
+    [eventId setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
     
-    [self.event_ids addObject:id];
+    [self addEventIdsObject:eventId];
 }
 
 -(void)updateActivityEvent
