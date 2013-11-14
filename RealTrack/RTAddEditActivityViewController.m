@@ -54,12 +54,15 @@
         
         for(UISwitch * sw in self.weekdaysS)
         {
-            [sw setOn:[self.currentAct getWeekdayBool:sw.tag]];
+            [sw setOn:([self.currentAct getTimeOnWeekday:sw.tag]!=nil)];
         }
         
         for(UIDatePicker * dp in self.weekdaysP)
         {
-            [dp setDate:[self.currentAct getTimeOnWeekday:dp.tag]];
+            if([self.currentAct getTimeOnWeekday:dp.tag]!=nil)
+                [dp setDate:[self.currentAct getTimeOnWeekday:dp.tag]];
+            else
+                [dp setDate:[NSDate date]];
         }
         
         self.organizations.text = self.currentAct.organizations;
@@ -99,40 +102,18 @@
         // Create new activity
         if(self.currentAct == nil)
         {
-            // Save new activity
             Activities * act = [NSEntityDescription insertNewObjectForEntityForName:@"Activities"inManagedObjectContext:self.managedObjectContext];
-            
-            // Set activity name
-            [act setValue:self.activityName.text forKey:@"activity_name"];
-            
-            [act setValue:self.startDate.date forKey:@"start_date"];
-            [act setValue:self.endDate.date forKey:@"end_date"];
-            
-            for(UISwitch * sw in self.weekdaysS)
-            {
-                [act toggleWeekday:sw.tag withBool:[sw isOn]];
-            }
             
             for(UIDatePicker * dp in self.weekdaysP)
             {
-                [act setWeekday:dp.tag withTime:dp.date];
+                if([[self.weekdaysS objectAtIndex:(dp.tag-1)] isOn])
+                    [act setWeekday:dp.tag withTime:dp.date];
+                else
+                    [act setWeekday:dp.tag withTime:nil];
             }
             
-            [act setValue:self.organizations.text forKey:@"organizations"];
-            [act setValue:self.communities.text forKey:@"communities"];
+            [act setName:self.activityName.text startDate:self.startDate.date endDate:self.endDate.date organizatons:self.organizations.text communities:self.communities.text ecpa:[self.ecpaS isOn] foodSecurity:[self.foodS isOn] malaria:[self.malariaS isOn] youth:[self.youthS isOn] wid:[self.widS isOn] project:self.currentProj notes:self.notes.text];
             
-            [act setValue:[NSNumber numberWithBool:[self.widS isOn]] forKey:@"wid"];
-            [act setValue:[NSNumber numberWithBool:[self.youthS isOn]] forKey:@"youth"];
-            [act setValue:[NSNumber numberWithBool:[self.malariaS isOn]] forKey:@"malaria"];
-            [act setValue:[NSNumber numberWithBool:[self.foodS isOn]] forKey:@"food_security"];
-            [act setValue:[NSNumber numberWithBool:[self.ecpaS isOn]] forKey:@"ecpa"];
-            
-            [act setValue:self.notes.text forKey:@"notes"];
-            
-            // Build relations
-            [self.currentProj addActivitiesObject:act];
-            [act setProject:self.currentProj];
-                        
             NSError * err;
             [managedObjectContext save:&err];
             
@@ -140,33 +121,15 @@
         }
         // Edit existing project
         else{
-            // Update activity information
-            [self.currentAct setValue:self.activityName.text forKey:@"activity_name"];
-            
-
-            [self.currentAct setValue:self.startDate.date forKey:@"start_date"];
-            [self.currentAct setValue:self.endDate.date forKey:@"end_date"];
-            
-            for(UISwitch * sw in self.weekdaysS)
-            {
-                [self.currentAct toggleWeekday:sw.tag withBool:[sw isOn]];
-            }
-            
             for(UIDatePicker * dp in self.weekdaysP)
             {
-                [self.currentAct setWeekday:dp.tag withTime:dp.date];
+                if([[self.weekdaysS objectAtIndex:(dp.tag-1)] isOn])
+                    [self.currentAct setWeekday:dp.tag withTime:dp.date];
+                else
+                    [self.currentAct setWeekday:dp.tag withTime:nil];
             }
             
-            [self.currentAct setValue:self.organizations.text forKey:@"organizations"];
-            [self.currentAct setValue:self.communities.text forKey:@"communities"];
-            
-            [self.currentAct setValue:[NSNumber numberWithBool:[self.widS isOn]] forKey:@"wid"];
-            [self.currentAct setValue:[NSNumber numberWithBool:[self.youthS isOn]] forKey:@"youth"];
-            [self.currentAct setValue:[NSNumber numberWithBool:[self.malariaS isOn]] forKey:@"malaria"];
-            [self.currentAct setValue:[NSNumber numberWithBool:[self.foodS isOn]] forKey:@"food_security"];
-            [self.currentAct setValue:[NSNumber numberWithBool:[self.ecpaS isOn]] forKey:@"ecpa"];
-            
-            [self.currentAct setValue:self.notes.text forKey:@"notes"];
+            [self.currentAct setName:self.activityName.text startDate:self.startDate.date endDate:self.endDate.date organizatons:self.organizations.text communities:self.communities.text ecpa:[self.ecpaS isOn] foodSecurity:[self.foodS isOn] malaria:[self.malariaS isOn] youth:[self.youthS isOn] wid:[self.widS isOn] project:self.currentProj notes:self.notes.text];
             
             NSError * err;
             [managedObjectContext save:&err];
@@ -175,7 +138,7 @@
         }
     }
     else{
-        // MAY POP AN ALERT FOR EMPTY ACT NAME
+        //TODO: POP AN ALERT FOR EMPTY ACT NAME
     }
     
     // Pop parent view
