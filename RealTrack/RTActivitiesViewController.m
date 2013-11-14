@@ -30,10 +30,6 @@
 {
     [super viewDidLoad];
     
-    // Load managedObjectContext
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     
     self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
@@ -69,8 +65,8 @@
     Projects *proj = [self.projects objectAtIndex:section];
     
     // Extract activities that belongs to that project
-    NSPredicate * pred = [NSPredicate predicateWithFormat:@"project == %@",proj];
-    num = [[self.activities filteredArrayUsingPredicate:pred] count];
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"activity.project == %@",proj];
+    num = [[self.participations filteredArrayUsingPredicate:pred] count];
     
     // Return num
     return num;

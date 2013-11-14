@@ -31,10 +31,6 @@
 {
     [super viewDidLoad];
     
-    // Load managedObjectContext
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
     // Sort projects by name
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     

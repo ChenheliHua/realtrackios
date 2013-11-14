@@ -24,52 +24,17 @@
 @dynamic malaria;
 @dynamic youth;
 @dynamic wid;
-@dynamic mon;
 @dynamic mon_time;
-@dynamic tue;
 @dynamic tue_time;
-@dynamic wed;
 @dynamic wed_time;
-@dynamic thu;
 @dynamic thu_time;
-@dynamic fri;
 @dynamic fri_time;
-@dynamic sat;
 @dynamic sat_time;
-@dynamic sun;
 @dynamic sun_time;
 @dynamic participations;
 @dynamic project;
 @dynamic event_ids;
 
--(void)toggleWeekday:(NSInteger)day withBool:(BOOL)val
-{
-    int dayInt = day;
-    switch (dayInt)
-    {
-        case 1:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"mon"];
-            break;
-        case 2:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"tue"];
-            break;
-        case 3:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"wed"];
-            break;
-        case 4:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"thu"];
-            break;
-        case 5:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"fri"];
-            break;
-        case 6:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"sat"];
-            break;
-        case 7:
-            [self setValue:[NSNumber numberWithBool:val] forKey:@"sun"];
-            break;
-    }
-}
 
 -(void)setWeekday:(NSInteger)day withTime:(NSDate *)time
 {
@@ -100,38 +65,6 @@
     }
 }
 
--(BOOL)getWeekdayBool:(NSInteger)day
-{
-    
-    int dayInt = day;
-    switch(dayInt)
-    {
-        case 1:
-            return [self.mon boolValue];
-            break;
-        case 2:
-            return [self.tue boolValue];
-            break;
-        case 3:
-            return [self.wed boolValue];
-            break;
-        case 4:
-            return [self.thu boolValue];
-            break;
-        case 5:
-            return [self.fri boolValue];
-            break;
-        case 6:
-            return [self.sat boolValue];
-            break;
-        case 7:
-            return [self.sun boolValue];
-            break;
-    }
-    
-    // If get here, just return NO
-    return NO;
-}
 
 -(NSDate*)getTimeOnWeekday:(NSInteger)day
 {
@@ -224,7 +157,7 @@
                     NSUInteger weekdayToday = [components weekday]; // Sun is 1, Sat is 7
                     
                     // Monday
-                    if([self.mon boolValue])
+                    if(self.mon_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextMonday = [startDate dateByAddingTimeInterval:60*60*24*((9 - weekdayToday) % 7)];
@@ -233,7 +166,7 @@
                     }
                     
                     // Tuesday
-                    if([self.tue boolValue])
+                    if(self.tue_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextTuesday = [startDate dateByAddingTimeInterval:60*60*24*((10 - weekdayToday) % 7)];
@@ -242,7 +175,7 @@
                     }
                     
                     // Wednesday
-                    if([self.wed boolValue])
+                    if(self.wed_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextWednesday = [startDate dateByAddingTimeInterval:60*60*24*((11-weekdayToday) % 7)];
@@ -251,7 +184,7 @@
                     }
                     
                     // Thursday
-                    if([self.thu boolValue])
+                    if(self.thu_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextThursday = [startDate dateByAddingTimeInterval:60*60*24*((12 - weekdayToday) % 7)];
@@ -260,7 +193,7 @@
                     }
                     
                     // Friday
-                    if([self.fri boolValue])
+                    if(self.fri_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextFriday = [startDate dateByAddingTimeInterval:60*60*24*((13 - weekdayToday) % 7)];
@@ -269,7 +202,7 @@
                     }
                     
                     // Saturday
-                    if([self.sat boolValue])
+                    if(self.sat_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextSaturday = [startDate dateByAddingTimeInterval:60*60*24*((14 - weekdayToday) % 7)];
@@ -278,7 +211,7 @@
                     }
                     
                     // Sunday
-                    if([self.sun boolValue])
+                    if(self.sun_time!=nil)
                     {
                         // combine next mon date + mon_time time and regiester event
                         NSDate * nextSunday = [startDate dateByAddingTimeInterval:60*60*24*((15 - weekdayToday) % 7)];
@@ -390,7 +323,7 @@
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
 }
 
--(void)setName:(NSString *)name startDate:(NSDate *)startDate endDate:(NSDate *)endDate organizatons:(NSString *)orgs communities:(NSString *)comms ecpa:(BOOL)ecpa foodSecurity:(BOOL)foodSecurity malaria:(BOOL)malaria youth:(BOOL)youth wid:(BOOL)wid monTime:(NSDate *)mon tueTime:(NSDate *)tue wed:(NSDate *)wed thu:(NSDate *)thu fri:(NSDate *)fri sat:(NSDate*)sat sun:(NSDate *)sun project:(Projects *)proj
+-(void)setName:(NSString *)name startDate:(NSDate *)startDate endDate:(NSDate *)endDate organizatons:(NSString *)orgs communities:(NSString *)comms ecpa:(BOOL)ecpa foodSecurity:(BOOL)foodSecurity malaria:(BOOL)malaria youth:(BOOL)youth wid:(BOOL)wid project:(Projects *)proj notes:(NSString *)notes
 {
     self.activity_name = name;
     self.start_date = startDate;
@@ -402,94 +335,11 @@
     self.malaria = [NSNumber numberWithBool:malaria];
     self.youth = [NSNumber numberWithBool:youth];
     self.wid = [NSNumber numberWithBool:wid];
-    
-    if(mon!=nil)
-    {
-        self.mon = [NSNumber numberWithBool:YES];
-        self.mon_time = mon;
-        
-    }
-    else
-    {
-        self.mon = [NSNumber numberWithBool:NO];
-        self.mon_time = nil;
-    }
-    
-    if(tue!=nil)
-    {
-        self.tue = [NSNumber numberWithBool:YES];
-        self.tue_time = tue;
-        
-    }
-    else
-    {
-        self.tue = [NSNumber numberWithBool:NO];
-        self.tue_time = nil;
-    }
-    
-    if(wed!=nil)
-    {
-        self.wed = [NSNumber numberWithBool:YES];
-        self.wed_time = wed;
-        
-    }
-    else
-    {
-        self.wed = [NSNumber numberWithBool:NO];
-        self.wed_time = nil;
-    }
-    
-    if(thu!=nil)
-    {
-        self.thu = [NSNumber numberWithBool:YES];
-        self.thu_time = thu;
-        
-    }
-    else
-    {
-        self.thu = [NSNumber numberWithBool:NO];
-        self.thu_time = nil;
-    }
-    
-    if(fri!=nil)
-    {
-        self.fri = [NSNumber numberWithBool:YES];
-        self.fri_time = fri;
-        
-    }
-    else
-    {
-        self.fri = [NSNumber numberWithBool:NO];
-        self.fri_time = nil;
-    }
-    
-    if(sat!=nil)
-    {
-        self.sat = [NSNumber numberWithBool:YES];
-        self.sat_time = sat;
-        
-    }
-    else
-    {
-        self.sat = [NSNumber numberWithBool:NO];
-        self.sat_time = nil;
-    }
-    
-    if(sun!=nil)
-    {
-        self.sun = [NSNumber numberWithBool:YES];
-        self.sun_time = sun;
-        
-    }
-    else
-    {
-        self.sun = [NSNumber numberWithBool:NO];
-        self.sun_time = nil;
-    }
+    self.notes = notes;
     
     self.project = proj;
+    // Add activity to project as well
     [proj addActivitiesObject:self];
-    
 }
 
 @end

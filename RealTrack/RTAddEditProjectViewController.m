@@ -36,11 +36,7 @@
     
     int radius = 5;
     [self.button setCornerRadius:radius];
-    
-    // Load managedObjectContext
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
+
     // Setup existing project name
     if(self.currentProj!=nil)
     {
