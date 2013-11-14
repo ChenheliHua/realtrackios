@@ -30,10 +30,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // Load managedObjectContext
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
-    managedObjectContext = [appDelegate managedObjectContext];
-    
     // Display project & activity names
     self.projectName.text = self.currentProj.project_name;
     self.activityName.text = self.currentAct.activity_name;

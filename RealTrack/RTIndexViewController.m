@@ -14,6 +14,9 @@
 
 @implementation RTIndexViewController
 
+@synthesize fetchedResultsController, managedObjectContext;
+@synthesize projects, activities;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -31,6 +34,9 @@
     // Retrieve pending events
     // Get all past events without participation
     EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:nil];
+    self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
     
     if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
     {
@@ -72,6 +78,10 @@
             });
         }];
     }
+    
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,9 +92,27 @@
 
 
 - (IBAction)enterDataView:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTEnterDataViewController *enterData = [sb instantiateViewControllerWithIdentifier:@"enterDataView"];
+    
+    enterData.projects = self.projects;
+    enterData.activities = self.activities;
+    enterData.managedObjectContext = self.managedObjectContext;
+    
+    [self.navigationController pushViewController:enterData animated:YES];
 }
 
 - (IBAction)myActivitiesView:(id)sender {
+    // Create view controller from storyboard
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    RTActivitiesViewController *myActs = [sb instantiateViewControllerWithIdentifier:@"myActivitiesView"];
+    
+    myActs.projects = self.projects;
+    myActs.activities = self.activities;
+    myActs.managedObjectContext = self.managedObjectContext;
+    
+    [self.navigationController pushViewController:myActs animated:YES];
 }
 
 - (IBAction)pendingView:(id)sender {

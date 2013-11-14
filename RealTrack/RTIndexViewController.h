@@ -12,7 +12,16 @@
 #import <EventKit/EventKit.h>
 #import "RTPendingViewController.h"
 
-@interface RTIndexViewController : UIViewController
+@interface RTIndexViewController : UIViewController <NSFetchedResultsControllerDelegate>
+{
+    // CoreData
+    NSFetchedResultsController *fetchedResultsController;
+    NSManagedObjectContext *managedObjectContext;
+}
+
+// CoreData
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property (strong, nonatomic) IBOutlet RTLogo *logo;
 
@@ -22,6 +31,8 @@
 
 @property (strong, nonatomic) IBOutlet RTButton *pending;
 
+@property (strong, nonatomic) NSArray * projects;
+@property (strong, nonatomic) NSArray * activities;
 @property (strong, nonatomic) NSArray * events;
 
 - (IBAction)enterDataView:(id)sender;

@@ -28,7 +28,6 @@
                                 </state>
                                 <connections>
                                     <action selector="enterDataView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="huz-ow-gof"/>
-                                    <segue destination="qHj-5z-y47" kind="push" id="LPY-bk-Q8G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kJY-qr-pb3" userLabel="MyActivities" customClass="RTButton">
@@ -42,7 +41,6 @@
                                 </state>
                                 <connections>
                                     <action selector="myActivitiesView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="srU-kh-Rt1"/>
-                                    <segue destination="vCv-FU-wd1" kind="push" id="zO5-lj-jd8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Y0-ee-CAz" userLabel="Pending" customClass="RTButton">
@@ -89,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="itA-wm-Kb4" customClass="RTButton">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="New Project">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +98,7 @@
                         </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="activitiesCell" textLabel="O80-Nq-Ik7" style="IBUITableViewCellStyleDefault" id="gcd-Dy-B0T" customClass="RTActivityCell">
-                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gcd-Dy-B0T" id="13f-cU-aOS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -160,7 +158,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newActivityCell" textLabel="S6J-Hd-dvK" style="IBUITableViewCellStyleDefault" id="BRp-7y-gWt" customClass="RTNewActivityCell">
-                                <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="143" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BRp-7y-gWt" id="Efj-H5-j83">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1064,13 +1062,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Activities View Controller - Activities-->
         <scene sceneID="stz-gd-aiT">
             <objects>
-                <tableViewController storyboardIdentifier="activitiesView" id="vCv-FU-wd1" customClass="RTActivitiesViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myActivitiesView" id="vCv-FU-wd1" customClass="RTActivitiesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AFG-Z4-vB8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0aB-uj-tTA">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Export CSV">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1081,7 +1079,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="viewPartCell" rowHeight="214" id="yzK-HW-TXF" customClass="RTViewParticipationsCell">
-                                <rect key="frame" x="0.0" y="163" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="99" width="320" height="214"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yzK-HW-TXF" id="n4M-88-9tj">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
