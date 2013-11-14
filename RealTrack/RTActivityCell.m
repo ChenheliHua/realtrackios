@@ -37,6 +37,8 @@
     addPart.currentProj = self.currentProj;
     addPart.currentAct = self.currentAct;
     
+    addPart.managedObjectContext = self.managedObjectContext;
+    
     // Set title
     addPart.title = @"Add Participation";
     
