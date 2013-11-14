@@ -44,10 +44,7 @@
     // Setup existing project name
     if(self.currentProj!=nil)
     {
-        [self.projectName setText:self.currentProj.project_name];
-        [self.startDate setDate:self.currentProj.start_date];
-        [self.endDate setDate:self.currentProj.end_date];
-        [self.notes setText:self.currentProj.notes];
+        [self setProjName:self.currentProj.project_name startDate:self.currentProj.start_date endDate:self.currentProj.end_date notes:self.currentProj.notes];
     }
     
     self.scrollView.scrollEnabled = YES;
@@ -81,25 +78,14 @@
             // Save new project
             Projects * proj = [NSEntityDescription insertNewObjectForEntityForName:@"Projects"inManagedObjectContext:self.managedObjectContext];
         
-            [proj setValue:self.projectName.text forKey:@"project_name"];
-            
-            [proj setValue:self.startDate.date forKey:@"start_date"];
-            [proj setValue:self.endDate.date forKey:@"end_date"];
-            
-            [proj setValue:self.notes.text forKey:@"notes"];
+            [proj setName:self.projectName.text startDate:self.startDate.date endDate:self.endDate.date notes:self.notes.text];
         
             NSError * err;
             [managedObjectContext save:&err];
         }
         // Edit existing project
         else{
-            [self.currentProj setValue:self.projectName.text forKey:@"project_name"];
-            
-            [self.currentProj setValue:self.startDate.date forKey:@"start_date"];
-            
-            [self.currentProj setValue:self.endDate.date forKey:@"end_date"];
-            
-            [self.currentProj setValue:self.notes.text forKey:@"notes"];
+            [self.currentProj setName:self.projectName.text startDate:self.startDate.date endDate:self.endDate.date notes:self.notes.text];
             
             NSError * err;
             [managedObjectContext save:&err];
@@ -118,4 +104,18 @@
     // Pop parent view
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
+
+-(void)setProjName:(NSString *)projectName startDate:(NSDate *)startDate endDate:(NSDate *)endDate notes:(NSString *)notes
+{
+    // For date format
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    self.projectName.text = projectName;
+    self.startDate.date = startDate;
+    self.endDate.date = endDate;
+    self.notes.text = notes;
+}
+
+
 @end

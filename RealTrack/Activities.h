@@ -71,4 +71,9 @@
 -(void)updateActivityEvent;
 -(void)deleteActivityEvent;
 
+// Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
++(NSArray*)retrieveActivitiesWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
+
+-(void)setName:(NSString *)name startDate:(NSDate *)startDate endDate:(NSDate *)endDate organizatons:(NSString *)orgs communities:(NSString *)comms ecpa:(BOOL)ecpa foodSecurity:(BOOL)foodSecurity malaria:(BOOL)malaria youth:(BOOL)youth wid:(BOOL)wid monTime:(NSDate *)mon tueTime:(NSDate *)tue wed:(NSDate *)wed thu:(NSDate *)thu fri:(NSDate *)fri sat:(NSDate*)sat sun:(NSDate *)sun project:(Projects *)proj;
+
 @end

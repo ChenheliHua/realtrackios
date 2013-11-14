@@ -367,4 +367,129 @@
     }
 }
 
++(NSArray*)retrieveActivitiesWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort
+{
+    // Fetch all data
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext * managedObjectContext= [appDelegate managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entDes = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
+    
+    [fetchRequest setEntity:entDes];
+    
+    // Set predicate and sortDescriptors
+    if(pred!=nil)
+        [fetchRequest setPredicate:pred];
+    if(sort!=nil)
+        [fetchRequest setSortDescriptors:@[sort]];
+    
+    NSError *err;
+    
+    return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
+}
+
+-(void)setName:(NSString *)name startDate:(NSDate *)startDate endDate:(NSDate *)endDate organizatons:(NSString *)orgs communities:(NSString *)comms ecpa:(BOOL)ecpa foodSecurity:(BOOL)foodSecurity malaria:(BOOL)malaria youth:(BOOL)youth wid:(BOOL)wid monTime:(NSDate *)mon tueTime:(NSDate *)tue wed:(NSDate *)wed thu:(NSDate *)thu fri:(NSDate *)fri sat:(NSDate*)sat sun:(NSDate *)sun project:(Projects *)proj
+{
+    self.activity_name = name;
+    self.start_date = startDate;
+    self.end_date = endDate;
+    self.organizations = orgs;
+    self.communities = comms;
+    self.ecpa = [NSNumber numberWithBool:ecpa];
+    self.food_security = [NSNumber numberWithBool:foodSecurity];
+    self.malaria = [NSNumber numberWithBool:malaria];
+    self.youth = [NSNumber numberWithBool:youth];
+    self.wid = [NSNumber numberWithBool:wid];
+    
+    if(mon!=nil)
+    {
+        self.mon = [NSNumber numberWithBool:YES];
+        self.mon_time = mon;
+        
+    }
+    else
+    {
+        self.mon = [NSNumber numberWithBool:NO];
+        self.mon_time = nil;
+    }
+    
+    if(tue!=nil)
+    {
+        self.tue = [NSNumber numberWithBool:YES];
+        self.tue_time = tue;
+        
+    }
+    else
+    {
+        self.tue = [NSNumber numberWithBool:NO];
+        self.tue_time = nil;
+    }
+    
+    if(wed!=nil)
+    {
+        self.wed = [NSNumber numberWithBool:YES];
+        self.wed_time = wed;
+        
+    }
+    else
+    {
+        self.wed = [NSNumber numberWithBool:NO];
+        self.wed_time = nil;
+    }
+    
+    if(thu!=nil)
+    {
+        self.thu = [NSNumber numberWithBool:YES];
+        self.thu_time = thu;
+        
+    }
+    else
+    {
+        self.thu = [NSNumber numberWithBool:NO];
+        self.thu_time = nil;
+    }
+    
+    if(fri!=nil)
+    {
+        self.fri = [NSNumber numberWithBool:YES];
+        self.fri_time = fri;
+        
+    }
+    else
+    {
+        self.fri = [NSNumber numberWithBool:NO];
+        self.fri_time = nil;
+    }
+    
+    if(sat!=nil)
+    {
+        self.sat = [NSNumber numberWithBool:YES];
+        self.sat_time = sat;
+        
+    }
+    else
+    {
+        self.sat = [NSNumber numberWithBool:NO];
+        self.sat_time = nil;
+    }
+    
+    if(sun!=nil)
+    {
+        self.sun = [NSNumber numberWithBool:YES];
+        self.sun_time = sun;
+        
+    }
+    else
+    {
+        self.sun = [NSNumber numberWithBool:NO];
+        self.sun_time = nil;
+    }
+    
+    self.project = proj;
+    [proj addActivitiesObject:self];
+    
+}
+
 @end

@@ -35,4 +35,6 @@
 
 - (IBAction)addEditProject:(RTButton *)sender;
 
+-(void)setProjName:(NSString *)projectName startDate:(NSDate *)startDate endDate:(NSDate *)endDate notes:(NSString *)notes;
+
 @end

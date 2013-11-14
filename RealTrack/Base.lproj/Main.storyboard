@@ -27,6 +27,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="enterDataView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="huz-ow-gof"/>
                                     <segue destination="qHj-5z-y47" kind="push" id="LPY-bk-Q8G"/>
                                 </connections>
                             </button>
@@ -40,6 +41,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="myActivitiesView:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="srU-kh-Rt1"/>
                                     <segue destination="vCv-FU-wd1" kind="push" id="zO5-lj-jd8"/>
                                 </connections>
                             </button>

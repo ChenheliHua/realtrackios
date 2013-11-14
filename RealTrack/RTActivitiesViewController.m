@@ -30,31 +30,16 @@
 {
     [super viewDidLoad];
     
-    // Fetch all projects and activities information
+    // Load managedObjectContext
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
     
-    NSFetchRequest *fetchRequestProj = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestAct = [[NSFetchRequest alloc] init];
-    NSFetchRequest *fetchRequestPart = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *projs = [NSEntityDescription entityForName:@"Projects" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *acts = [NSEntityDescription entityForName:@"Activities" inManagedObjectContext:managedObjectContext];
-    NSEntityDescription *parts = [NSEntityDescription entityForName:@"Participations" inManagedObjectContext:managedObjectContext];
-    
-    [fetchRequestProj setEntity:projs];
-    [fetchRequestAct setEntity:acts];
-    [fetchRequestPart setEntity:parts];
-    
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    [fetchRequestProj setSortDescriptors:[NSArray arrayWithObjects:sortProjName, nil]];
     
-    NSError *err;
-    self.projects = [managedObjectContext executeFetchRequest:fetchRequestProj error:&err];
-    self.activities = [managedObjectContext executeFetchRequest:fetchRequestAct error:&err];
-    self.participations = [managedObjectContext executeFetchRequest:fetchRequestPart error:&err];
-
-
+    self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
+    self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
+    self.participations = [Participations retrieveParticipationWithPredicate:nil andSortDescriptor:nil];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -83,11 +68,10 @@
     
     Projects *proj = [self.projects objectAtIndex:section];
     
-    for (Participations *part in self.participations) {
-        if (part.activity.project == proj)
-            num++;
-    }
-        
+    // Extract activities that belongs to that project
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"project == %@",proj];
+    num = [[self.activities filteredArrayUsingPredicate:pred] count];
+    
     // Return num
     return num;
 }
@@ -110,20 +94,7 @@
     // Get one participation
     Participations *part = [subParticipations objectAtIndex:indexPath.row];
     
-    // For date format
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy"];
-    
-    // Set labels
-    cell.activityName.text = part.activity.activity_name;
-    cell.date.text = [dateFormat stringFromDate:part.date];
-    cell.menUnder15.text = [NSString stringWithFormat:@"%@",part.men_under_15];
-    cell.men15To24.text = [NSString stringWithFormat:@"%@",part.men_15_to_24];
-    cell.menAbove24.text = [NSString stringWithFormat:@"%@",part.men_above_24];
-    cell.womenUnder15.text = [NSString stringWithFormat:@"%@",part.women_under_15];
-    cell.women15To24.text = [NSString stringWithFormat:@"%@",part.women_15_to_24];
-    cell.womenAbove24.text = [NSString stringWithFormat:@"%@",part.women_above_24];
-    cell.notes.text = part.notes;
+    [cell setActivityName:part.activity.activity_name date:part.date memUnder15:part.men_under_15 men15To24:part.men_15_to_24 menAbove24:part.men_above_24 womenUnder15:part.women_under_15 women15To24:part.women_15_to_24 womenAbove24:part.women_above_24 notes:part.notes];
     
     return cell;
 }
@@ -132,6 +103,13 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+// Setup section headers
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    Projects * proj = [self.projects objectAtIndex:section];
+    return proj.project_name;
 }
 
 /*
@@ -224,7 +202,7 @@
             // Removed trailing \0
             data = [data subdataWithRange:NSMakeRange(0,[data length]-1)];
             [mailView addAttachmentData:data mimeType:@"text/csv" fileName:@"realtrackios.csv"]; // Added CSV file here
-            [mailView setToRecipients:[NSArray arrayWithObjects:@"huachenh@grinnell.edu",nil]];
+            [mailView setToRecipients:[NSArray arrayWithObjects:@"innovation@peacecorps.gov",nil]];
             [self presentViewController:mailView animated:YES completion:nil];
         }
         
@@ -232,6 +210,7 @@
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    NSLog(@"mailComposeController didFinishWithResult error");
     // If any error
     if (error) {
         NSString *errorTitle = @"Mail Error";
@@ -249,19 +228,32 @@
         switch (result)
         {
             case MFMailComposeResultSent:
+            {
                 // Send email
+                UIAlertView * sent = [[UIAlertView alloc] initWithTitle:@"CSV Sent!" message:@"Your .csv file has been sent!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [sent show];
                 break;
+            }
             case MFMailComposeResultSaved:
+            {
                 // Save email
+                UIAlertView * saved = [[UIAlertView alloc] initWithTitle:@"CSV Saved!" message:@"Your .csv file has been saved!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [saved show];
                 break;
+            }
             case MFMailComposeResultCancelled:
+            {
                 // Do nothing
                 break;
+            }
             case MFMailComposeResultFailed:
+            {
                 // Do nothing
+                UIAlertView * failed = [[UIAlertView alloc] initWithTitle:@"Failed!" message:@"Failed to send your .csv file.!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [failed show];
                 break;
+            }
         }
-        
     }
     
     [controller dismissViewControllerAnimated:YES completion:nil];
@@ -287,8 +279,6 @@
                            part.women_under_15, part.women_15_to_24, part.women_above_24,
                            part.notes]];
     }
-    
-    NSLog(csv);
     
     return csv;
 }

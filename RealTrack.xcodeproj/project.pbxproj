@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B0E60971819B26E00DE44B8 /* RTAddEditProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E60961819B26E00DE44B8 /* RTAddEditProjectViewController.m */; };
 		0B0E609A1819CC4B00DE44B8 /* RTAddEditActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E60991819CC4B00DE44B8 /* RTAddEditActivityViewController.m */; };
+		0B1907C01832D424007E04E8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1907BF1832D424007E04E8 /* MessageUI.framework */; };
 		0B3F739C180DBB4D0032BE07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739B180DBB4D0032BE07 /* Foundation.framework */; };
 		0B3F739E180DBB4D0032BE07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */; };
 		0B3F73A0180DBB4D0032BE07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3F739F180DBB4D0032BE07 /* UIKit.framework */; };
@@ -57,6 +58,7 @@
 		0B0E60961819B26E00DE44B8 /* RTAddEditProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddEditProjectViewController.m; sourceTree = "<group>"; };
 		0B0E60981819CC4B00DE44B8 /* RTAddEditActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTAddEditActivityViewController.h; sourceTree = "<group>"; };
 		0B0E60991819CC4B00DE44B8 /* RTAddEditActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTAddEditActivityViewController.m; sourceTree = "<group>"; };
+		0B1907BF1832D424007E04E8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0B3F7398180DBB4D0032BE07 /* RealTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3F739B180DBB4D0032BE07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1907C01832D424007E04E8 /* MessageUI.framework in Frameworks */,
 				0B5811C5181581D5000CC2D2 /* CoreData.framework in Frameworks */,
 				0B3F739E180DBB4D0032BE07 /* CoreGraphics.framework in Frameworks */,
 				0B3F73A0180DBB4D0032BE07 /* UIKit.framework in Frameworks */,
@@ -156,6 +159,7 @@
 		0B3F739A180DBB4D0032BE07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B1907BF1832D424007E04E8 /* MessageUI.framework */,
 				0B5811C4181581D5000CC2D2 /* CoreData.framework */,
 				0B3F739B180DBB4D0032BE07 /* Foundation.framework */,
 				0B3F739D180DBB4D0032BE07 /* CoreGraphics.framework */,

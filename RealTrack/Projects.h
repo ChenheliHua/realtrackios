@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "RTAppDelegate.h"
 
 @class Activities;
 
@@ -26,5 +27,10 @@
 - (void)removeActivitiesObject:(Activities *)value;
 - (void)addActivities:(NSSet *)values;
 - (void)removeActivities:(NSSet *)values;
+
+// Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
++(NSArray*)retrieveProjectsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
+
+-(void)setName:(NSString*)name startDate:(NSDate *) startDate endDate:(NSDate *)endDate notes:(NSString *)notes;
 
 @end

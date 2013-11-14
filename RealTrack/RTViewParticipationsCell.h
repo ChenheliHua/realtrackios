@@ -29,4 +29,6 @@
 @property (strong, nonatomic) Activities *currentAct;
 @property (strong, nonatomic) Participations *currentPart;
 
+-(void)setActivityName:(NSString *)actName date:(NSDate *)date memUnder15:(NSNumber *)menUnder15 men15To24:(NSNumber *)men15To24 menAbove24:(NSNumber *)menAbove24 womenUnder15:(NSNumber *)womenUnder15 women15To24:(NSNumber *)women15To24 womenAbove24:(NSNumber *)womenAbove24 notes:(NSString *)notes;
+
 @end
