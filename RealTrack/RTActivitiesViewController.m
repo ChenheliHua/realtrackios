@@ -30,12 +30,16 @@
 {
     [super viewDidLoad];
     
+    // Load managedObjectContext
+    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
+    managedObjectContext = [appDelegate managedObjectContext];
+    
     NSSortDescriptor * sortProjName = [NSSortDescriptor sortDescriptorWithKey:@"project_name" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     
     self.projects = [Projects retrieveProjectsWithPredicate:nil andSortDescriptor:sortProjName];
     self.activities = [Activities retrieveActivitiesWithPredicate:nil andSortDescriptor:nil];
     self.participations = [Participations retrieveParticipationWithPredicate:nil andSortDescriptor:nil];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
