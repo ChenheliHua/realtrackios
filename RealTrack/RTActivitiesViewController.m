@@ -210,7 +210,6 @@
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    NSLog(@"mailComposeController didFinishWithResult error");
     // If any error
     if (error) {
         NSString *errorTitle = @"Mail Error";

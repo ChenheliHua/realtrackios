@@ -12,7 +12,7 @@
 #import "EventIds.h"
 #import "RTAppDelegate.h"
 
-@class Participations, Projects;
+@class Participations, Projects, EventIds;
 
 @interface Activities : NSManagedObject
 
