@@ -7,9 +7,6 @@
 //
 
 #import "Activities.h"
-#import "Participations.h"
-#import "Projects.h"
-
 
 @implementation Activities
 
@@ -33,7 +30,7 @@
 @dynamic sun_time;
 @dynamic participations;
 @dynamic project;
-@dynamic event_ids;
+@dynamic events;
 
 
 -(void)setWeekday:(NSInteger)day withTime:(NSDate *)time
@@ -269,11 +266,11 @@
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
     
-    EventIds * eventId = [NSEntityDescription insertNewObjectForEntityForName:@"EventIds"inManagedObjectContext:managedObjectContext];
+    Events * eventObj = [NSEntityDescription insertNewObjectForEntityForName:@"Events"inManagedObjectContext:managedObjectContext];
     
-    [eventId setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
+    [eventObj setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
     
-    [self addEventIdsObject:eventId];
+    [self addEventsObject:eventObj];
 }
 
 -(void)updateActivityEvent
@@ -290,13 +287,13 @@
     
     NSError * err;
     
-    for (EventIds * id in self.event_ids)
+    for (Events * ev in self.events)
     {
         // Delete all exisiting events
-        [eventStore removeEvent:[eventStore eventWithIdentifier:id.event_id] span:EKSpanFutureEvents commit:YES error:&err];
+        [eventStore removeEvent:[eventStore eventWithIdentifier:ev.event_id] span:EKSpanFutureEvents commit:YES error:&err];
     
-        // Rewrite ids with an empty set
-        self.event_ids = [[NSMutableSet alloc] init];
+        // Rewrite evs with an empty set
+        self.events = [[NSMutableSet alloc] init];
     }
 }
 

@@ -19,13 +19,13 @@
         <attribute name="wed_time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="wid" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="youth" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <relationship name="event_ids" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventIds" inverseName="activity" inverseEntity="EventIds" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Events" inverseName="activity" inverseEntity="Events" syncable="YES"/>
         <relationship name="participations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participations" inverseName="activity" inverseEntity="Participations" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Projects" inverseName="activities" inverseEntity="Projects" syncable="YES"/>
     </entity>
-    <entity name="EventIds" representedClassName="EventIds" syncable="YES">
+    <entity name="Events" representedClassName="Events" syncable="YES">
         <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activities" inverseName="event_ids" inverseEntity="Activities" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activities" inverseName="events" inverseEntity="Activities" syncable="YES"/>
     </entity>
     <entity name="Participations" representedClassName="Participations" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -47,7 +47,7 @@
     </entity>
     <elements>
         <element name="Activities" positionX="-3215" positionY="-955" width="128" height="358"/>
-        <element name="EventIds" positionX="-3015" positionY="-844" width="128" height="73"/>
+        <element name="Events" positionX="-3015" positionY="-844" width="128" height="73"/>
         <element name="Participations" positionX="-3539" positionY="-810" width="128" height="178"/>
         <element name="Projects" positionX="-3512" positionY="-1170" width="128" height="118"/>
     </elements>

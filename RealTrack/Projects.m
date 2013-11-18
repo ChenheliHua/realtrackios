@@ -7,8 +7,6 @@
 //
 
 #import "Projects.h"
-#import "Activities.h"
-
 
 @implementation Projects
 

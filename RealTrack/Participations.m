@@ -7,8 +7,6 @@
 //
 
 #import "Participations.h"
-#import "Activities.h"
-
 
 @implementation Participations
 

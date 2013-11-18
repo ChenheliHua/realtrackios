@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <EventKit/EventKit.h>
-#import "EventIds.h"
+#import "Projects.h"
+#import "Participations.h"
+#import "Events.h"
 #import "RTAppDelegate.h"
 
-@class Participations, Projects, EventIds;
+@class Participations, Projects, Events;
 
 @interface Activities : NSManagedObject
 
@@ -36,7 +38,7 @@
 @property (nonatomic, retain) NSDate * sun_time;
 @property (nonatomic, retain) NSSet *participations;
 @property (nonatomic, retain) Projects *project;
-@property (nonatomic, retain) NSMutableSet *event_ids;
+@property (nonatomic, retain) NSMutableSet *events;
 
 @end
 
@@ -46,10 +48,10 @@
 - (void)removeParticipationsObject:(Participations *)value;
 - (void)addParticipations:(NSSet *)values;
 - (void)removeParticipations:(NSSet *)values;
-- (void)addEventIdsObject:(EventIds *)value;
-- (void)removeEventIdsObject:(EventIds *)value;
-- (void)addEventIds:(NSSet *)values;
-- (void)removeEventIds:(NSSet *)values;
+- (void)addEventsObject:(Events *)value;
+- (void)removeEventsObject:(Events *)value;
+- (void)addEvents:(NSSet *)values;
+- (void)removeEvents:(NSSet *)values;
 
 
 // For add/edit activity
