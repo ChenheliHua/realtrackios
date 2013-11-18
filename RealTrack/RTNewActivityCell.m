@@ -15,7 +15,8 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
         // Initialization code
     }
     return self;
@@ -28,7 +29,8 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)newAct:(id)sender {
+- (IBAction)newAct:(id)sender
+{
     
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -48,7 +50,8 @@
     [self.navController pushViewController:addEditAct animated:YES];
 }
 
-- (IBAction)editProj:(id)sender {
+- (IBAction)editProj:(id)sender
+{
     
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -64,7 +67,8 @@
     [self.navController pushViewController:editProj animated:YES];
 }
 
-- (IBAction)viewProj:(id)sender {
+- (IBAction)viewProj:(id)sender
+{
     // For date format
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
@@ -79,7 +83,8 @@
     [alert show];
 }
 
-- (IBAction)deleteProj:(id)sender {
+- (IBAction)deleteProj:(id)sender
+{
     // Show alert asking for confirmatio
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Project" message:self.currentProj.project_name delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete!", nil];
     

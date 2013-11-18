@@ -19,7 +19,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -86,7 +87,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addEditActivity:(id)sender {
+- (IBAction)addEditActivity:(id)sender
+{
     
     // Save new activity if not empty
     // Escape whitespaces
@@ -116,7 +118,8 @@
             [act addActivityEvent];
         }
         // Edit existing project
-        else{
+        else
+        {
             for(UIDatePicker * dp in self.weekdaysP)
             {
                 if([[self.weekdaysS objectAtIndex:(dp.tag-1)] isOn])
@@ -133,7 +136,8 @@
             [self.currentAct updateActivityEvent];
         }
     }
-    else{
+    else
+    {
         //TODO: POP AN ALERT FOR EMPTY ACT NAME
     }
     
@@ -141,7 +145,8 @@
     [[self.navigationController popViewControllerAnimated:YES] viewWillAppear:YES];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return NO;
 }

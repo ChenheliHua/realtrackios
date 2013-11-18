@@ -207,7 +207,8 @@
 
  */
 
-- (IBAction)newProject:(id)sender {
+- (IBAction)newProject:(id)sender
+{
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RTAddEditProjectViewController *addEditProj = [sb instantiateViewControllerWithIdentifier:@"addEditProjectView"];

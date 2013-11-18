@@ -19,7 +19,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -59,7 +60,8 @@
     return NO;
 }
 
-- (IBAction)addEditProject:(RTButton *)sender {
+- (IBAction)addEditProject:(RTButton *)sender
+{
 
     // Save new project if not empty
     // Escape whitespaces
@@ -80,14 +82,16 @@
             [managedObjectContext save:&err];
         }
         // Edit existing project
-        else{
+        else
+        {
             [self.currentProj setName:self.projectName.text startDate:self.startDate.date endDate:self.endDate.date notes:self.notes.text];
             
             NSError * err;
             [managedObjectContext save:&err];
         }
     }
-    else{
+    else
+    {
         // Invalid project name alert
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Project Name"
                                                         message:@"Project name should not be empty!"

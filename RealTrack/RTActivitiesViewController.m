@@ -20,7 +20,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -173,10 +174,13 @@
 }
 
 // If Export! is clicked, do export
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==1){
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1)
+    {
         // Check if the phone is configured for mail
-        if (![MFMailComposeViewController canSendMail]) {
+        if (![MFMailComposeViewController canSendMail])
+        {
             NSString *errorTitle = @"Error";
             NSString *errorString = @"This device is not configured to send email.";
             UIAlertView *errorView =
@@ -184,7 +188,9 @@
                                        message:errorString delegate:self cancelButtonTitle:nil
                              otherButtonTitles:@"OK", nil];
             [errorView show];
-        } else {
+        }
+        else
+        {
             // Create mail view
             MFMailComposeViewController *mailView = [[MFMailComposeViewController alloc] init];
             mailView.mailComposeDelegate = self;
@@ -205,9 +211,11 @@
     }
 }
 
--(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
     // If any error
-    if (error) {
+    if (error)
+    {
         NSString *errorTitle = @"Mail Error";
         NSString *errorDescription = [error localizedDescription];
         UIAlertView *errorView = [[UIAlertView alloc]
@@ -218,7 +226,9 @@
                                   otherButtonTitles:@"OK", nil];
         [errorView show];
         
-    } else {
+    }
+    else
+    {
         // Setup MFMailComposeResult to export csv
         switch (result)
         {

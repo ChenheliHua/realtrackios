@@ -19,7 +19,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -56,7 +57,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)addParticipation:(id)sender {
+- (IBAction)addParticipation:(id)sender
+{
     Participations *part = [NSEntityDescription insertNewObjectForEntityForName:@"Participations" inManagedObjectContext:self.managedObjectContext];
     
     [part setDate:self.date.date menUnder15:[NSNumber numberWithInteger:[self.menUnder15.text intValue]] men15To24:[NSNumber numberWithInteger:[self.men15To24.text intValue]] menAvove24:[NSNumber numberWithInteger:[self.menAbove24.text intValue]] womenUnder15:[NSNumber numberWithInteger:[self.womenUnder15.text intValue]] women15To24:[NSNumber numberWithInteger:[self.women15To24.text intValue]] womenAbove24:[NSNumber numberWithInteger:[self.womenAbove24.text intValue]] notes:self.notes.text activity:self.currentAct];
@@ -70,8 +72,6 @@
     
     if ([eventStore respondsToSelector:@selector(requestAccessToEntityType:completion:)])
     {
-        
-        
         // the selector is available, so we must be on iOS 6 or newer
         [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -118,7 +118,8 @@
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return NO;
 }

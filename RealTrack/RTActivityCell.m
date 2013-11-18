@@ -15,7 +15,8 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
+    if (self)
+    {
         // Initialization code
     }
     return self;
@@ -28,7 +29,8 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)addParticipation:(id)sender {
+- (IBAction)addParticipation:(id)sender
+{
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RTAddEditParticipationViewController *addPart = [sb instantiateViewControllerWithIdentifier:@"addEditParticipationView"];
@@ -47,7 +49,8 @@
     
 }
 
-- (IBAction)editActivity:(id)sender {
+- (IBAction)editActivity:(id)sender
+{
     
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -65,7 +68,8 @@
 
 }
 
-- (IBAction)viewActivity:(id)sender {
+- (IBAction)viewActivity:(id)sender
+{
     // For date format
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd/yyyy"];
@@ -83,7 +87,8 @@
     [alert show];
 }
 
-- (IBAction)deleteActivity:(id)sender {
+- (IBAction)deleteActivity:(id)sender
+{
     // Show alert asking for confirmatio
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete Activity" message:self.currentAct.activity_name delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete!", nil];
     
