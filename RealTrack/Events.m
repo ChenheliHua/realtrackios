@@ -9,7 +9,6 @@
 #import "Events.h"
 #import "Activities.h"
 
-
 @implementation Events
 
 @dynamic event_id;

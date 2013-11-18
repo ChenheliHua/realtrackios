@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "RTAppDelegate.h"
-#import "Activities.h"
 
 @class Activities;
 

@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <EventKit/EventKit.h>
-#import "Projects.h"
-#import "Participations.h"
-#import "Events.h"
 #import "RTAppDelegate.h"
 
 @class Participations, Projects, Events;

@@ -34,12 +34,12 @@
 		0B5811CB18158940000CC2D2 /* RTEnterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811CA18158940000CC2D2 /* RTEnterDataViewController.m */; };
 		0B5811D118158A2C000CC2D2 /* RTPendingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D018158A2C000CC2D2 /* RTPendingViewController.m */; };
 		0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5811D318158A40000CC2D2 /* RTActivitiesViewController.m */; };
-		0BA7EFD5182997C9004534D6 /* Events.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA7EFD4182997C9004534D6 /* Events.m */; };
 		0BC090AB181C3FA2004EE24F /* RTNewActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC090AA181C3FA2004EE24F /* RTNewActivityCell.m */; };
 		0BC090AE181C5A71004EE24F /* RTAddEditParticipationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC090AD181C5A71004EE24F /* RTAddEditParticipationViewController.m */; };
 		0BC3454D181FED2D006FAC7E /* viewParticipationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3454C181FED2D006FAC7E /* viewParticipationsCell.xib */; };
 		0BC34550181FF09A006FAC7E /* RTViewParticipationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3454F181FF09A006FAC7E /* RTViewParticipationsCell.m */; };
 		0BCD08D4181B292F00C49192 /* RTActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCD08D3181B292F00C49192 /* RTActivityCell.m */; };
+		0BD7F90F183A6F3F00798226 /* Events.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA7EFD4182997C9004534D6 /* Events.m */; };
 		0BF9BC03182A8EFD00CC4A49 /* RTPendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9BC02182A8EFD00CC4A49 /* RTPendingCell.m */; };
 /* End PBXBuildFile section */
 
@@ -369,7 +369,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BA7EFD5182997C9004534D6 /* Events.m in Sources */,
 				0BC34550181FF09A006FAC7E /* RTViewParticipationsCell.m in Sources */,
 				0B5811D418158A40000CC2D2 /* RTActivitiesViewController.m in Sources */,
 				0BC090AE181C5A71004EE24F /* RTAddEditParticipationViewController.m in Sources */,
@@ -382,6 +381,7 @@
 				0B3F73A8180DBB4D0032BE07 /* main.m in Sources */,
 				0B0E60971819B26E00DE44B8 /* RTAddEditProjectViewController.m in Sources */,
 				0B443FB4182196BE00FB8F9B /* Projects.m in Sources */,
+				0BD7F90F183A6F3F00798226 /* Events.m in Sources */,
 				0B5811CB18158940000CC2D2 /* RTEnterDataViewController.m in Sources */,
 				0B443FBA182196BF00FB8F9B /* Activities.m in Sources */,
 				0B501AC1180EEEC800430C21 /* RTButton.m in Sources */,
