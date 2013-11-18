@@ -117,7 +117,7 @@
             
             [act addActivityEvent];
         }
-        // Edit existing project
+        // Edit existing activity
         else
         {
             for(UIDatePicker * dp in self.weekdaysP)

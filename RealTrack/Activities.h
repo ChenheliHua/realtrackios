@@ -35,7 +35,7 @@
 @property (nonatomic, retain) NSDate * sun_time;
 @property (nonatomic, retain) NSSet *participations;
 @property (nonatomic, retain) Projects *project;
-@property (nonatomic, retain) NSMutableSet *events;
+@property (nonatomic, retain) NSSet *events;
 
 @end
 
