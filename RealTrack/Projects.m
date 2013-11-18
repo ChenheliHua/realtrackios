@@ -9,7 +9,6 @@
 #import "Projects.h"
 #import "Activities.h"
 
-
 @implementation Projects
 
 @dynamic end_date;

@@ -216,6 +216,9 @@
     addEditProj.title = @"New Project";
     addEditProj.currentProj = nil;
     
+    // Pass down context
+    addEditProj.managedObjectContext = self.managedObjectContext;
+    
     [self.navigationController pushViewController:addEditProj animated:YES];
     
 }

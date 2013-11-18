@@ -41,6 +41,9 @@
     // Set title
     addEditAct.title = @"New Activity";
     
+    // Pass down context
+    addEditAct.managedObjectContext = self.managedObjectContext;
+    
     // Push view controller
     [self.navController pushViewController:addEditAct animated:YES];
 }

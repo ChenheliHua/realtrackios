@@ -1,5 +1,5 @@
 //
-//  EventIds.h
+//  Events.h
 //  RealTrack
 //
 //  Created by Chenheli Hua on 11/5/13.
@@ -8,16 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "Activities.h"
+
+
 @class Activities;
 
-@interface EventIds : NSManagedObject
+@interface Events : NSManagedObject
 
 @property (nonatomic, retain) NSString * event_id;
 @property (nonatomic, retain) Activities *activity;
 
 // Retrieve data with specified predicate and sort descriptor. Pass nil to skip predicate and/or sort descriptor
-+(NSArray*)retrieveEventIdsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
++(NSArray*)retrieveEventsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort;
 
 -(void)setID:(NSString *)id activity:(Activities *)act;
 

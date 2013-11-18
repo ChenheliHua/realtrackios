@@ -1,21 +1,20 @@
 //
-//  EventIds.m
+//  Events.m
 //  RealTrack
 //
 //  Created by Chenheli Hua on 11/5/13.
 //  Copyright (c) 2013 Peace Corps. All rights reserved.
 //
 
-#import "EventIds.h"
+#import "Events.h"
 #import "Activities.h"
 
-
-@implementation EventIds
+@implementation Events
 
 @dynamic event_id;
 @dynamic activity;
 
-+(NSArray*)retrieveEventIdsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort
++(NSArray*)retrieveEventsWithPredicate:(NSPredicate *)pred andSortDescriptor:(NSSortDescriptor *)sort
 {
     // Fetch all data
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -23,7 +22,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    NSEntityDescription *entDes = [NSEntityDescription entityForName:@"EventIds" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entDes = [NSEntityDescription entityForName:@"Events" inManagedObjectContext:managedObjectContext];
     
     [fetchRequest setEntity:entDes];
     

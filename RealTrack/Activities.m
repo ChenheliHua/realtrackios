@@ -7,9 +7,9 @@
 //
 
 #import "Activities.h"
-#import "Participations.h"
 #import "Projects.h"
-
+#import "Participations.h"
+#import "Events.h"
 
 @implementation Activities
 
@@ -33,7 +33,7 @@
 @dynamic sun_time;
 @dynamic participations;
 @dynamic project;
-@dynamic event_ids;
+@dynamic events;
 
 
 -(void)setWeekday:(NSInteger)day withTime:(NSDate *)time
@@ -257,7 +257,7 @@
     event.startDate = eventDate;
     event.endDate = [eventDate dateByAddingTimeInterval:60*60];
     
-    // Set up recurrence rule (TO BE ADDED)
+    // Set up recurrence rule
     EKRecurrenceRule * rule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 end:[EKRecurrenceEnd recurrenceEndWithEndDate:self.end_date]];
     [event addRecurrenceRule:rule];
     
@@ -269,11 +269,11 @@
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
     
-    EventIds * id = [NSEntityDescription insertNewObjectForEntityForName:@"EventIds"inManagedObjectContext:managedObjectContext];
+    Events * eventObj = [NSEntityDescription insertNewObjectForEntityForName:@"Events"inManagedObjectContext:managedObjectContext];
     
-    [id setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
+    [eventObj setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
     
-    [self.event_ids addObject:id];
+    [self addEventsObject:eventObj];
 }
 
 -(void)updateActivityEvent
@@ -290,13 +290,13 @@
     
     NSError * err;
     
-    for (EventIds * id in self.event_ids)
+    for (Events * ev in self.events)
     {
         // Delete all exisiting events
-        [eventStore removeEvent:[eventStore eventWithIdentifier:id.event_id] span:EKSpanFutureEvents commit:YES error:&err];
+        [eventStore removeEvent:[eventStore eventWithIdentifier:ev.event_id] span:EKSpanFutureEvents commit:YES error:&err];
     
-        // Rewrite ids with an empty set
-        self.event_ids = [[NSMutableSet alloc] init];
+        // Rewrite evs with an empty set
+        self.events = [[NSMutableSet alloc] init];
     }
 }
 
