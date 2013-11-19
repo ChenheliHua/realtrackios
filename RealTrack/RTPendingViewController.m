@@ -30,6 +30,17 @@
 {
     [super viewDidLoad];
     
+    // Start a new query of all past due events through eventStore.
+    // I tried to pass the queried EKEvent array in IndexViewController to PendingViewController.
+    // However, doing so makes accessing eventIdentifier for individual events fail. Reasons unknown.
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    NSString * calID = [[NSUserDefaults standardUserDefaults] objectForKey:@"calendarIdentifier"];
+    EKCalendar *cal = [eventStore calendarWithIdentifier:calID];
+    
+    NSPredicate *predicate = [eventStore predicateForEventsWithStartDate:[[NSDate date] dateByAddingTimeInterval:-3600*24*365*2] endDate:[NSDate date] calendars:@[cal]];
+    self.events = [eventStore eventsMatchingPredicate:predicate];
+    
     // Sort events by time
     NSSortDescriptor * timeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startDate" ascending:YES];
     self.events = [self.events sortedArrayUsingDescriptors:@[timeDescriptor]];
@@ -69,6 +80,19 @@
     // Configure the cell...
     cell.currentEvent = [self.events objectAtIndex:indexPath.row];
     
+    // Get Events object and related activity & project
+    NSPredicate * pred = [NSPredicate predicateWithFormat:@"event_id == %@", cell.currentEvent.eventIdentifier];
+    NSArray * evArr = [Events retrieveEventsWithPredicate:pred andSortDescriptor:nil];
+
+    Events * ev = [evArr objectAtIndex:0];
+    cell.currentAct = ev.activity;
+    cell.currentProj = cell.currentAct.project;
+    cell.date = cell.currentEvent.startDate;
+    
+    // Pass down navigation controller & managed obj context
+    cell.navController = self.navigationController;
+    cell.managedObjectContext = self.managedObjectContext;
+    
     // Date format
     NSDateFormatter * eventDate = [[NSDateFormatter alloc] init];
     [eventDate setDateFormat:@"MM/dd/yyyy"];
@@ -76,12 +100,19 @@
     cell.title.text = [NSString stringWithFormat:@"%@ on %@", cell.currentEvent.title, [eventDate stringFromDate:cell.currentEvent.startDate]];
     
     return cell;
+    
 }
 
 // Disable editing
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+
+// Refresh view every time
+-(void)viewWillAppear:(BOOL)animated
+{
+    // TO DO: Reload data and refresh page
 }
 
 /*

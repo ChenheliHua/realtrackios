@@ -147,6 +147,7 @@
                         [eventStore saveCalendar:cal commit:YES error:&err];
                         
                         [[NSUserDefaults standardUserDefaults] setObject:cal.calendarIdentifier forKey:@"calendarIdentifier"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                     }
                     
                     // Set up days
@@ -168,7 +169,6 @@
                     // Tuesday
                     if(self.tue_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextTuesday = [startDate dateByAddingTimeInterval:60*60*24*((10 - weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextTuesday at:self.tue_time onEventStore:eventStore onCalendar:cal];
@@ -177,7 +177,6 @@
                     // Wednesday
                     if(self.wed_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextWednesday = [startDate dateByAddingTimeInterval:60*60*24*((11-weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextWednesday at:self.wed_time onEventStore:eventStore onCalendar:cal];
@@ -186,7 +185,6 @@
                     // Thursday
                     if(self.thu_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextThursday = [startDate dateByAddingTimeInterval:60*60*24*((12 - weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextThursday at:self.thu_time onEventStore:eventStore onCalendar:cal];
@@ -195,7 +193,6 @@
                     // Friday
                     if(self.fri_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextFriday = [startDate dateByAddingTimeInterval:60*60*24*((13 - weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextFriday at:self.fri_time onEventStore:eventStore onCalendar:cal];
@@ -204,7 +201,6 @@
                     // Saturday
                     if(self.sat_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextSaturday = [startDate dateByAddingTimeInterval:60*60*24*((14 - weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextSaturday at:self.sat_time onEventStore:eventStore onCalendar:cal];
@@ -213,7 +209,6 @@
                     // Sunday
                     if(self.sun_time!=nil)
                     {
-                        // combine next mon date + mon_time time and regiester event
                         NSDate * nextSunday = [startDate dateByAddingTimeInterval:60*60*24*((15 - weekdayToday) % 7)];
                         
                         [self addRecurrenceActOn:nextSunday at:self.sun_time onEventStore:eventStore onCalendar:cal];
@@ -248,32 +243,41 @@
     NSString * timeString = [NSString stringWithFormat:@"%@ %@", [date stringFromDate:nextWeekday], [time stringFromDate:eventTime]];
     NSDate * eventDate = [combine dateFromString:timeString];
     
-    EKEvent * event = [EKEvent eventWithEventStore:eventStore];
-    
-    // Set up event
-    event.calendar = cal;
-    event.location = self.communities;
-    event.title = [NSString stringWithFormat:@"%@", self.activity_name];
-    event.startDate = eventDate;
-    event.endDate = [eventDate dateByAddingTimeInterval:60*60];
-    
-    // Set up recurrence rule
-    EKRecurrenceRule * rule = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:1 end:[EKRecurrenceEnd recurrenceEndWithEndDate:self.end_date]];
-    [event addRecurrenceRule:rule];
-    
-    // Save
-    NSError *err;
-    [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-    
-    // Load managedObjectContext
-    RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
-    
-    Events * eventObj = [NSEntityDescription insertNewObjectForEntityForName:@"Events"inManagedObjectContext:managedObjectContext];
-    
-    [eventObj setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
-    
-    [self addEventsObject:eventObj];
+    // Loop over every week's event
+    // NOTE: self.end_date is added by a day in case that the last day is also a weekday of the event and the event time is later than the time
+    // the user enters the data. Adding a day in the while loop makes sure that the event would be created on the last day as well.
+    while([eventDate compare:[Activities beginningOf:[self.end_date dateByAddingTimeInterval:60*60*24]]]==NSOrderedAscending)
+    {
+        EKEvent * event = [EKEvent eventWithEventStore:eventStore];
+        
+        // Set up event
+        event.calendar = cal;
+        event.location = self.communities;
+        event.title = [NSString stringWithFormat:@"%@", self.activity_name];
+        event.startDate = eventDate;
+        event.endDate = [eventDate dateByAddingTimeInterval:60*60];
+        
+        // Save
+        NSError *err;
+        [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+        
+        // Load managedObjectContext
+        RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
+        
+        // Added Events objects to bookkeep
+        Events * eventObj = [NSEntityDescription insertNewObjectForEntityForName:@"Events"inManagedObjectContext:managedObjectContext];
+        
+        [eventObj setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
+        
+        [self addEventsObject:eventObj];
+        
+        [managedObjectContext save:&err];
+        
+        // Move to next week
+        eventDate = [eventDate dateByAddingTimeInterval:60*60*24*7];
+        
+    }
 }
 
 -(void)updateActivityEvent
@@ -287,16 +291,25 @@
 -(void)deleteActivityEvent
 {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
-    
     NSError * err;
     
-    for (Events * ev in self.events)
-    {
-        // Delete all exisiting events
-        [eventStore removeEvent:[eventStore eventWithIdentifier:ev.event_id] span:EKSpanFutureEvents commit:YES error:&err];
+    // Iterate through all events objects
+    NSArray * evArr = [self.events allObjects];
     
-        // Rewrite evs with an empty set
-        self.events = [[NSMutableSet alloc] init];
+    for (int i=0;i<[evArr count];i++)
+    {
+        Events *ev = [evArr objectAtIndex:i];
+        
+        EKEvent * event = [eventStore eventWithIdentifier:ev.event_id];
+
+        if([event.startDate compare:[Activities beginningOf:[NSDate date]]] == NSOrderedDescending)
+        {
+            // Delete all future exisiting events
+            [eventStore removeEvent:event span:EKSpanFutureEvents commit:YES error:&err];
+    
+            // Rewrite evs with an empty set
+            [self removeEventsObject:ev];
+        }
     }
 }
 
@@ -340,6 +353,17 @@
     self.project = proj;
     // Add activity to project as well
     [proj addActivitiesObject:self];
+}
+
+// Compute the beginning of a given date
++(NSDate *)beginningOf:(NSDate *)date
+{
+    NSCalendar * cal = [NSCalendar currentCalendar];
+    NSDateComponents * comp = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+    [comp setHour:0];
+    [comp setMinute:0];
+    [comp setSecond:0];
+    return [cal dateFromComponents:comp];
 }
 
 @end

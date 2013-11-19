@@ -35,6 +35,7 @@
     NSError *err;
     
     return [managedObjectContext executeFetchRequest:fetchRequest error:&err];
+    
 }
 
 -(void)setID:(NSString *)eventId activity:(Activities *)act
