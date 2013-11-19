@@ -10,6 +10,8 @@
 
 @implementation RTPendingCell
 
+@synthesize managedObjectContext;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -27,7 +29,7 @@
     // Configure the view for the selected state
 }
 
-/*
+
 - (IBAction)viewActivity:(id)sender {
     // For date format
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -45,7 +47,9 @@
                                           otherButtonTitles:nil];
     [alert show];
 }
+
 - (IBAction)addParticipation:(id)sender {
+    
     // Create view controller from storyboard
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RTAddEditParticipationViewController *addPart = [sb instantiateViewControllerWithIdentifier:@"addEditParticipationView"];
@@ -53,6 +57,9 @@
     // Pass the project and activity object
     addPart.currentProj = self.currentProj;
     addPart.currentAct = self.currentAct;
+    addPart.defaultDate = self.date;
+    
+    addPart.managedObjectContext = self.managedObjectContext;
     
     // Set title
     addPart.title = @"Add Participation";
@@ -61,6 +68,6 @@
     [self.navController pushViewController:addPart animated:YES];
 }
 
- */
+
 
 @end

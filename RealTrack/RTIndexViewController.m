@@ -71,6 +71,7 @@
                         self.events = [eventStore eventsMatchingPredicate:predicate];
                         
                         [self.pending setButtonTitle:[NSString stringWithFormat:@"Pending (%d)", [self.events count]]];
+                        
                     }
                     else
                         NSLog(@"Unable to connect RealTrack calendar!");
@@ -82,6 +83,7 @@
     // Load managedObjectContext
     RTAppDelegate *appDelegate = (RTAppDelegate *)[[UIApplication sharedApplication]delegate];
     managedObjectContext = [appDelegate managedObjectContext];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,8 +122,14 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RTPendingViewController *pending = [sb instantiateViewControllerWithIdentifier:@"pendingView"];
     
-    pending.events = self.events;
+    pending.managedObjectContext = self.managedObjectContext;
     
     [self.navigationController pushViewController:pending animated:YES];
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    // TODO: Reload data & refresh page. 
+}
+
 @end

@@ -24,6 +24,7 @@
 // Store project and activity info
 @property (strong, nonatomic) Projects *currentProj;
 @property (strong, nonatomic) Activities *currentAct;
+@property (strong, nonatomic) NSDate * defaultDate;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UILabel *projectName;
