@@ -27,7 +27,6 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *endDate;
 @property (strong, nonatomic) IBOutlet UITextField *notes;
 
-
 // Store current project for editing, nil for new project
 @property (strong, nonatomic) Projects *currentProj;
 

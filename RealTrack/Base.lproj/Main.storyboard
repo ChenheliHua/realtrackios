@@ -533,7 +533,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="endDate" destination="Pjd-vF-njf" id="790-sP-Lef"/>
                         <outlet property="notes" destination="41i-Av-KEn" id="5yN-En-h90"/>
                         <outlet property="projectName" destination="arc-AD-K4F" id="RPP-hl-WJp"/>
-                        <outlet property="scrollView" destination="ktx-c8-jdP" id="KDZ-hy-Mwd"/>
+                        <outlet property="scrollView" destination="ktx-c8-jdP" id="39V-X6-pt8"/>
                         <outlet property="startDate" destination="gCN-3N-5b3" id="cEn-rA-OpY"/>
                     </connections>
                 </viewController>
