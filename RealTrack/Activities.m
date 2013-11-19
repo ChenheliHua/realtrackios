@@ -245,7 +245,7 @@
     // Loop over every week's event
     // NOTE: self.end_date is added by a day in case that the last day is also a weekday of the event and the event time is later than the time
     // the user enters the data. Adding a day in the while loop makes sure that the event would be created on the last day as well.
-    while([eventDate compare:[self.end_date dateByAddingTimeInterval:60*60*24]]==NSOrderedAscending)
+    while([eventDate compare:[Activities beginningOf:[self.end_date dateByAddingTimeInterval:60*60*24]]]==NSOrderedAscending)
     {
         EKEvent * event = [EKEvent eventWithEventStore:eventStore];
         
@@ -298,12 +298,8 @@
         Events *ev = [evArr objectAtIndex:i];
         
         EKEvent * event = [eventStore eventWithIdentifier:ev.event_id];
-        
-        // NOTE: The if statement compares the event date to one day before today. Doing so makes sure that if there is
-        // an event to be changed today, it would be changed as well. Also, it avoids the case when the user makes an mistake
-        // when entering reminder times. If we do not subtract a day from today, the user would not be able to correct the wrong
-        // reminder that has been set on today from the app.
-        if([event.startDate compare:[[NSDate date] dateByAddingTimeInterval:-60*60*24]] == NSOrderedDescending)
+
+        if([event.startDate compare:[Activities beginningOf:[NSDate date]]] == NSOrderedDescending)
         {
             // Delete all future exisiting events
             [eventStore removeEvent:event span:EKSpanFutureEvents commit:YES error:&err];
@@ -354,6 +350,17 @@
     self.project = proj;
     // Add activity to project as well
     [proj addActivitiesObject:self];
+}
+
+// Compute the beginning of a given date
++(NSDate *)beginningOf:(NSDate *)date
+{
+    NSCalendar * cal = [NSCalendar currentCalendar];
+    NSDateComponents * comp = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+    [comp setHour:0];
+    [comp setMinute:0];
+    [comp setSecond:0];
+    return [cal dateFromComponents:comp];
 }
 
 @end
