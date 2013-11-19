@@ -147,6 +147,7 @@
                         [eventStore saveCalendar:cal commit:YES error:&err];
                         
                         [[NSUserDefaults standardUserDefaults] setObject:cal.calendarIdentifier forKey:@"calendarIdentifier"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                     }
                     
                     // Set up days
@@ -270,6 +271,8 @@
         [eventObj setValue:[[NSString alloc] initWithFormat:@"%@", event.eventIdentifier] forKey:@"event_id"];
         
         [self addEventsObject:eventObj];
+        
+        [managedObjectContext save:&err];
         
         // Move to next week
         eventDate = [eventDate dateByAddingTimeInterval:60*60*24*7];

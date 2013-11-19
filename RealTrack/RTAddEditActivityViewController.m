@@ -44,7 +44,6 @@
     
     if(self.currentAct!=nil)
     {
-        NSLog(@"Edit!");
         [self.activityName setText:self.currentAct.activity_name];
         [self.startDate setDate:self.currentAct.start_date];
         [self.endDate setDate:self.currentAct.end_date];
