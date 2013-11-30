@@ -44,6 +44,8 @@
     self.womenAbove24.delegate = self;
     self.notes.delegate = self;
     
+    [self.date setDate:self.defaultDate];
+    
     int radius = 5;
     [self.button setCornerRadius:radius];
     
@@ -105,6 +107,7 @@
                         NSError * err;
                         for(EKEvent *event in events)
                         {
+                            // Remove event!
                             [eventStore removeEvent:event span:EKSpanThisEvent commit:YES error:&err];
                         }
                     }

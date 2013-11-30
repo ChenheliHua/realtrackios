@@ -38,6 +38,7 @@
     // Pass the project and activity object
     addPart.currentProj = self.currentProj;
     addPart.currentAct = self.currentAct;
+    addPart.defaultDate = [NSDate date];
     
     addPart.managedObjectContext = self.managedObjectContext;
     
